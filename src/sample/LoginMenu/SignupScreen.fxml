@@ -4,6 +4,7 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
@@ -14,8 +15,8 @@
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ab090959" height="291.0" layoutX="8.0" layoutY="27.0" stroke="BLACK" strokeType="INSIDE" width="542.0" />
       <TextField fx:id="textFieldUserName" layoutX="84.0" layoutY="43.0" />
-      <TextField fx:id="textFieldPassword" layoutX="84.0" layoutY="85.0" />
-      <TextField fx:id="textFieldPasswordConfirm" layoutX="84.0" layoutY="147.0" />
+      <TextField fx:id="textFieldForPassword" layoutX="84.0" layoutY="85.0" />
+      <TextField fx:id="textFieldForPasswordConfirm" layoutX="84.0" layoutY="146.0" />
       <TextField fx:id="textFieldFirstName" layoutX="377.0" layoutY="45.0" />
       <TextField fx:id="textFieldLastName" layoutX="377.0" layoutY="83.0" />
       <Label layoutX="14.0" layoutY="47.0" text="User Name:" />
@@ -24,8 +25,8 @@
       <Label layoutX="309.0" layoutY="49.0" text="First Name:" />
       <Label layoutX="309.0" layoutY="89.0" text="Last Name:" />
       <Label layoutX="317.0" layoutY="127.0" prefHeight="38.0" prefWidth="53.0" text="Date of Birth:" wrapText="true" />
-      <CheckBox layoutX="137.0" layoutY="119.0" mnemonicParsing="false" text="Show/Hide" />
-      <CheckBox layoutX="137.0" layoutY="174.0" mnemonicParsing="false" text="Show/Hide" />
+      <CheckBox fx:id="checkBox1" layoutX="137.0" layoutY="119.0" mnemonicParsing="false" text="Show/Hide" />
+      <CheckBox fx:id="checkBox2" layoutX="137.0" layoutY="174.0" mnemonicParsing="false" text="Show/Hide" />
       <Label layoutX="177.0" layoutY="6.0" text="Signup Screen" />
       <Button fx:id="buttonSubmit" layoutX="452.0" layoutY="361.0" mnemonicParsing="false" onAction="#handleSubmit" text="Submit" />
       <Button fx:id="buttonExit" layoutX="519.0" layoutY="361.0" mnemonicParsing="false" onAction="#handleExit" text="Exit" />
@@ -34,10 +35,12 @@
       <VBox layoutX="46.0" layoutY="214.0" prefHeight="93.0" prefWidth="112.0" style="-fx-background-color: #AAAAAA;">
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Rules for Username and Password:" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Username must be atleast 5 characters." />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Password must be atleast 6 characters and contain 1 number." wrappingWidth="206.7890625" />
+            <Text fx:id="textUserNameRule" strokeType="OUTSIDE" strokeWidth="0.0" text="Username must be atleast 5 characters." />
+            <Text fx:id="textPasswordRule" strokeType="OUTSIDE" strokeWidth="0.0" text="Password must be atleast 6 characters and contain 1 number." wrappingWidth="206.7890625" />
          </children>
       </VBox>
+      <PasswordField fx:id="passwordField" layoutX="84.0" layoutY="85.0" />
       <Label fx:id="labelSubmitSuccess" layoutX="415.0" layoutY="338.0" text="." />
+      <PasswordField fx:id="passwordFieldPasswordConfirm" layoutX="84.0" layoutY="146.0" />
    </children>
 </AnchorPane>

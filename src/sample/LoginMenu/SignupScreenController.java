@@ -1,10 +1,11 @@
 package sample.LoginMenu;
 
+
+import javafx.scene.control.CheckBox;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -21,8 +22,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Tooltip;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import sample.Employee;
@@ -82,13 +86,20 @@ public class SignupScreenController implements Initializable {
   @FXML
   Button buttonSubmit, buttonExit;
   @FXML
-  TextField textFieldUserName, textFieldPassword, textFieldPasswordConfirm,
-  textFieldFirstName,textFieldLastName;
+  TextField textFieldUserName,
+  textFieldFirstName,textFieldLastName,
+      textFieldForPassword,textFieldForPasswordConfirm;
 
   @FXML
   DatePicker datePickerDOB;
   @FXML
   Label labelSubmitSuccess;
+  @FXML
+  PasswordField passwordField, passwordFieldPasswordConfirm;
+  @FXML
+  CheckBox checkBox1, checkBox2;
+  @FXML
+  Text textUserNameRule, textPasswordRule;
 
   public void createGuest(String n, String pw){
 
@@ -99,7 +110,7 @@ public class SignupScreenController implements Initializable {
   void handleSubmit(ActionEvent event){
     String userName, password,firstName,lastName,dob;
     userName = textFieldUserName.getText();
-    password = textFieldPassword.getText();
+    password = passwordField.getText();
     firstName = textFieldFirstName.getText();
     lastName = textFieldLastName.getText();
 
@@ -117,6 +128,11 @@ public class SignupScreenController implements Initializable {
       labelSubmitSuccess.setText("Success");
       System.out.println("UserName: "+userName +"\npw: "+password+"\nFname"+firstName + "\nLastname:"+lastName
           +"\nDOB:"+dob);
+      Global.currentScene = buttonExit.getScene();
+      new Global().displayPopUpWindow("Signup Complete! Welcome to Ruby Resort");
+      handleExit(event);
+
+
     }
     else {
       System.out.println("WRong");
@@ -132,45 +148,76 @@ public class SignupScreenController implements Initializable {
   private Boolean ValidateInputs() {
     String userName, password,firstName,lastName,dob;
     userName = textFieldUserName.getText();
-    password = textFieldPassword.getText();
-    String passwordConfirm = textFieldPasswordConfirm.getText();
+    password = passwordField.getText();
+    String passwordConfirm = passwordFieldPasswordConfirm.getText();
     firstName = textFieldFirstName.getText();
     lastName = textFieldLastName.getText();
    // dob = datePickerDOB.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+    textUserNameRule.setFill(Color.BLACK);
+    textPasswordRule.setFill(Color.BLACK);
     Boolean allInputsValid = true;
 
     try{
       dob = datePickerDOB.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 
     }catch (java.lang.RuntimeException exception){
+      //this may be unnecessary
       datePickerDOB.requestFocus();
       labelSubmitSuccess.setText("Date is Invalid");
       System.out.println("Invalid date yo");
       allInputsValid=false;
     }
 
+    if(lastName.isEmpty()){
+      textFieldLastName.requestFocus();
+      labelSubmitSuccess.setText("Enter Last Name");
+      allInputsValid= false;
+    }
+
+    if(firstName.isEmpty()){
+      textFieldFirstName.requestFocus();
+      labelSubmitSuccess.setText("Enter First Name");
+      allInputsValid= false;
+    }
 
     boolean hasDigit = password.matches(".*\\d+.*");
     if (!hasDigit){
       labelSubmitSuccess.setText("Password Invalid");
+      textUserNameRule.setFill(Color.BLACK);
+      textPasswordRule.setFill(Color.RED);
+      textFieldForPassword.requestFocus();//Making sure one of the textBoxes for the first password is focused on
+      textFieldForPassword.selectAll();
       //password doesn't have a digit
-      textFieldPassword.requestFocus();
-      textFieldPassword.selectAll();
+      passwordField.requestFocus();
+      passwordField.selectAll();
+
       allInputsValid = false;
     }
     if (password.length() <6){
-      labelSubmitSuccess.setText("Password Invalid");
+      labelSubmitSuccess.setText("Password Invalid, See Rules");
       //password doesnt have enough characters
-      textFieldPassword.requestFocus();
-      textFieldPassword.selectAll();
+      passwordField.requestFocus();
+      textFieldForPassword.requestFocus();//Making sure one of the textBoxes for the first password is focused on
+      textFieldForPassword.selectAll();
+      passwordField.selectAll();
+
+      textUserNameRule.setFill(Color.BLACK);
+      textPasswordRule.setFill(Color.BLACK);
       allInputsValid = false;
 
     }else if (!password.equals(passwordConfirm))
     {
       labelSubmitSuccess.setText("Passwords don't match");
       //The password and the ConfirmPassword boxes dont match
-      textFieldPassword.requestFocus();
-      textFieldPassword.selectAll();
+      passwordField.requestFocus();
+      textFieldForPassword.requestFocus();//Making sure one of the textBoxes for the first password is focused on
+
+      textFieldForPassword.selectAll();
+
+      passwordField.selectAll();
+      textUserNameRule.setFill(Color.BLACK);
+      textPasswordRule.setFill(Color.RED);
+
       allInputsValid = false;
     }
 
@@ -182,6 +229,8 @@ public class SignupScreenController implements Initializable {
         labelSubmitSuccess.setText("Username already taken");
         //If the username the Guest enetered is already taken thne it cant be used against
         //not case sensitive so there can't be a jackjones and a Jackjones
+        textPasswordRule.setFill(Color.BLACK);
+        textUserNameRule.setFill(Color.RED);
         allInputsValid=false;
 
 
@@ -192,8 +241,10 @@ public class SignupScreenController implements Initializable {
     if (userName.length()<6){
       //if username is less than 6 it's invalid
       labelSubmitSuccess.setText("Username Invalid");
+      textPasswordRule.setFill(Color.BLACK);
+      textUserNameRule.setFill(Color.RED);
       textFieldUserName.requestFocus();
-      textFieldFirstName.selectAll();
+
       allInputsValid =false;
 
     }
@@ -236,6 +287,46 @@ return allInputsValid;
     this.guestList = Global.guestList;
     this.rooms = Global.rooms;
     this.data = Global.data;
+
+    TextField textFieldForPasswordManager = textFieldForPasswordConfirm;
+    PasswordField passwordFieldManager = passwordFieldPasswordConfirm;
+
+    textFieldForPassword.setManaged(false);
+    textFieldForPassword.setVisible(false);//Hide regular textfield
+
+    textFieldForPasswordManager.setManaged(false);
+    textFieldForPasswordManager.setVisible(false);//Hide regular textfield
+
+    textFieldForPasswordManager.managedProperty().bind(checkBox2.selectedProperty());// TextField's setManageProperty will be changed by CheckBox
+    textFieldForPasswordManager.visibleProperty().bind(checkBox2.selectedProperty());// TextField's setVisibleProperty will be changed by CheckBox
+
+    passwordFieldManager.managedProperty().bind(checkBox2.selectedProperty().not());//Same as above but oppsite?
+    passwordFieldManager.visibleProperty().bind(checkBox2.selectedProperty().not());
+
+    // Bind the textField and passwordField text values bidirectionally.
+    textFieldForPasswordManager.textProperty().bindBidirectional(passwordFieldManager.textProperty()); //MAkes two textfie
+
+    // Actual password field
+    //final PasswordField passwordField = new PasswordField();//Password Field shows ***
+
+    // CheckBox checkBox = new CheckBox("Show/Hide password");//Create checkbox that will toggle
+
+    // Bind properties. Toggle textField and passwordField
+    // visibility and managability properties mutually when checkbox's state is changed.
+    // Because we want to display only one component (textField or passwordField)
+    // on the scene at a time.
+    textFieldForPassword.managedProperty().bind(checkBox1.selectedProperty());// TextField's setManageProperty will be changed by CheckBox
+    textFieldForPassword.visibleProperty().bind(checkBox1.selectedProperty());// TextField's setVisibleProperty will be changed by CheckBox
+
+    passwordField.managedProperty().bind(checkBox1.selectedProperty().not());//Same as above but oppsite?
+    passwordField.visibleProperty().bind(checkBox1.selectedProperty().not());
+
+    // Bind the textField and passwordField text values bidirectionally.
+    textFieldForPassword.textProperty().bindBidirectional(passwordField.textProperty()); //MAkes two textfields share share same input
+    //If this code isn't there the two textfields are seperate
+
+
+
     datePickerDOB.setValue(LocalDate.now().minusYears(18)); //If you are going touse a daFactor need to have the datepicker have a claue first
     //Otherwise it will a nullopinter error
     final Callback<DatePicker, DateCell> dayCellFactory =
@@ -262,8 +353,6 @@ return allInputsValid;
           }
         };
     datePickerDOB.setDayCellFactory(dayCellFactory);
-
-
 
 
 

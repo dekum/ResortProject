@@ -21,8 +21,8 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="215.0" prefWidth="200.0">
                      <children>
-                        <TextField id="UserTextField" fx:id="txtfieldUsername" layoutX="103.0" layoutY="110.0" prefHeight="25.0" prefWidth="174.0" />
-                        <PasswordField fx:id="textFieldPassword" layoutX="103.0" layoutY="144.0" />
+                        <TextField id="UserTextField" fx:id="textfieldUsername" layoutX="103.0" layoutY="110.0" prefHeight="25.0" prefWidth="174.0" />
+                        <PasswordField fx:id="passwordField" layoutX="103.0" layoutY="144.0" />
                           <Button id="LoginButton" fx:id="buttonLogin" layoutX="133.0" layoutY="215.0" onAction="#handleButtonLogin" prefHeight="25.0" prefWidth="53.0" text="Login" />
                           <Label fx:id="labelLoginSuccess" layoutX="18.0" layoutY="171.0" minHeight="16" minWidth="69" prefHeight="41.0" prefWidth="145.0" wrapText="true" />
                         <Text layoutX="43.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" />
@@ -52,9 +52,9 @@
                      <children>
                         <Text layoutX="43.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" />
                         <Text layoutX="43.0" layoutY="161.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" wrappingWidth="53.291015625" />
-                        <TextField id="UserTextField" fx:id="getTxtfieldUsernameManager" layoutX="103.0" layoutY="110.0" prefHeight="25.0" prefWidth="174.0" />
+                        <TextField id="UserTextField" fx:id="textFieldUsernameManager" layoutX="103.0" layoutY="110.0" prefHeight="25.0" prefWidth="174.0" />
                         <Label fx:id="labelManagerLogin" layoutX="105.0" layoutY="227.0" minHeight="16" minWidth="69" prefHeight="17.0" prefWidth="171.0" />
-                        <PasswordField fx:id="getTxtfieldPasswordManager" layoutX="105.0" layoutY="144.0" />
+                        <PasswordField fx:id="passwordFieldManager" layoutX="105.0" layoutY="144.0" />
                         <Button id="LoginButton" fx:id="buttonManagerLogin" layoutX="99.0" layoutY="223.0" mnemonicParsing="false" onAction="#handleButtonLoginManager" prefHeight="25.0" prefWidth="53.0" text="Login" />
                         <Button fx:id="buttonExit1" layoutX="223.0" layoutY="223.0" mnemonicParsing="false" onAction="#handleButtonExit" prefHeight="25.0" prefWidth="53.0" text="Exit" />
                         <TextField fx:id="textFieldForPasswordManager" layoutX="105.0" layoutY="144.0" />

@@ -44,6 +44,7 @@ public class Global {
   static  public Guest currentGuestLoggedIn; //LoginMenuController keeps track of guest to send to GuestMenu
   static  public ObservableList<Employee> data= FXCollections.observableArrayList(); // Arraylist of Employees for MaanagerMenu
   static  public Manager admin;//Not used
+  static public  Scene currentScene;
 
   /**
    * URl Locations for quick reference
@@ -94,7 +95,7 @@ public class Global {
         .alignment(Pos.CENTER)
         .padding(new Insets(10))
         .build());
-
+    myDialog.initOwner(currentScene.getWindow()); //Set this to the parent of the opup window
     myDialog.setScene(myDialogScene);
     myDialog.showAndWait(); //USE showAndWait to wait for the popto close
     //REgular wait will ignore modality and will call second window regardlessly.

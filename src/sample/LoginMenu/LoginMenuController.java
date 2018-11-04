@@ -10,7 +10,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.ObservableList;
@@ -39,7 +38,6 @@ import sample.Global;
 import sample.Global.WindowLocation;
 import sample.Guest;
 import sample.GuestMenu.GuestMenuController;
-import sample.GuestMenu.GuestMenuHomeController;
 import sample.ManagerMenu.ManagerMenuController;
 import sample.Room;
 
@@ -339,19 +337,19 @@ private CheckBox checkBox; //CheckBo for handling showPassword
     private Label labelLogin;
 
     @FXML
-    private TextField txtfieldUsername;
+    private TextField textfieldUsername;
 
     @FXML
-    private PasswordField textFieldPassword;
+    private PasswordField passwordField;
 
     @FXML
     private Button buttonExit;
 
     @FXML
-    private TextField getTxtfieldUsernameManager;
+    private TextField textFieldUsernameManager;
 
     @FXML
-    private PasswordField getTxtfieldPasswordManager;
+    private PasswordField passwordFieldManager;
 
     @FXML
     private Button buttonManagerLogin;
@@ -380,8 +378,8 @@ private CheckBox checkBox; //CheckBo for handling showPassword
     void handleButtonLogin(ActionEvent event) {
 
         String field1, field2;//Declare Strings
-        field1 = txtfieldUsername.getText();//Store what in txtField Username into field1
-        field2 = textFieldPassword.getText();//Store whats in txtFieldPassword into field2
+        field1 = textfieldUsername.getText();//Store what in txtField Username into field1
+        field2 = passwordField.getText();//Store whats in txtFieldPassword into field2
         //UserType tyoe= UserType.GUEST; Not used
 
         checkLogin(field1,field2);//Calls method to check if inputs are valid
@@ -405,8 +403,8 @@ private CheckBox checkBox; //CheckBo for handling showPassword
         boolean isNameCorrect=false;
         boolean isPasswordCorrect=false;
         String field1, field2;
-        field1 = getTxtfieldUsernameManager.getText();
-        field2 = getTxtfieldPasswordManager.getText();
+        field1 = textFieldUsernameManager.getText();
+        field2 = passwordFieldManager.getText();
 
         String managerUsername = "Nicolo";
         String managerPassword = "Martina";
@@ -523,24 +521,25 @@ private CheckBox checkBox; //CheckBo for handling showPassword
 
     // text field to show password as unmasked
     //final TextField textFieldForPassword = new TextField(); //REgular textfield show characters
-    //System.out.println(textFieldPassword.getLayoutY());
-    //System.out.println(textFieldPassword.getLayoutX());
-   // textFieldForPassword.setLayoutY(textFieldPassword.getLayoutY());
-   // textFieldForPassword.setLayoutX(textFieldPassword.getLayoutX());
+    //System.out.println(passwordField.getLayoutY());
+    //System.out.println(passwordField.getLayoutX());
+   // textFieldForPassword.setLayoutY(passwordField.getLayoutY());
+   // textFieldForPassword.setLayoutX(passwordField.getLayoutX());
     // Set initial state
     textFieldForPassword.setManaged(false);
     textFieldForPassword.setVisible(false);//Hide regular textfield
 
     textFieldForPasswordManager.setManaged(false);
     textFieldForPasswordManager.setVisible(false);//Hide regular textfield
+
     textFieldForPasswordManager.managedProperty().bind(checkBox2.selectedProperty());// TextField's setManageProperty will be changed by CheckBox
     textFieldForPasswordManager.visibleProperty().bind(checkBox2.selectedProperty());// TextField's setVisibleProperty will be changed by CheckBox
 
-    getTxtfieldPasswordManager.managedProperty().bind(checkBox2.selectedProperty().not());//Same as above but oppsite?
-    getTxtfieldPasswordManager.visibleProperty().bind(checkBox2.selectedProperty().not());
+    passwordFieldManager.managedProperty().bind(checkBox2.selectedProperty().not());//Same as above but oppsite?
+    passwordFieldManager.visibleProperty().bind(checkBox2.selectedProperty().not());
 
     // Bind the textField and passwordField text values bidirectionally.
-    textFieldForPasswordManager.textProperty().bindBidirectional(getTxtfieldPasswordManager.textProperty()); //MAkes two textfie
+    textFieldForPasswordManager.textProperty().bindBidirectional(passwordFieldManager.textProperty()); //MAkes two textfie
 
     // Actual password field
     //final PasswordField passwordField = new PasswordField();//Password Field shows ***
@@ -554,11 +553,11 @@ private CheckBox checkBox; //CheckBo for handling showPassword
     textFieldForPassword.managedProperty().bind(checkBox.selectedProperty());// TextField's setManageProperty will be changed by CheckBox
     textFieldForPassword.visibleProperty().bind(checkBox.selectedProperty());// TextField's setVisibleProperty will be changed by CheckBox
 
-    textFieldPassword.managedProperty().bind(checkBox.selectedProperty().not());//Same as above but oppsite?
-    textFieldPassword.visibleProperty().bind(checkBox.selectedProperty().not());
+    passwordField.managedProperty().bind(checkBox.selectedProperty().not());//Same as above but oppsite?
+    passwordField.visibleProperty().bind(checkBox.selectedProperty().not());
 
     // Bind the textField and passwordField text values bidirectionally.
-    textFieldForPassword.textProperty().bindBidirectional(textFieldPassword.textProperty()); //MAkes two textfields share share same input
+    textFieldForPassword.textProperty().bindBidirectional(passwordField.textProperty()); //MAkes two textfields share share same input
     //If this code isn't there the two textfields are seperate
 
   }
@@ -570,8 +569,8 @@ private CheckBox checkBox; //CheckBo for handling showPassword
      * Will be deleted and changed to the signupWindow
      *
      */
-//        txtfieldUsername.requestFocus(); //Can be used if user entered something wrong
-//        txtfieldUsername.selectAll();//Highlights the text so user can easily fix it wiothut mouse click
+//        textfieldUsername.requestFocus(); //Can be used if user entered something wrong
+//        textfieldUsername.selectAll();//Highlights the text so user can easily fix it wiothut mouse click
 //
 //        System.out.println(field1+" "+field2);
         Guest createGuest;
