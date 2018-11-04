@@ -12,7 +12,7 @@ import java.util.Date;
  *
  */
 
-public abstract class Event {
+public  class Event {
   String name;
   int numberOfGuests;
   Boolean didManagerCreate; //Check if Manager created sample.Event ornot
@@ -21,8 +21,12 @@ public abstract class Event {
   //Add more Varaibles
   Date date;
 
+  public Event(String name) {
+    this.name = name;
+  }
 
-
+  public Event() {
+  }
 }
 
 class Spa extends  Event{

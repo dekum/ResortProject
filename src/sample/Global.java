@@ -56,9 +56,10 @@ public class Global {
     MANAGERMENU("/sample/ManagerMenu/ManagerMenu.fxml"),
     GUESTMENUHOME("/sample/GuestMenu/GuestMenuHome.fxml"),
     GUESTMENUROOM("/sample/GuestMenu/GuestRoom.fxml"),
-    GUESTMENUACCOUNT("/sample/GuestMenu/GuestAccountScreen.fxml")
+    GUESTMENUACCOUNT("/sample/GuestMenu/GuestAccountScreen.fxml"),
+    EVENTMENUHOME("/sample/EventMenu/EventMenuHome.fxml"),
 
-    ;
+    EVENTCREATE("/sample/EventMenu/EventCreate.fxml");
     private String url;
 
 

@@ -144,4 +144,33 @@ void handleExit(ActionEvent event){
 
   public void handleCalender(ActionEvent event) {
   }
+  public void handleEventButton(ActionEvent event){
+    Stage stageExit = (Stage) buttonBookRoom.getScene().getWindow(); //Select an object in this window
+    stageExit.close(); //close current window
+
+
+    //Loads FXML Loader
+    FXMLLoader Loader = new FXMLLoader();
+    Loader.setLocation(getClass().getResource(WindowLocation.EVENTMENUHOME.getLocation())); //Call new window
+
+    try {
+      Loader.load(); //Loads
+    }catch ( IOException ex){
+      Logger.getLogger(GuestRoomController.class.getName()).log(Level.SEVERE, null ,ex);
+
+    }
+    //  DisplayTextController display = Loader.getController(); //Calling DisplayTextcontroller file
+    // display.setText(name_Text,email_Text); //using displaytextcontroller's method
+    //LoginMenuController storeFields =Loader.getController();
+//    storeFields.storeVariables1(); //This method will stoer the variables
+
+
+    Parent p = Loader.getRoot();
+    Stage stage = new Stage();
+    stage.setTitle("View Rooms -"+ Global.currentGuestLoggedIn.getUserName()); //set title
+    stage.setScene(new Scene(p));
+    stage.show();//Open new window
+
+
+  }
 }
