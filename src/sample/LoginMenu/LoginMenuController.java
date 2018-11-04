@@ -37,7 +37,7 @@ import sample.Employee;
 import sample.Global;
 import sample.Global.WindowLocation;
 import sample.Guest;
-import sample.GuestMenu.GuestMenuController;
+import sample.GuestMenu.GuestRoomController;
 import sample.ManagerMenu.ManagerMenuController;
 import sample.Room;
 
@@ -177,7 +177,7 @@ private CheckBox checkBox; //CheckBo for handling showPassword
 //        try {
 //            Stage stage = (Stage) buttonCreate.getScene().getWindow();
 //            stage.close();
-//            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GuestMenu.fxml"));
+//            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GuestRoom.fxml"));
 //            Parent root1 = (Parent) fxmlLoader.load();
 //             stage = new Stage();
 //            stage.setScene(new Scene(root1));
@@ -212,13 +212,13 @@ private CheckBox checkBox; //CheckBo for handling showPassword
         // Loader.setController(guestController); GuestMenuHome already has a controller so no need to set a new one.
         Loader.load(); //Loads
       }catch ( IOException ex){
-        Logger.getLogger(GuestMenuController.class.getName()).log(Level.SEVERE, null ,ex);
+        Logger.getLogger(GuestRoomController.class.getName()).log(Level.SEVERE, null ,ex);
 
       }
 
       Parent p = Loader.getRoot();
        stage = new Stage();
-      stage.setTitle("Guest Menu: "+g1.getUserName());
+      stage.setTitle("Guest Menu Home : "+g1.getUserName());
       stage.setScene(new Scene(p));
       stage.show(); //Opens new Window
 
@@ -242,7 +242,6 @@ private CheckBox checkBox; //CheckBo for handling showPassword
         boolean isNameCorrect=false;
         boolean isPasswordCorrect=false;
 
-
        guestList.add(new Guest(usernameSent,passwordSent));
         for (Guest g1: getGuestList()) {
 
@@ -264,6 +263,7 @@ private CheckBox checkBox; //CheckBo for handling showPassword
                     //Successful!
                     System.out.println("Login Succesful");
                     isPasswordCorrect= true;
+                    break;
                 }
 
 
@@ -445,12 +445,12 @@ private CheckBox checkBox; //CheckBo for handling showPassword
     //  Loader.setController(guestController);
      // Loader.load(); //Loads
     //}catch ( IOException ex){
-     // Logger.getLogger(GuestMenuController.class.getName()).log(Level.SEVERE, null ,ex);
+     // Logger.getLogger(GuestRoomController.class.getName()).log(Level.SEVERE, null ,ex);
 
     //}
 //      DisplayTextController display = Loader.getController(); //Calling DisplayTextcontroller file
 //     display.setText(name_Text,email_Text); //using displaytextcontroller's method
-//      GuestMenuController storeFields =Loader.getController(); //Calling the new window's  controller
+//      GuestRoomController storeFields =Loader.getController(); //Calling the new window's  controller
 //     storeFields.storeVariables(usernameList,passwordList,guestList,g1,rooms); //Calling the controller's method
 //    Store Variables will store the lists of users, passwords and guest
 //    GuestMenu's store Variables also takes the guest selected by user.
@@ -480,7 +480,7 @@ private CheckBox checkBox; //CheckBo for handling showPassword
 //    try {
 //      Loader.load();
 //    }catch ( IOException ex){
-//      Logger.getLogger(GuestMenuController.class.getName()).log(Level.SEVERE, null ,ex);
+//      Logger.getLogger(GuestRoomController.class.getName()).log(Level.SEVERE, null ,ex);
 //
 //    }
 //    ManagerMenuController storeFields =Loader.getController(); //Calling the new window's  controller
@@ -604,7 +604,7 @@ private CheckBox checkBox; //CheckBo for handling showPassword
       // Loader.setController(guestController); GuestMenuHome already has a controller so no need to set a new one.
       Loader.load(); //Loads
     }catch ( IOException ex){
-      Logger.getLogger(GuestMenuController.class.getName()).log(Level.SEVERE, null ,ex);
+      Logger.getLogger(GuestRoomController.class.getName()).log(Level.SEVERE, null ,ex);
 
     }
 
@@ -624,7 +624,7 @@ private CheckBox checkBox; //CheckBo for handling showPassword
 //        try {
 //            Stage stage = (Stage) buttonCreate.getScene().getWindow();
 //            stage.close();
-//            Parent root2 = FXMLLoader.load(getClass().getResource("GuestMenu.fxml" ));
+//            Parent root2 = FXMLLoader.load(getClass().getResource("GuestRoom.fxml" ));
 //
 //            stage = new Stage();
 //

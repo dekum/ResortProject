@@ -1,0 +1,26 @@
+/**
+HmeStyleSheet.css
+styles the Pane in the GuestMenuHome fxml
+ */
+
+/*.grid.pane{*/
+  /*!*-fx-border-radius: 10px;*!*/
+  /*!*-fx-border-color: black;*!*/
+
+
+/*}*/
+/*.button{*/
+  /*-fx-background-color: rgb(255, 13, 13);*/
+  /*-fx-border-color: rgba(155, 4, 7, 0.93);*/
+  /*!*-fx-border-radius: 90px;*!*/
+  /*-fx-border-width: 5px;*/
+  /*!***/
+  /*Button need a color fill or radiant fill. regular flat colors look worng*/
+
+   /**!*/
+
+/*}*/
+/*.button:hover{*/
+  /*-fx-background-color: #62060a;*/
+
+/*}*/

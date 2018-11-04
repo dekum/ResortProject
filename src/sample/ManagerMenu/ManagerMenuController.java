@@ -41,7 +41,7 @@ import sample.Controller;
 import sample.Employee;
 import sample.Global;
 import sample.Guest;
-import sample.GuestMenu.GuestMenuController;
+import sample.GuestMenu.GuestRoomController;
 import sample.LoginMenu.LoginMenuController;
 import sample.Room;
 import sample.Room.RoomCellFactory;
@@ -280,7 +280,7 @@ public class ManagerMenuController extends Controller implements Initializable {
         try {
             Loader.load();
         }catch ( IOException ex){
-            Logger.getLogger(GuestMenuController.class.getName()).log(Level.SEVERE, null ,ex);
+            Logger.getLogger(GuestRoomController.class.getName()).log(Level.SEVERE, null ,ex);
 
         }
         //  DisplayTextController display = Loader.getController(); //Calling DisplayTextcontroller file
@@ -526,7 +526,7 @@ public class ManagerMenuController extends Controller implements Initializable {
 
     private void displayRoomFeatures(Room roomClickedOn) {
         /**
-         * Same as GuestMenuController
+         * Same as GuestRoomController
          *
          */
         if (roomClickedOn.getAvailable()){

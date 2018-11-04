@@ -55,7 +55,8 @@ public class Global {
     SIGNUP("/sample/LoginMenu/SignupScreen.fxml"),
     MANAGERMENU("/sample/ManagerMenu/ManagerMenu.fxml"),
     GUESTMENUHOME("/sample/GuestMenu/GuestMenuHome.fxml"),
-    GUESTMENUROOM("/sample/GuestMenu/GuestMenu.fxml"),
+    GUESTMENUROOM("/sample/GuestMenu/GuestRoom.fxml"),
+    GUESTMENUACCOUNT("/sample/GuestMenu/GuestAccountScreen.fxml")
 
     ;
     private String url;

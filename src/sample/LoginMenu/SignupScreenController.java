@@ -25,7 +25,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Callback;
@@ -33,7 +32,7 @@ import sample.Employee;
 import sample.Global;
 import sample.Global.WindowLocation;
 import sample.Guest;
-import sample.GuestMenu.GuestMenuController;
+import sample.GuestMenu.GuestRoomController;
 import sample.Room;
 
 /**
@@ -267,7 +266,7 @@ return allInputsValid;
       // Loader.setController(guestController); GuestMenuHome already has a controller so no need to set a new one.
       Loader.load(); //Loads
     }catch ( IOException ex){
-      Logger.getLogger(GuestMenuController.class.getName()).log(Level.SEVERE, null ,ex);
+      Logger.getLogger(GuestRoomController.class.getName()).log(Level.SEVERE, null ,ex);
 
     }
 

@@ -46,9 +46,9 @@ import sample.Room.RoomCellFactory;
 /**
  *
  *Notes:ppEtit
- *GuestMenuController.java NEED TO CHNAGE TO GUESTROOMMENU
+ *GuestRoomController.java NEED TO CHNAGE TO GUESTROOMMENU
  *
- * This controller controls the GuestMenu.fxml
+ * This controller controls the GuestRoom.fxml
  * This allows the gues to:
  * View Room List.
  * Book Room.
@@ -64,7 +64,7 @@ import sample.Room.RoomCellFactory;
  *
  * @author ggraber7402
  */
-public class GuestMenuController extends Controller implements Initializable {
+public class GuestRoomController extends Controller implements Initializable {
   private ArrayList<String> usernameList;
 // private ArrayList<String> usernameList =super.getUsernameList();
   private ArrayList<String> passwordList;
@@ -189,7 +189,7 @@ void tabClicked(Event ev) {
 //            e.printStackTrace();
 //        }
       /**
-       * Opening the FXMLDOCUMENT CONTROLLER is slighty different than opening other controllers
+       * Opening the GuestMenuHome is slighty different than opening other controllers
        * The controller is called after the fxml is loaded.
        * The data is stored via the storeVariables method.
        * It just works, dont ask me.
@@ -199,17 +199,13 @@ void tabClicked(Event ev) {
       Stage stageExit = (Stage) signoutButton.getScene().getWindow();
             stageExit.close(); //close current window
       FXMLLoader Loader = new FXMLLoader();
-      Loader.setLocation(getClass().getResource(WindowLocation.LOGINMENU.getLocation())); //get FXML path
+      Loader.setLocation(getClass().getResource(WindowLocation.GUESTMENUHOME.getLocation())); //get FXML path
       try {
         Loader.load();
       }catch ( IOException ex){
-        Logger.getLogger(GuestMenuController.class.getName()).log(Level.SEVERE, null ,ex);
+        Logger.getLogger(GuestRoomController.class.getName()).log(Level.SEVERE, null ,ex);
 
       }
-      //  DisplayTextController display = Loader.getController(); //Calling DisplayTextcontroller file
-      // display.setText(name_Text,email_Text); //using displaytextcontroller's method
-      LoginMenuController storeFields =Loader.getController();
-      storeFields.storeVariables1(); //This method will stoer the variables
 
 
       Parent p = Loader.getRoot();
@@ -222,7 +218,7 @@ void tabClicked(Event ev) {
 
     }
 
-    public GuestMenuController(){
+    public GuestRoomController(){
       /**
        * Happens before initalize class, this this program atleast.
        * In others it's the oppopsite

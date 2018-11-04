@@ -12,7 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import sample.Global;
-import sample.GuestMenu.GuestMenuController;
+import sample.GuestMenu.GuestRoomController;
 
 public class ManagerMenuHomeController {
 @FXML
@@ -22,18 +22,18 @@ Button bookRoomButton;
   public void handleBookRoom(ActionEvent event){
     Stage stageExit = (Stage) bookRoomButton.getScene().getWindow();
     stageExit.close(); //close current window
-    GuestMenuController guestController = new GuestMenuController();
+    GuestRoomController guestController = new GuestRoomController();
 
 
     //Loads FXML Loader
     FXMLLoader Loader = new FXMLLoader(); //sample.GuestMenu.LoginMenuController
-    Loader.setLocation(getClass().getResource("/sample/GuestMenu/GuestMenu.fxml")); //Call new window
+    Loader.setLocation(getClass().getResource("/sample/GuestMenu/GuestRoom.fxml")); //Call new window
     //Make sure / is at the beginning at the Url if you are leaving the folder
     try {
       Loader.setController(guestController);
       Loader.load(); //Loads
     }catch ( IOException ex){
-      Logger.getLogger(GuestMenuController.class.getName()).log(Level.SEVERE, null ,ex);
+      Logger.getLogger(GuestRoomController.class.getName()).log(Level.SEVERE, null ,ex);
 
     }
     //  DisplayTextController display = Loader.getController(); //Calling DisplayTextcontroller file
