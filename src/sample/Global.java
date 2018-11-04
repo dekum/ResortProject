@@ -4,6 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.layout.VBoxBuilder;
+import javafx.scene.text.Text;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 public class Global {
 
@@ -40,9 +50,9 @@ public class Global {
    */
  public  enum WindowLocation {
 
-    LOGINMENU(""),
-    SIGNUP(""),
-    MANAGERMENU(""),
+    LOGINMENU("/sample/LoginMenu/LoginMenu.fxml"),
+    SIGNUP("/sample/LoginMenu/SignupScreen.fxml"),
+    MANAGERMENU("/sample/ManagerMenu/ManagerMenu.fxml"),
     GUESTMENUHOME("/sample/GuestMenu/GuestMenuHome.fxml"),
     GUESTMENUROOM("/sample/GuestMenu/GuestMenu.fxml"),
 
@@ -62,6 +72,32 @@ public class Global {
 
 
 
+  }
+
+  public void displayPopUpWindow(String message){
+    final Stage myDialog = new Stage();
+    myDialog.initModality(Modality.WINDOW_MODAL);
+
+
+    Button okButton = new Button("OK");
+    okButton.setOnAction(new EventHandler<ActionEvent>(){
+
+      @Override
+      public void handle(ActionEvent arg0) {
+        myDialog.close();
+      }
+
+    });
+
+    Scene myDialogScene = new Scene(VBoxBuilder.create()
+        .children(new Text(message), okButton)
+        .alignment(Pos.CENTER)
+        .padding(new Insets(10))
+        .build());
+
+    myDialog.setScene(myDialogScene);
+    myDialog.showAndWait(); //USE showAndWait to wait for the popto close
+    //REgular wait will ignore modality and will call second window regardlessly.
   }
 
 

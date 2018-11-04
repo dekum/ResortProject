@@ -1,17 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.EventMenu.EventCreate">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.EventMenu.EventCreateController">
    <children>
-      <TextField layoutX="37.0" layoutY="41.0" text="Name of Organizor" />
-      <TextField layoutX="37.0" layoutY="88.0" text="Name your sample.Event" />
-      <TextField layoutX="37.0" layoutY="133.0" text="Number of PPl" />
-      <ComboBox layoutX="324.0" layoutY="54.0" prefWidth="150.0" promptText="Pick sample.Event Type, combobox flled in Controller " />
+      <ComboBox layoutX="44.0" layoutY="37.0" prefWidth="150.0" promptText="Pick sample.Event Type, combobox flled in Controller " />
       <Label layoutX="296.0" layoutY="113.0" text="TextFeilds Change with every Option" />
-      <TextField layoutX="47.0" layoutY="143.0" />
+      <TextField layoutX="37.0" layoutY="188.0" />
+      <DatePicker fx:id="checkInDatePicker" layoutX="251.0" layoutY="201.0" />
+      <DatePicker fx:id="checkOutDatePicker" layoutX="251.0" layoutY="267.0" />
+      <Label layoutX="282.0" layoutY="171.0" text="Event Start Date:" />
+      <Label layoutX="296.0" layoutY="244.0" text="Event End Date:" />
+      <GridPane layoutX="37.0" layoutY="85.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <TextField text="Name your sample.Event" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField text="Number of PPl" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField text="Name of Organizor" GridPane.columnIndex="1" />
+         </children>
+      </GridPane>
+      <TextField layoutX="112.0" layoutY="167.0" />
    </children>
 </AnchorPane>

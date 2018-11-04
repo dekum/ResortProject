@@ -10,13 +10,17 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -25,6 +29,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.VBoxBuilder;
+import javafx.scene.text.Text;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import sample.Controller;
 import sample.Employee;
@@ -103,6 +110,32 @@ public class LoginMenuController extends Controller implements Initializable {
 @FXML
 private CheckBox checkBox; //CheckBo for handling showPassword
 
+
+  public void displayPopUpWindow(String message){
+    final Stage myDialog = new Stage();
+    myDialog.initModality(Modality.WINDOW_MODAL);
+
+
+    Button okButton = new Button("OK");
+    okButton.setOnAction(new EventHandler<ActionEvent>(){
+
+      @Override
+      public void handle(ActionEvent arg0) {
+        myDialog.close();
+      }
+
+    });
+
+    Scene myDialogScene = new Scene(VBoxBuilder.create()
+        .children(new Text(message), okButton)
+        .alignment(Pos.CENTER)
+        .padding(new Insets(10))
+        .build());
+    myDialog.initOwner(buttonCreate.getScene().getWindow()); //Set this to the parent of the opup window
+    myDialog.setScene(myDialogScene);
+    myDialog.showAndWait(); //USE showAndWait to wait for the popto close
+    //REgular wait will ignore modality and will call second window regardlessly.
+  }
     @FXML
   public void storeVariables1(){
       /**
@@ -165,6 +198,7 @@ private CheckBox checkBox; //CheckBo for handling showPassword
        * FXML file, and other dont
        * In this case GUESTMENUHOME's controller is linked to FXML.
        */
+
       currentGuest = g1;
       updateGlobal(); //Update Global variable so next window's fields are up to date.
       Stage stage = (Stage) buttonCreate.getScene().getWindow(); //Asks a object in the window to store it's WindowID
@@ -209,15 +243,22 @@ private CheckBox checkBox; //CheckBo for handling showPassword
         //passwordSent= passwordSent.toLowerCase();
         boolean isNameCorrect=false;
         boolean isPasswordCorrect=false;
+
+
+       guestList.add(new Guest(usernameSent,passwordSent));
         for (Guest g1: getGuestList()) {
 
             if(g1.getUserName().equalsIgnoreCase(usernameSent)){
                 //they match!
                 isNameCorrect= true;
                 //now check password
-                if (g1.getPassword().equals(passwordSent)){
+
+
+              if (g1.getPassword().equals(passwordSent)){
                     try {
+
                       //Both Username and Password match now to open Guest Menu
+                      displayPopUpWindow("Login Successful!");//Opens PopUp window to show user successful login.
                         openGuestMenu(g1); //Open Guest Menu, send g1
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -234,11 +275,15 @@ private CheckBox checkBox; //CheckBo for handling showPassword
         }
         //Make a Label for this?
         if (isNameCorrect == false && isPasswordCorrect == false){
-            System.out.println("Error, login credentials not found");
+          labelLoginSuccess.setText("Error, login credentials not found");
+            //System.out.println("Error, login credentials not found");
         }else if (isNameCorrect==true && isPasswordCorrect== false){
+          labelLoginSuccess.setText("Error wrong password.");
             System.out.println("Error wrong password.");
         }else {
-            System.out.println("Success");
+
+         // labelLoginSuccess.setText("Success");
+
         }
 
 
@@ -275,15 +320,6 @@ private CheckBox checkBox; //CheckBo for handling showPassword
         getUsernameList().add(n);// No need for method this already adds it in
         getPasswordList().add(pw);
         getGuestList().add(createGuest);
-        //System.out.println(getUsernameList().get(0));
-        // setUsernameList(getUsernameList());
-
-//    Guest createGuest = new Guest(n,pw);
-//    usernameList.add(n);
-//    passwordList.add(pw);
-//
-//    System.out.println(usernameList.get(0A)+"hAHA");
-
 
     }
 
@@ -324,7 +360,7 @@ private CheckBox checkBox; //CheckBo for handling showPassword
     private Button buttonExit1;
 
     @FXML
-    private Label labelManagerLogin;
+    private Label labelManagerLogin,labelLoginSuccess;
 
 
 
@@ -347,7 +383,10 @@ private CheckBox checkBox; //CheckBo for handling showPassword
         field1 = txtfieldUsername.getText();//Store what in txtField Username into field1
         field2 = textFieldPassword.getText();//Store whats in txtFieldPassword into field2
         //UserType tyoe= UserType.GUEST; Not used
+
         checkLogin(field1,field2);//Calls method to check if inputs are valid
+
+
 
 
 
@@ -467,6 +506,9 @@ private CheckBox checkBox; //CheckBo for handling showPassword
     /**
      * This method is called first when FXMLDOCUEMENTCONTROLLER IS opened.
      * It will set the properties for passwordFields to able to show/hide
+     * In SceneBuilder I made a textfield adn a password field on the same spot, the user won't notice
+     * the difference.
+     *
      *
      * And also it will take the data of Global class so data stays consistent between Controllers.
      */
@@ -528,21 +570,19 @@ private CheckBox checkBox; //CheckBo for handling showPassword
      * Will be deleted and changed to the signupWindow
      *
      */
-        txtfieldUsername.requestFocus(); //Can be used if user entered something wrong
-        txtfieldUsername.selectAll();//Highlights the text so user can easily fix it wiothut mouse click
-        String field1, field2;
-        field1 = txtfieldUsername.getText();
-        field2 = textFieldPassword.getText();
-        System.out.println(field1+" "+field2);
+//        txtfieldUsername.requestFocus(); //Can be used if user entered something wrong
+//        txtfieldUsername.selectAll();//Highlights the text so user can easily fix it wiothut mouse click
+//
+//        System.out.println(field1+" "+field2);
         Guest createGuest;
         if (guestList.isEmpty()){
           //Since first time running this code, make default guestlist
-          createGuest(field1,field2);
+         // createGuest(field1,field2);
           createGuest("john doe","password");
           createGuest("jane doe","qwerty");
           createGuest("Juan Doe","asdf");
         }else{
-          createGuest(field1,field2);
+         // createGuest(field1,field2);
         }
         int i=0;
       System.out.println("\n");
@@ -551,8 +591,29 @@ private CheckBox checkBox; //CheckBo for handling showPassword
             System.out.println(getPasswordList().get(i));
             i++;
         }
-        currentGuest= getGuestList().get(1);
+    //    currentGuest= getGuestList().get(1);
+    Stage stage = (Stage) buttonCreate.getScene().getWindow(); //Asks a object in the window to store it's WindowID
+    stage.close(); //Close current Window
 
+    //Loads FXML Loader
+    FXMLLoader Loader = new FXMLLoader();
+    //Using Global's Enum named WindowLocation get the Url for the EnumType
+    String url = WindowLocation.SIGNUP.getLocation();
+    //load the url you just acquired.
+    Loader.setLocation(getClass().getResource(url));
+    try {
+      // Loader.setController(guestController); GuestMenuHome already has a controller so no need to set a new one.
+      Loader.load(); //Loads
+    }catch ( IOException ex){
+      Logger.getLogger(GuestMenuController.class.getName()).log(Level.SEVERE, null ,ex);
+
+    }
+
+    Parent p = Loader.getRoot();
+    stage = new Stage();
+    stage.setTitle("Create Account");
+    stage.setScene(new Scene(p));
+    stage.show(); //Opens new Window
 
     }
 

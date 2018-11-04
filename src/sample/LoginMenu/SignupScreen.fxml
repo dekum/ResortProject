@@ -2,36 +2,42 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
-<?import javafx.scene.text.TextFlow?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.LoginMenu.SignupScreenController">
    <children>
-      <TextField layoutX="84.0" layoutY="43.0" />
-      <TextField layoutX="84.0" layoutY="85.0" />
-      <TextField layoutX="84.0" layoutY="147.0" />
-      <TextField layoutX="377.0" layoutY="45.0" />
-      <TextField layoutX="377.0" layoutY="83.0" />
-      <TextField layoutX="377.0" layoutY="134.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ab090959" height="291.0" layoutX="8.0" layoutY="27.0" stroke="BLACK" strokeType="INSIDE" width="542.0" />
+      <TextField fx:id="textFieldUserName" layoutX="84.0" layoutY="43.0" />
+      <TextField fx:id="textFieldPassword" layoutX="84.0" layoutY="85.0" />
+      <TextField fx:id="textFieldPasswordConfirm" layoutX="84.0" layoutY="147.0" />
+      <TextField fx:id="textFieldFirstName" layoutX="377.0" layoutY="45.0" />
+      <TextField fx:id="textFieldLastName" layoutX="377.0" layoutY="83.0" />
       <Label layoutX="14.0" layoutY="47.0" text="User Name:" />
       <Label layoutX="17.0" layoutY="89.0" text="Password:" />
       <Label layoutX="16.0" layoutY="139.0" prefHeight="38.0" prefWidth="62.0" text="Confirm Password:" wrapText="true" />
       <Label layoutX="309.0" layoutY="49.0" text="First Name:" />
       <Label layoutX="309.0" layoutY="89.0" text="Last Name:" />
       <Label layoutX="317.0" layoutY="127.0" prefHeight="38.0" prefWidth="53.0" text="Date of Birth:" wrapText="true" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="291.0" layoutX="8.0" layoutY="27.0" stroke="BLACK" strokeType="INSIDE" width="528.0" />
-      <TextFlow fx:id="textFlowRules" layoutX="18.0" layoutY="207.0" prefHeight="86.0" prefWidth="282.0">
-         <children>
-            <TextArea disable="true" prefHeight="92.0" prefWidth="282.0" promptText="Rules:" />
-         </children></TextFlow>
       <CheckBox layoutX="137.0" layoutY="119.0" mnemonicParsing="false" text="Show/Hide" />
       <CheckBox layoutX="137.0" layoutY="174.0" mnemonicParsing="false" text="Show/Hide" />
       <Label layoutX="177.0" layoutY="6.0" text="Signup Screen" />
-      <Button layoutX="452.0" layoutY="361.0" mnemonicParsing="false" text="Submit" />
-      <Button layoutX="519.0" layoutY="361.0" mnemonicParsing="false" text="Exit" />
+      <Button fx:id="buttonSubmit" layoutX="452.0" layoutY="361.0" mnemonicParsing="false" onAction="#handleSubmit" text="Submit" />
+      <Button fx:id="buttonExit" layoutX="519.0" layoutY="361.0" mnemonicParsing="false" onAction="#handleExit" text="Exit" />
+      <DatePicker fx:id="datePickerDOB" layoutX="370.0" layoutY="127.0" />
+      <VBox layoutX="28.0" layoutY="146.0" prefHeight="200.0" prefWidth="68.0" />
+      <VBox layoutX="46.0" layoutY="214.0" prefHeight="93.0" prefWidth="112.0" style="-fx-background-color: #AAAAAA;">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Rules for Username and Password:" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Username must be atleast 5 characters." />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Password must be atleast 6 characters and contain 1 number." wrappingWidth="206.7890625" />
+         </children>
+      </VBox>
+      <Label fx:id="labelSubmitSuccess" layoutX="415.0" layoutY="338.0" text="." />
    </children>
 </AnchorPane>

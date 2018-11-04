@@ -35,6 +35,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import sample.Controller;
 import sample.Employee;
+import sample.Global.WindowLocation;
 import sample.LoginMenu.LoginMenuController;
 import sample.Global;
 import sample.Guest;
@@ -198,7 +199,7 @@ void tabClicked(Event ev) {
       Stage stageExit = (Stage) signoutButton.getScene().getWindow();
             stageExit.close(); //close current window
       FXMLLoader Loader = new FXMLLoader();
-      Loader.setLocation(getClass().getResource("/sample/LoginMenu/LoginMenu.fxml")); //get FXML path
+      Loader.setLocation(getClass().getResource(WindowLocation.LOGINMENU.getLocation())); //get FXML path
       try {
         Loader.load();
       }catch ( IOException ex){
