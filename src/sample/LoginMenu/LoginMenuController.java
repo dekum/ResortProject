@@ -174,57 +174,9 @@ private CheckBox checkBox; //CheckBo for handling showPassword
 
 
     public  void openGuestMenu(Guest g1) throws IOException {
-//        try {
-//            Stage stage = (Stage) buttonCreate.getScene().getWindow();
-//            stage.close();
-//            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GuestRoom.fxml"));
-//            Parent root1 = (Parent) fxmlLoader.load();
-//             stage = new Stage();
-//            stage.setScene(new Scene(root1));
-//            stage.show();
-//        } catch(Exception e) {
-//            e.printStackTrace();
-//        }
-      /**
-       * Simple Process
-       * First Close the Window
-       * Then we get the url of the next FXML/Window from the global WindowLocation Enum
-       * Open the new FXML
-       * When the new window is opened the data is stored.
-       *
-       * Some window calls are different because some of them have have thier Controllers linked to
-       * FXML file, and other dont
-       * In this case GUESTMENUHOME's controller is linked to FXML.
-       */
+      Global.currentScene = buttonExit1.getScene();//
 
-      currentGuest = g1;
-      updateGlobal(); //Update Global variable so next window's fields are up to date.
-      Stage stage = (Stage) buttonCreate.getScene().getWindow(); //Asks a object in the window to store it's WindowID
-            stage.close(); //Close current Window
-
-    //Loads FXML Loader
-      FXMLLoader Loader = new FXMLLoader();
-      //Using Global's Enum named WindowLocation get the Url for the EnumType
-      String url = WindowLocation.GUESTMENUHOME.getLocation();
-      //load the url you just acquired.
-      Loader.setLocation(getClass().getResource(url));
-      try {
-        // Loader.setController(guestController); GuestMenuHome already has a controller so no need to set a new one.
-        Loader.load(); //Loads
-      }catch ( IOException ex){
-        Logger.getLogger(GuestRoomController.class.getName()).log(Level.SEVERE, null ,ex);
-
-      }
-
-      Parent p = Loader.getRoot();
-       stage = new Stage();
-      stage.setTitle("Guest Menu Home : "+g1.getUserName());
-      stage.setScene(new Scene(p));
-      stage.show(); //Opens new Window
-
-
-
-
+    new Global().openNewWindow(WindowLocation.GUESTMENUHOME);
     }
 
 

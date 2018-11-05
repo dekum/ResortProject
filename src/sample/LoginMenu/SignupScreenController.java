@@ -201,7 +201,7 @@ public class SignupScreenController implements Initializable {
       passwordField.selectAll();
 
       textUserNameRule.setFill(Color.BLACK);
-      textPasswordRule.setFill(Color.BLACK);
+      textPasswordRule.setFill(Color.RED);
       allInputsValid = false;
 
     }else if (!password.equals(passwordConfirm))
@@ -253,28 +253,7 @@ return allInputsValid;
 
   @FXML
   void handleExit(ActionEvent event){
-    Stage stage = (Stage) buttonExit.getScene().getWindow(); //Asks a object in the window to store it's WindowID
-    stage.close(); //Close current Window
-
-    //Loads FXML Loader
-    FXMLLoader Loader = new FXMLLoader();
-    //Using Global's Enum named WindowLocation get the Url for the EnumType
-    String url = WindowLocation.LOGINMENU.getLocation();
-    //load the url you just acquired.
-    Loader.setLocation(getClass().getResource(url));
-    try {
-      // Loader.setController(guestController); GuestMenuHome already has a controller so no need to set a new one.
-      Loader.load(); //Loads
-    }catch ( IOException ex){
-      Logger.getLogger(GuestRoomController.class.getName()).log(Level.SEVERE, null ,ex);
-
-    }
-
-    Parent p = Loader.getRoot();
-    stage = new Stage();
-    stage.setTitle("Login");
-    stage.setScene(new Scene(p));
-    stage.show(); //Opens new Window
+    
 
 
   }
@@ -328,6 +307,7 @@ return allInputsValid;
 
     datePickerDOB.setValue(LocalDate.now().minusYears(18)); //If you are going touse a daFactor need to have the datepicker have a claue first
     //Otherwise it will a nullopinter error
+    LocalDate earliestDate= datePickerDOB.getValue();
     final Callback<DatePicker, DateCell> dayCellFactory =
         new Callback<DatePicker, DateCell>() {
           @Override
@@ -339,7 +319,7 @@ return allInputsValid;
 
                 if (item.isAfter(
                 //    datePickerDOB.getValue().minusYears(18)) I don't need a minus 18 here since it's default value already did that
-                    datePickerDOB.getValue())
+                    earliestDate)
                 ) {
                   setDisable(true);
                   setStyle("-fx-background-color: #ffc0cb;");
