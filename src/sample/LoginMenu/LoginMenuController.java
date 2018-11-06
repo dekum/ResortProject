@@ -109,31 +109,31 @@ public class LoginMenuController extends Controller implements Initializable {
 private CheckBox checkBox; //CheckBo for handling showPassword
 
 
-  public void displayPopUpWindow(String message){
-    final Stage myDialog = new Stage();
-    myDialog.initModality(Modality.WINDOW_MODAL);
-
-
-    Button okButton = new Button("OK");
-    okButton.setOnAction(new EventHandler<ActionEvent>(){
-
-      @Override
-      public void handle(ActionEvent arg0) {
-        myDialog.close();
-      }
-
-    });
-
-    Scene myDialogScene = new Scene(VBoxBuilder.create()
-        .children(new Text(message), okButton)
-        .alignment(Pos.CENTER)
-        .padding(new Insets(10))
-        .build());
-    myDialog.initOwner(buttonCreate.getScene().getWindow()); //Set this to the parent of the opup window
-    myDialog.setScene(myDialogScene);
-    myDialog.showAndWait(); //USE showAndWait to wait for the popto close
-    //REgular wait will ignore modality and will call second window regardlessly.
-  }
+//  public void displayPopUpWindow(String message){
+//    final Stage myDialog = new Stage();
+//    myDialog.initModality(Modality.WINDOW_MODAL);
+//
+//
+//    Button okButton = new Button("OK");
+//    okButton.setOnAction(new EventHandler<ActionEvent>(){
+//
+//      @Override
+//      public void handle(ActionEvent arg0) {
+//        myDialog.close();
+//      }
+//
+//    });
+//
+//    Scene myDialogScene = new Scene(VBoxBuilder.create()
+//        .children(new Text(message), okButton)
+//        .alignment(Pos.CENTER)
+//        .padding(new Insets(10))
+//        .build());
+//    myDialog.initOwner(buttonCreate.getScene().getWindow()); //Set this to the parent of the opup window
+//    myDialog.setScene(myDialogScene);
+//    myDialog.showAndWait(); //USE showAndWait to wait for the popto close
+//    //REgular wait will ignore modality and will call second window regardlessly.
+//  }
     @FXML
   public void storeVariables1(){
       /**
@@ -174,6 +174,8 @@ private CheckBox checkBox; //CheckBo for handling showPassword
 
 
     public  void openGuestMenu(Guest g1) throws IOException {
+    currentGuest = g1;
+    updateGlobal();
       Global.currentScene = buttonExit1.getScene();//
 
     new Global().openNewWindow(WindowLocation.GUESTMENUHOME);
@@ -207,7 +209,8 @@ private CheckBox checkBox; //CheckBo for handling showPassword
                     try {
 
                       //Both Username and Password match now to open Guest Menu
-                      displayPopUpWindow("Login Successful!");//Opens PopUp window to show user successful login.
+                      Global.currentScene = buttonExit.getScene();
+                      new Global().displayPopUpWindow("Login Successful!");//Opens PopUp window to show user successful login.
                         openGuestMenu(g1); //Open Guest Menu, send g1
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -384,67 +387,9 @@ private CheckBox checkBox; //CheckBo for handling showPassword
     }
 
   private void openManagerMenu() {
-  //  ManagerMenuController guestController = new ManagerMenuController(
-    //    usernameList,passwordList,guestList,rooms
-    //);
-    //guestController.storeVariables(usernameList,passwordList,guestList,g1,rooms);
-    //FXMLLoader loader = new FXMLLoader();
+    Global.currentScene = buttonExit1.getScene();//
 
-
-//  FXMLLoader Loader = new FXMLLoader();
- // Loader.setLocation(getClass().getResource("ManagerMenuController.fxml")); //Call new window
-   // try {
-    //  Loader.setController(guestController);
-     // Loader.load(); //Loads
-    //}catch ( IOException ex){
-     // Logger.getLogger(GuestRoomController.class.getName()).log(Level.SEVERE, null ,ex);
-
-    //}
-//      DisplayTextController display = Loader.getController(); //Calling DisplayTextcontroller file
-//     display.setText(name_Text,email_Text); //using displaytextcontroller's method
-//      GuestRoomController storeFields =Loader.getController(); //Calling the new window's  controller
-//     storeFields.storeVariables(usernameList,passwordList,guestList,g1,rooms); //Calling the controller's method
-//    Store Variables will store the lists of users, passwords and guest
-//    GuestMenu's store Variables also takes the guest selected by user.
-/**
- * See Guest Controller open for Notes, since it's basically the same
- *
- */
-
-    updateGlobal();
-    ManagerMenuController managerController = new ManagerMenuController();
-    Stage stageExit = (Stage) buttonExit1.getScene().getWindow();//
-    stageExit.close();//Closes curerent Stage
-
-    FXMLLoader Loader = new FXMLLoader(); //sample.LoginMenu.LoginMenuController
-    Loader.setLocation(getClass().getResource("/sample/ManagerMenu/ManagerMenu.fxml")); //Call new window
-    try {
-      Loader.setController(managerController);
-      Loader.load(); //Loads
-    }catch ( IOException ex){
-      Logger.getLogger(ManagerMenuController.class.getName()).log(Level.SEVERE, null ,ex);
-
-    }
-
-
-//    FXMLLoader Loader = new FXMLLoader();
-//    Loader.setLocation(getClass().getResource("ManagerMenu.fxml"));
-//    try {
-//      Loader.load();
-//    }catch ( IOException ex){
-//      Logger.getLogger(GuestRoomController.class.getName()).log(Level.SEVERE, null ,ex);
-//
-//    }
-//    ManagerMenuController storeFields =Loader.getController(); //Calling the new window's  controller
-// storeFields.storeVariables2(usernameList,passwordList,guestList,rooms); //Calling the controller's method
-    //Dont' do these two lines again. What happens first is Controller's intilize with makez default 3 rooms.
-    //And then it gets set with the empty room the second send it cassing error. We have a better way doing this.
-
-    Parent p = Loader.getRoot();
-    Stage stage = new Stage();
-    stage.setTitle("Manager Menu");
-    stage.setScene(new Scene(p));
-    stage.show(); //Opens
+    new Global().openNewWindow(WindowLocation.MANAGERMENU);
   }
   @FXML
   CheckBox checkBox2;
@@ -467,6 +412,14 @@ private CheckBox checkBox; //CheckBo for handling showPassword
     this.guestList = Global.guestList;
     this.rooms = Global.rooms;
     this.data = Global.data;
+    this.currentGuest = Global.currentGuestLoggedIn;
+
+    if (currentGuest != null){
+      //if currentGuest isn't null, then fill the usernameField with the current's guest username
+      //for more user-friendly design
+      textfieldUsername.setText(currentGuest.getUserName());
+
+    }
 
   //  guestList.add(new Guest("Hi","ko"));
    // System.out.println(Global.guestList.get(0));
@@ -484,8 +437,14 @@ private CheckBox checkBox; //CheckBo for handling showPassword
     textFieldForPasswordManager.setManaged(false);
     textFieldForPasswordManager.setVisible(false);//Hide regular textfield
 
+    textFieldForPasswordManager.setFocusTraversable(false); //Tab wont select second textbox
+    textFieldForPasswordManager.focusTraversableProperty().bind(checkBox2.selectedProperty()); //Bind property to checkbox
+    passwordFieldManager.focusTraversableProperty().bind(checkBox2.selectedProperty().not()); //Make focusTraanableProperty the opposite
+
+
     textFieldForPasswordManager.managedProperty().bind(checkBox2.selectedProperty());// TextField's setManageProperty will be changed by CheckBox
     textFieldForPasswordManager.visibleProperty().bind(checkBox2.selectedProperty());// TextField's setVisibleProperty will be changed by CheckBox
+
 
     passwordFieldManager.managedProperty().bind(checkBox2.selectedProperty().not());//Same as above but oppsite?
     passwordFieldManager.visibleProperty().bind(checkBox2.selectedProperty().not());
@@ -543,28 +502,11 @@ private CheckBox checkBox; //CheckBo for handling showPassword
             i++;
         }
     //    currentGuest= getGuestList().get(1);
-    Stage stage = (Stage) buttonCreate.getScene().getWindow(); //Asks a object in the window to store it's WindowID
-    stage.close(); //Close current Window
 
-    //Loads FXML Loader
-    FXMLLoader Loader = new FXMLLoader();
-    //Using Global's Enum named WindowLocation get the Url for the EnumType
-    String url = WindowLocation.SIGNUP.getLocation();
-    //load the url you just acquired.
-    Loader.setLocation(getClass().getResource(url));
-    try {
-      // Loader.setController(guestController); GuestMenuHome already has a controller so no need to set a new one.
-      Loader.load(); //Loads
-    }catch ( IOException ex){
-      Logger.getLogger(GuestRoomController.class.getName()).log(Level.SEVERE, null ,ex);
 
-    }
+    Global.currentScene = buttonExit1.getScene();//
 
-    Parent p = Loader.getRoot();
-    stage = new Stage();
-    stage.setTitle("Create Account");
-    stage.setScene(new Scene(p));
-    stage.show(); //Opens new Window
+    new Global().openNewWindow(WindowLocation.SIGNUP); //Open new SignupScreen window
 
     }
 

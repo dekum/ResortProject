@@ -84,6 +84,7 @@ public class Guest extends User {
     /**
      * Uses User class's constructor to store a username and password.
      */
+
     super(userName, password);
     guestId= guestIds;
     guestIds++;

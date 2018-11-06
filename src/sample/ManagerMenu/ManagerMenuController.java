@@ -40,6 +40,7 @@ import javafx.stage.Stage;
 import sample.Controller;
 import sample.Employee;
 import sample.Global;
+import sample.Global.WindowLocation;
 import sample.Guest;
 import sample.GuestMenu.GuestRoomController;
 import sample.LoginMenu.LoginMenuController;
@@ -221,9 +222,15 @@ public class ManagerMenuController extends Controller implements Initializable {
         /**
          * This deletes the employee was that seleceted
          */
-        data.remove(employeeClickedOn);
-        System.out.println(employeeClickedOn.getName()+"IS GONE");
-        employeeClickedOn= null;
+        if (employeeClickedOn== null)
+        {
+          //No employee was clicked, so dont do anything
+        }else{
+          data.remove(employeeClickedOn);
+          System.out.println(employeeClickedOn.getName()+"IS GONE");
+          employeeClickedOn= null;
+        }
+
 
 
 
@@ -256,44 +263,19 @@ public class ManagerMenuController extends Controller implements Initializable {
 
     @FXML
     public void handleSignout(ActionEvent event){
-//        try {
-//            Stage stage = (Stage) signoutButton.getScene().getWindow();
-//            stage.close();
-//            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("LoginMenu.fxml"));
-//            Parent root1 = (Parent) fxmlLoader.load();
-//            stage = new Stage();
-//            stage.setScene(new Scene(root1));
-//            stage.show();
-//        } catch(Exception e) {
-//            e.printStackTrace();
-//        }
-        /**
-         * Opening the FXMLDOCUMENT CONTROLLER is slighty different than opening other controllers
-         * The controller is called after the fxml is loaded.
-         * The data is stored via the storeVariables method.
-         * It just works, dont ask me.
-         */
-        Stage stageExit = (Stage) signoutButton.getScene().getWindow();
-        stageExit.close();
-        FXMLLoader Loader = new FXMLLoader();
-        Loader.setLocation(getClass().getResource("/sample/LoginMenu/LoginMenu.fxml"));
-        try {
-            Loader.load();
-        }catch ( IOException ex){
-            Logger.getLogger(GuestRoomController.class.getName()).log(Level.SEVERE, null ,ex);
 
-        }
-        //  DisplayTextController display = Loader.getController(); //Calling DisplayTextcontroller file
-        // display.setText(name_Text,email_Text); //using displaytextcontroller's method
-        LoginMenuController storeFields =Loader.getController();
-        int i=0;
+      Global.currentScene = signoutButton.getScene();//
+
+      new Global().openNewWindow(WindowLocation.LOGINMENU);
+
+      int i=0;
         //Check is lists are same
         for (String word :usernameList){
             System.out.println("Name = " + word);
             System.out.println(passwordList.get(i));
             i++;
         }
-        storeFields.storeVariables1();
+
 
 
         for (Employee e: data
@@ -301,33 +283,22 @@ public class ManagerMenuController extends Controller implements Initializable {
 
             System.out.println(e.getName());
         }
-        Parent p = Loader.getRoot();
-        Stage stage = new Stage();
-        stage.setScene(new Scene(p));
-        stage.show(); //open window
 
 
 
     }
 
-    public ManagerMenuController(){
-       // System.out.println("herefirst?");
-        /**
-         * This will make sure ManagerMenuController gets the arrays and variables from the fXML controller
-         */
 
-      this.usernameList = Global.usernameList;
-      this.passwordList = Global.passwordList;
-      this.guestList = Global.guestList;
-      this.rooms = Global.rooms;
-      this.data = Global.data;
-
-    }
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+      this.usernameList = Global.usernameList;
+      this.passwordList = Global.passwordList;
+      this.guestList = Global.guestList;
+      this.rooms = Global.rooms;
+      this.data = Global.data;
         /**
          * In this initalizer, it happens after the constructor
          * Here we will add items ot the TableView Emplyees and the ListView of Rooms

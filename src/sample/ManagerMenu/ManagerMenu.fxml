@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="346.0" prefWidth="347.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="AnchorPane" prefHeight="346.0" prefWidth="347.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ManagerMenu.ManagerMenuController">
    <children>
       <TabPane fx:id="tabPane" prefHeight="349.0" prefWidth="347.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>

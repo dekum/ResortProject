@@ -55,30 +55,10 @@ public class EventMenuHomeController implements Initializable {
 
   @FXML
   void handleCreate(ActionEvent event) {
-    Stage stageExit = (Stage) buttonCreate.getScene().getWindow(); //Select an object in this window
-    stageExit.close(); //close current window
+    Global.currentScene = buttonCreate.getScene();//
 
-    //Loads FXML Loader
-    FXMLLoader Loader = new FXMLLoader();
-    Loader.setLocation(
-        getClass().getResource(WindowLocation.EVENTCREATE.getLocation())); //Call new window
+    new Global().openNewWindow(WindowLocation.EVENTCREATE);
 
-    try {
-      Loader.load(); //Loads
-    } catch (IOException ex) {
-      Logger.getLogger(GuestRoomController.class.getName()).log(Level.SEVERE, null, ex);
-
-    }
-    //  DisplayTextController display = Loader.getController(); //Calling DisplayTextcontroller file
-    // display.setText(name_Text,email_Text); //using displaytextcontroller's method
-    //LoginMenuController storeFields =Loader.getController();
-//    storeFields.storeVariables1(); //This method will stoer the variables
-
-    Parent p = Loader.getRoot();
-    Stage stage = new Stage();
-    stage.setTitle("View Rooms -" + Global.currentGuestLoggedIn.getUserName()); //set title
-    stage.setScene(new Scene(p));
-    stage.show();//Open new window
 
 
   }

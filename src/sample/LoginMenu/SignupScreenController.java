@@ -124,6 +124,8 @@ public class SignupScreenController implements Initializable {
       getUsernameList().add(userName);// No need for method this already adds it in
       getPasswordList().add(password);
       getGuestList().add(createGuest);
+      Global.currentGuestLoggedIn = createGuest; //May Delete if this is causing errors
+      //I did so LoginMenu's username field will be set the createdGuest's username for user friendlyness
       labelSubmitSuccess.setText("Success");
       System.out.println("UserName: "+userName +"\npw: "+password+"\nFname"+firstName + "\nLastname:"+lastName
           +"\nDOB:"+dob);
@@ -253,7 +255,10 @@ return allInputsValid;
 
   @FXML
   void handleExit(ActionEvent event){
-    
+    Global.currentScene = buttonExit.getScene();//
+
+    new Global().openNewWindow(WindowLocation.LOGINMENU);
+
 
 
   }

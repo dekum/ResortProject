@@ -177,42 +177,9 @@ void tabClicked(Event ev) {
 
     @FXML
     public void handleSignout(ActionEvent event){
-//        try {
-//            Stage stage = (Stage) signoutButton.getScene().getWindow();
-//            stage.close();
-//            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("LoginMenu.fxml"));
-//            Parent root1 = (Parent) fxmlLoader.load();
-//            stage = new Stage();
-//            stage.setScene(new Scene(root1));
-//            stage.show();
-//        } catch(Exception e) {
-//            e.printStackTrace();
-//        }
-      /**
-       * Opening the GuestMenuHome is slighty different than opening other controllers
-       * The controller is called after the fxml is loaded.
-       * The data is stored via the storeVariables method.
-       * It just works, dont ask me.
-       */
+      Global.currentScene = signoutButton.getScene();//
 
-
-      Stage stageExit = (Stage) signoutButton.getScene().getWindow();
-            stageExit.close(); //close current window
-      FXMLLoader Loader = new FXMLLoader();
-      Loader.setLocation(getClass().getResource(WindowLocation.GUESTMENUHOME.getLocation())); //get FXML path
-      try {
-        Loader.load();
-      }catch ( IOException ex){
-        Logger.getLogger(GuestRoomController.class.getName()).log(Level.SEVERE, null ,ex);
-
-      }
-
-
-      Parent p = Loader.getRoot();
-      Stage stage = new Stage();
-      stage.setTitle("Login Menu"); //set title
-      stage.setScene(new Scene(p));
-      stage.show();//Open new window
+      new Global().openNewWindow(WindowLocation.GUESTMENUHOME);
 
 
 
@@ -225,12 +192,7 @@ void tabClicked(Event ev) {
        * This stores the variables from other controllers so it all matches.
        */
       //System.out.println("In Constructor");
-      this.usernameList = Global.usernameList;
-      this.passwordList = Global.passwordList;
-      this.guestList = Global.guestList;
-      this.rooms = Global.rooms;
-      this.data = Global.data;
-      this.currentGuest= Global.currentGuestLoggedIn;
+
 
 
     }
@@ -246,8 +208,14 @@ void tabClicked(Event ev) {
        * It will create a default rooms, if it hasnt' been created yet
        * It also gives the ListView it's mouseClick listener
        *
-       *
+       *This method first makes sure global variables are saved
        */
+      this.usernameList = Global.usernameList;
+      this.passwordList = Global.passwordList;
+      this.guestList = Global.guestList;
+      this.rooms = Global.rooms;
+      this.data = Global.data;
+      this.currentGuest= Global.currentGuestLoggedIn;
       System.out.println("HERE IN INTAILIZE");
         bookRoombutton.setDisable(true);
       if (rooms.isEmpty())

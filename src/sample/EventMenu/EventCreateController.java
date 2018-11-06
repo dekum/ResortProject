@@ -19,6 +19,27 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
+/**
+ * Create event
+ * Select Wedding, Spa, Meeting, Other
+ * Name of Person
+ * Dates
+ * How many people are coming
+ * Special Accomendation
+ * Contact Info (
+ * Email Address
+ *
+ * Pick a Venue (Show Pictures)
+ * DropDown Of Venue
+ *
+ * Buy
+ *
+ *
+ *
+ *
+ *
+ */
+
 public class EventCreateController  implements Initializable {
   @FXML private DatePicker checkInDatePicker;
   @FXML private DatePicker checkOutDatePicker;
