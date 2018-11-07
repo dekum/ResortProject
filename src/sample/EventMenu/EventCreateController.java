@@ -3,13 +3,17 @@ package sample.EventMenu;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.time.temporal.TemporalField;
+import java.time.temporal.WeekFields;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import javafx.application.Application;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.HPos;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -18,6 +22,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import javax.xml.ws.Action;
 
 /**
  * Create event
@@ -43,6 +48,13 @@ import javafx.util.Callback;
 public class EventCreateController  implements Initializable {
   @FXML private DatePicker checkInDatePicker;
   @FXML private DatePicker checkOutDatePicker;
+  @FXML private Button b1;
+
+  @FXML void b12(ActionEvent event){
+    //These 3 lines give week of year.
+
+
+  }
 
 
   @Override
@@ -104,6 +116,14 @@ public class EventCreateController  implements Initializable {
             };
           }
         };
+    /**
+     * These 3 lines will show what week fo the year currentd ate is. Feel free to amend of program
+     * https://stackoverflow.com/questions/26012434/get-week-number-of-localdate-java-8
+     */
+    LocalDate date = LocalDate.now();
+    TemporalField woy = WeekFields.of(Locale.getDefault()).weekOfWeekBasedYear();
+    int weekNumber = date.get(woy);
+    System.out.println(weekNumber+"\n\n\n");
 
     checkOutDatePicker.setDayCellFactory(dayCellFactory);
     checkInDatePicker.setDayCellFactory(dayCellFactory2);

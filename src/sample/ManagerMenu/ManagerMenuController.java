@@ -5,10 +5,18 @@
  */
 package sample.ManagerMenu;
 
+import com.sun.javafx.scene.control.skin.DatePickerSkin;
 import java.io.IOException;
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.temporal.TemporalField;
+import java.time.temporal.WeekFields;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -17,13 +25,18 @@ import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.DateCell;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Tab;
@@ -37,6 +50,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
+import javafx.util.Callback;
+import javax.swing.Action;
 import sample.Controller;
 import sample.Employee;
 import sample.Global;
@@ -70,6 +85,7 @@ import sample.Room.RoomCellFactory;
  * Almost indentical to Guest's
  * Manager can also delete Guest from Room.
  *
+ * Source for java datePicker info: https://stackoverflow.com/questions/49531768/how-to-fire-an-event-in-datepicker-when-weekday-clicked-in-javafx
  * @author ggraber7402
  */
 
@@ -120,8 +136,16 @@ public class ManagerMenuController extends Controller implements Initializable {
     private Label labelPricePerDay;
     @FXML
     private Label labelDaysStaying;
+    @FXML Tab tabEmployeeSchedule;
+
+
 //  @FXML
 //  private ImageView imageViewRoom;
+  @FXML ComboBox comboBoxStart1,comboBoxStart2,comboBoxStart3,comboBoxStart4,comboBoxStart5,comboBoxStart6,comboBoxStart7,
+    comboBoxEnd1,comboBoxEnd2,comboBoxEnd3,comboBoxEnd4,comboBoxEnd5,comboBoxEnd6,comboBoxEnd7;
+  @FXML Label labelDay1,labelDay2,labelDay3,labelDay4,labelDay5,labelDay6,labelDay7;
+  @FXML
+  DatePicker datePickerWeek;
 
 
     @FXML
@@ -138,6 +162,8 @@ public class ManagerMenuController extends Controller implements Initializable {
     Tab tabEmployeeList;
     //@FXML
   //  TableView tableViewEmployees;
+  @FXML
+  Label labelWeek;
 
 
 
@@ -163,6 +189,76 @@ public class ManagerMenuController extends Controller implements Initializable {
     @FXML private TextField textFieldEmpName,textFieldEmpID,textFieldEmpPayRoll;
     @FXML private Label labelSuccessSubmit;
     @FXML private Tab tabAddEmployee;
+
+    @FXML void setupEmployeeSchedule(){
+      /**
+       * Called in initalize, sets up Datepicker and other elements for tab Employee tab
+       */
+      final Callback<DatePicker, DateCell> dayCellFactory =
+          new Callback<DatePicker, DateCell>() {
+            @Override
+            public DateCell call(final DatePicker datePicker) {
+              return new DateCell() {
+                @Override
+                public void updateItem(LocalDate item, boolean empty) {
+                  super.updateItem(item, empty);
+                  //System.out.println("Ok here");
+
+
+                }
+              };
+            }
+          };
+      datePickerWeek.setDayCellFactory(dayCellFactory);
+      datePickerWeek.setValue(LocalDate.now());
+
+
+
+    }
+    @FXML void handlePickDate(ActionEvent event){
+      /**
+       * Happens after clicking a date on datePicker
+       * THis will tell us what date user selected!
+       *
+       *
+       */
+      System.out.println("Here");
+      System.out.println(datePickerWeek.getValue());
+      LocalDate date = datePickerWeek.getValue();
+      TemporalField woy = WeekFields.of(Locale.getDefault()).weekOfWeekBasedYear();
+      int weekNumber = date.get(woy);
+      //System.out.println(weekNumber);
+      labelWeek.setText("Week: "+String.valueOf(weekNumber));
+
+
+    }
+    @FXML void setupEmployee(Event event){
+      System.out.println("Im here");
+
+
+      //datePickerWeek.setValue(LocalDate.now());
+      if (tabEmployeeSchedule.isSelected()) {
+//    buttonConfirmPayment.setDisable(true);
+        //System.out.println("TABLCICK");
+        try{ //if ViewRoomTab is clicked, then tabPayment is disabled
+        //  datePickerWeek.setDayCellFactory(dayCellFactory);
+        }catch (NullPointerException exception){
+          System.out.println("Error."
+          );
+
+        }
+        try{
+
+        }catch (NullPointerException exception){
+
+        }
+
+
+
+      }
+
+
+    }
 
     @FXML void handleAddButton(){
         /**
@@ -349,7 +445,7 @@ public class ManagerMenuController extends Controller implements Initializable {
         //TableColumn firstNameCol = new TableColumn("First Name");
        // columnEmployeeID.setMinWidth(100);
         /**
-         * This fills the Column name EmployeeNAme with Data
+         * This fills the Column name EmployeeNAme with DataFac
          * Need to look up how setCellValueFactories work
          *
          */
@@ -415,6 +511,8 @@ public class ManagerMenuController extends Controller implements Initializable {
             }
 
         });
+
+      setupEmployeeSchedule();
 
 
 /**
@@ -525,6 +623,8 @@ public class ManagerMenuController extends Controller implements Initializable {
 
         }
         }
+
+
 
 
 
