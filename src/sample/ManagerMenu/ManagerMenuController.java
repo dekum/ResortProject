@@ -5,22 +5,19 @@
  */
 package sample.ManagerMenu;
 
-import com.sun.javafx.scene.control.skin.DatePickerSkin;
-import java.io.IOException;
 import java.net.URL;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
+import java.text.ParseException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalField;
 import java.time.temporal.WeekFields;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;
@@ -29,11 +26,7 @@ import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DateCell;
@@ -50,16 +43,14 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
-import javafx.stage.Stage;
+import javafx.scene.paint.Color;
 import javafx.util.Callback;
-import javax.swing.Action;
 import sample.Controller;
+import sample.CustomDate;
 import sample.Employee;
 import sample.Global;
 import sample.Global.WindowLocation;
 import sample.Guest;
-import sample.GuestMenu.GuestRoomController;
-import sample.LoginMenu.LoginMenuController;
 import sample.Room;
 import sample.Room.RoomCellFactory;
 
@@ -115,6 +106,11 @@ public class ManagerMenuController extends Controller implements Initializable {
     private TableView<Employee> employeeTable = new TableView<Employee>();//Table View to show employees
     private ObservableList<Employee> data; //This is where Employee List of served
     final HBox hb = new HBox();
+    ArrayList<ComboBox> comboBoxes = new ArrayList<>();
+  ArrayList<ComboBox> comboBoxesStart = new ArrayList<>();
+  ArrayList<ComboBox> comboBoxesEnd= new ArrayList<>();
+  ArrayList<LocalDate> daysOfSelectedWeek= new ArrayList<>();
+  List<Label> listOfLabels= new ArrayList<>();
 
     @FXML//Unused
     public void storeVariables2(ArrayList<String> unLIST, ArrayList<String> pwList,
@@ -155,7 +151,7 @@ public class ManagerMenuController extends Controller implements Initializable {
   @FXML ListProperty<String> listProperty2 = new SimpleListProperty<>();
 
   @FXML
-ComboBox comboBoxStart1,comboBoxStart2,comboBoxStart3,comboBoxStart4,comboBoxStart5,comboBoxStart6,comboBoxStart7,
+ComboBox<String> comboBoxStart1,comboBoxStart2,comboBoxStart3,comboBoxStart4,comboBoxStart5,comboBoxStart6,comboBoxStart7,
     comboBoxEnd1,comboBoxEnd2,comboBoxEnd3,comboBoxEnd4,comboBoxEnd5,comboBoxEnd6,comboBoxEnd7;
   @FXML Label labelDay1,labelDay2,labelDay3,labelDay4,labelDay5,labelDay6,labelDay7;
   @FXML
@@ -178,6 +174,86 @@ ComboBox comboBoxStart1,comboBoxStart2,comboBoxStart3,comboBoxStart4,comboBoxSta
   //  TableView tableViewEmployees;
   @FXML
   Label labelWeek;
+  @FXML TableView tableViewShift;
+  @FXML Tab tabShift;
+  @FXML TableColumn colEmpName,colEmpId,colStart,colEnd,colTitle;
+
+  @FXML
+  void handleViewShift(Event event){
+    if (tabShift.isSelected()){
+      /**
+       *if Tabview Shift is seleceted, this will populate the tablview for tableViewShift
+       *
+       */
+      colEmpName.setCellValueFactory(
+          new PropertyValueFactory<Employee, String>("name")); //What goes in the () is the name of the Variable in the Employe class
+
+
+      //TableColumn lastNameCol = new TableColumn("Last Name");
+      //  columnNameEmployee.setMinWidth(100);
+      /**
+       * This fills the Column payroll with Data
+       * Need to look up how setCellValueFactories work
+       *
+       */
+      columnPayroll.setCellValueFactory(
+          new PropertyValueFactory<Employee, Double>("payHourly"));
+
+      //TableColumn emailCol = new TableColumn("Email");
+      //columnPayroll.setMinWidth(200);
+      /**
+       * This fills the Column name EmployeeID with Data
+       * Need to look up how setCellValueFactories work
+       *
+       */
+      columnEmployeeID.setCellValueFactory(
+          new PropertyValueFactory<Employee, Integer>("employeeID"));
+
+      /**
+       * This fills the table with the employee list named data
+       *
+       */
+      tableViewEmployees.setItems(data);
+      // tableViewEmployees.getColumns().addAll(columnEmployeeID, columnPayroll, columnEmployeeID);
+      // TODO
+      // tableViewEmployees.setOnMousePressed((MouseEvent event) );
+      tableViewEmployees.setOnMouseClicked(new EventHandler<MouseEvent>() {
+        /**
+         * This will add a MouseClick event listener to the TableView Employees
+         * that will check if a Employee is selected.
+         *
+         */
+        @Override
+        public void handle(MouseEvent event) {
+          String employeeSelected = tableViewEmployees.getSelectionModel().getSelectedItem().toString();
+          //System.out.println("To string:"+roomSelected.toString());
+
+          for (Employee e: data
+          ) {
+            if (e.toString().equalsIgnoreCase(employeeSelected)){
+              employeeClickedOn= e;
+              System.out.println("Room: "+employeeClickedOn.getName());
+              //Same toString same, set currentRoom to r
+
+            }
+            // System.out.println(r.getName());
+          }
+          System.out.println("Here is : "+employeeClickedOn);
+          // System.out.println("clicked on " + roomListView.getSelectionModel().getSelectedItem());
+
+          //Check Room Avability.
+          //displayRoomFeatures(roomClickedOn);
+
+        }
+
+      });
+
+
+
+
+    }
+
+  }
 
 
 
@@ -225,6 +301,7 @@ ComboBox comboBoxStart1,comboBoxStart2,comboBoxStart3,comboBoxStart4,comboBoxSta
           };
       datePickerWeek.setDayCellFactory(dayCellFactory);
       datePickerWeek.setValue(LocalDate.now());
+      handlePickDate(new ActionEvent());
 
 
 
@@ -242,10 +319,94 @@ ComboBox comboBoxStart1,comboBoxStart2,comboBoxStart3,comboBoxStart4,comboBoxSta
       System.out.println("Here");
       System.out.println(datePickerWeek.getValue());
       LocalDate date = datePickerWeek.getValue();
+      LocalDate date2 = datePickerWeek.getValue();
       TemporalField woy = WeekFields.of(Locale.getDefault()).weekOfWeekBasedYear();
       int weekNumber = date.get(woy);
       //System.out.println(weekNumber);
-      labelWeek.setText("Week: "+String.valueOf(weekNumber));
+     // labelWeek.setText("Week: "+String.valueOf(weekNumber));
+      Calendar cal = Calendar.getInstance(); // new calender instrnace
+      TemporalField fieldISO= WeekFields.of(Locale.US).dayOfWeek(); // Sets First day of week to US with is Sunday
+      System.out.println("OOOOO: \n"+date.with(fieldISO,1)); //Changes to first day of the week given
+
+//      SimpleDateFormat sdf = new SimpleDateFormat("MM dd yyyy");
+//      cal.set(Calendar.WEEK_OF_YEAR,weekNumber);
+      System.out.println("days of week yo");
+      LocalDate firstDayofWeek = date.with(fieldISO,1);
+      //Starts with Sunday
+      daysOfSelectedWeek = new ArrayList<>();
+      for (int i = 0; i<7; i++){
+        System.out.println(firstDayofWeek.plusDays(i));
+        daysOfSelectedWeek.add(firstDayofWeek.plusDays(i));
+
+      }
+      labelWeek.setText("Week: "+daysOfSelectedWeek.get(0)+ " to  "+daysOfSelectedWeek.get(6));
+
+      listOfLabels = new ArrayList<>(
+          Arrays.asList(labelDay1, labelDay2,labelDay3,labelDay4,labelDay5,labelDay6,labelDay7)
+
+      );
+      String[] weekDaysNamesShort = new java.text.DateFormatSymbols().getShortWeekdays();
+      //for some reason this array index at [
+      // 0] is blank so you gotta start at one to get Mon
+
+      int i =0;
+      for (Label l: listOfLabels){
+        l.setText(weekDaysNamesShort[i+1]+"  "+ daysOfSelectedWeek.get(i));
+        l.setTextFill(Color.BLACK);
+        System.out.println(date2 + "  "+ daysOfSelectedWeek.get(i));
+        if (daysOfSelectedWeek.get(i).isEqual(date2)){
+          l.setTextFill(Color.PURPLE);
+          System.out.println("JJJ");
+
+        }
+        i++;
+
+      }
+      //clear fields before setting defaults
+      for (ComboBox cb2:comboBoxes
+      ) {
+        cb2.getSelectionModel().select(0);
+
+      }
+
+
+      if (employeeClickedOn !=null){
+        if (employeeClickedOn.getWorkDays().isEmpty() == false){
+          //so there already dates in here now i will populate comboxe with the data in those dates
+          ArrayList<CustomDate> datesWorked= new ArrayList<>();
+          datesWorked= employeeClickedOn.getWorkDays();
+          for (CustomDate date3 :datesWorked
+          ) {
+            for (int j = 0; j<7; j++ ){
+              if(daysOfSelectedWeek.get(j).isEqual(date3.getDate() )){
+                System.out.println("atch!");
+                //Ok Day Selected Date and CustomDate's Date are equal, now set the textfields to what in CustomDate
+                comboBoxesStart.get(j).getSelectionModel().select(date3.getStartHour());
+                comboBoxesEnd.get(j).getSelectionModel().select(date3.getEndHour());
+                //If startdate or enddate is null set as Not avaiable
+                //Prob shoudl force maanag er to fill in firelds
+                if (date3.getStartHour() == "null"){
+                  //If either
+                  //System.out.println("He set no 1");
+                  comboBoxesStart.get(j).getSelectionModel().select("Not Available");
+                }
+                if(date3.getEndHour() == "null"){
+                //  System.out.println("Hey et not 2");
+                  comboBoxesEnd.get(j).getSelectionModel().select("Not Available");
+                }
+
+              }
+
+            }
+
+          }
+
+        }
+
+
+
+      }
+
 
 
   //    comboBoxStart1.setItems(hourList);
@@ -283,20 +444,54 @@ ComboBox comboBoxStart1,comboBoxStart2,comboBoxStart3,comboBoxStart4,comboBoxSta
 
       }
 
-      ArrayList<ComboBox> comboBoxes = new ArrayList<ComboBox>( Arrays.asList(
+
+      comboBoxes = new ArrayList<ComboBox>( Arrays.asList(
           comboBoxEnd1,comboBoxEnd2,comboBoxEnd3,comboBoxEnd4,comboBoxEnd5,comboBoxEnd6,comboBoxEnd7,
-          comboBoxStart1,comboBoxStart2,comboBoxStart3,comboBoxStart3,comboBoxStart4,comboBoxStart5,comboBoxStart6,
+          comboBoxStart1,comboBoxStart2,comboBoxStart3,comboBoxStart4,comboBoxStart5,comboBoxStart6,
           comboBoxStart7
       ));
+      comboBoxesStart = new ArrayList<ComboBox>( Arrays.asList(
+          comboBoxStart1,comboBoxStart2,comboBoxStart3,comboBoxStart4,comboBoxStart5,comboBoxStart6,
+          comboBoxStart7
+      ));
+
+      comboBoxesEnd = new ArrayList<ComboBox>( Arrays.asList(
+          comboBoxEnd1,comboBoxEnd2,comboBoxEnd3,comboBoxEnd4,comboBoxEnd5,comboBoxEnd6,comboBoxEnd7
+
+      ));
+
       ArrayList<String> hourList =  new ArrayList<>(
           Arrays.asList(
+
+
+
+
+              "Set Date",
+              "6:00 AM",
+              "7:00 AM",
               "8:00 AM",
               "9:00 AM",
               "10:00 AM",
               "11:00 AM",
               "12:00 PM",
               "1:00 PM",
-              "2:00 PM"
+              "2:00 PM",
+              "3:00 PM",
+              "4:00 PM",
+              "5:00 PM",
+              "6:00 PM",
+              "7:00 PM",
+              "8:00 PM",
+              "9:00 PM",
+              "10:00 PM",
+              "11:00 PM",
+              "12:00 AM",
+              "1:00 AM",
+              "2:00 AM",
+              "3:00 AM",
+              "4:00 AM",
+              "5:00 AM",
+              "Not Available"
 
           )
 
@@ -310,6 +505,82 @@ ComboBox comboBoxStart1,comboBoxStart2,comboBoxStart3,comboBoxStart4,comboBoxSta
         //  cb.setItems(hourList);
 
       }
+
+
+    }
+
+    @FXML void handleUpdate(ActionEvent event){
+      //for testint click on emplyee
+      String startDate = comboBoxStart1.getValue();
+      String endDate = comboBoxStart2.getValue();
+    //  LocalDate dateofWork;
+      ArrayList<CustomDate> daysWorkedForEmployee = new ArrayList<>();
+      System.out.println("Days of week again..");
+      for (int i = 0; i<7; i++){
+        System.out.println(daysOfSelectedWeek.get(i));
+
+
+      }
+
+      int i =0;
+      employeeClickedOn= data.get(0);
+      if(daysOfSelectedWeek.isEmpty()){
+        //if this is empty dont do anytihng
+        System.out.println("im empy pick a date yo");
+
+
+      }
+      else{
+        daysWorkedForEmployee= employeeClickedOn.getWorkDays();
+        for (LocalDate localDate:daysOfSelectedWeek
+        ) {
+          startDate = String.valueOf(comboBoxesStart.get(i).getValue()); //get start date from comboboxes of start dates
+          endDate =String.valueOf(comboBoxesEnd.get(i).getValue());//get start date from comboxes of end date
+          //startDate = String.valueOf("7:00"); //get start date from comboboxes of start dates
+          //endDate =String.valueOf("8:00");//get start date from comboxes of end date
+         // dateofWork = localDate;
+          if (employeeClickedOn.checkIfWorkDayExists(localDate)){
+            //if tue make new custom date
+
+            //Trying to substract two Hours
+//            DateTimeFormatter format = DateTimeFormatter.ofPattern("HH:mm");
+//            Date dt1 = format.parse(startDate);
+//            DateTime dt2 = format.parseDateTime(yourSecondHour);
+//            System.out.print(Hours.hoursBetween(dt1, dt2).getHours()).
+
+           // System.out.println("HEY MAKE NEW ONE");
+            daysWorkedForEmployee.add(new CustomDate(startDate,endDate,localDate));
+
+          }else{
+            //There a date for that in the employee's daysWorked array
+            //so I want ot update the custom date with new info
+            daysWorkedForEmployee.get(i).setStartHour(startDate);
+            daysWorkedForEmployee.get(i).setEndHour(endDate);
+
+
+          }
+          System.out.println(daysWorkedForEmployee.get(i).getDate()+"\n"+
+              daysWorkedForEmployee.get(i).getStartHour()+"\n"+
+              daysWorkedForEmployee.get(i).getEndHour()+"\n"
+          );
+
+
+
+
+i++;//increment i for next index
+        }
+        employeeClickedOn.setWorkDays(daysWorkedForEmployee);
+        System.out.println(daysWorkedForEmployee.size());
+      }
+
+
+      /**
+       * Okay I enter the datese, then i click this button
+       * for loop
+       * I need each startdate and each end datef rom the Comboboxes
+       * I also need the date of of the start and end date
+       */
+
 
 
     }
