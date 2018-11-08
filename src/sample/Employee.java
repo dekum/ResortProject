@@ -18,6 +18,8 @@ public  class Employee {
   private final SimpleDoubleProperty payHourly;
   private final SimpleIntegerProperty employeeID;
   private final SimpleStringProperty title;
+  private final SimpleStringProperty shiftStart;
+  private final SimpleStringProperty shiftEnd;
   private ArrayList<CustomDate> workDays = new ArrayList<>();
 
   public Boolean checkIfWorkDayExists(LocalDate localdate){
@@ -45,12 +47,27 @@ public  class Employee {
     this.workDays = workDays;
   }
 
+  public Employee(String fName, double payme, Integer id, String title,
+      String fstart, String fend) {
+    this.name = new SimpleStringProperty(fName);
+    this.payHourly = new SimpleDoubleProperty(payme);
+    this.employeeID = new SimpleIntegerProperty(id);
+    this.title = new SimpleStringProperty(title);
+    this.shiftStart =new  SimpleStringProperty(fstart);
+    this.shiftEnd = new SimpleStringProperty(fend);
+  }
+
   public Employee(String fName, double payme, Integer id) {
     this.name = new SimpleStringProperty(fName);
     this.payHourly = new SimpleDoubleProperty(payme);
     this.employeeID = new SimpleIntegerProperty(id);
     this.title = this.name;
+    this.shiftStart = this.name;
+    this.shiftEnd = this.name;
+
   }
+
+
 
   public String getName() {
     return name.get();
@@ -58,6 +75,30 @@ public  class Employee {
 
   public void setName(String fName) {
     name.set(fName);
+  }
+
+  public String getTitle() {
+    return title.get();
+  }
+
+  public void setTitle(String Ftitle) {
+    title.set(Ftitle);
+  }
+
+  public String getShiftStart() {
+    return shiftStart.get();
+  }
+
+  public void setShiftStart(String Fstart) {
+    shiftStart.set(Fstart);
+  }
+
+  public String getShiftEnd() {
+    return shiftEnd.get();
+  }
+
+  public void setShiftEnd(String Fend) {
+    shiftStart.set(Fend);
   }
 
   public Double getPayHourly() {
@@ -71,6 +112,8 @@ public  class Employee {
     payHourly.set(payme);
 
   }
+
+
 
   public Integer getEmployeeID() {
     return employeeID.get();

@@ -174,18 +174,46 @@ ComboBox<String> comboBoxStart1,comboBoxStart2,comboBoxStart3,comboBoxStart4,com
   //  TableView tableViewEmployees;
   @FXML
   Label labelWeek;
-  @FXML TableView tableViewShift;
+  @FXML TableView<Employee> tableViewShift;
   @FXML Tab tabShift;
-  @FXML TableColumn colEmpName,colEmpId,colStart,colEnd,colTitle;
+
+
+  @FXML private TableColumn<Employee, Integer> colEmpID;
+  @FXML private TableColumn<Employee, String> colEmployeeName;
+  @FXML private TableColumn<Employee, String> colStart;
+  @FXML private TableColumn<Employee, String> colEnd;
+  @FXML private TableColumn<Employee, String> colTitle;
+
+  @FXML private Button buttonResetWeek;
+  @FXML void handleResetWeek(ActionEvent event){
+//Clear All Fields and then update the Employee's daysworked array
+    for (int j = 0; j<7; j++ ){
+      comboBoxesStart.get(j).getSelectionModel().select("Set Hour");
+
+      comboBoxesEnd.get(j).getSelectionModel().select("Set Hour");
+      handleUpdate(new ActionEvent());
+
+
+    }
+
+  }
 
   @FXML
   void handleViewShift(Event event){
     if (tabShift.isSelected()){
+      //let me try to change first one start day
+      data.get(0).setShiftStart("I win o'ckicj"); //This works
+      //Okay Logicallly, I want to ask user to pick a date (Automically Locla Date Today)
+      //(then I loop through Employee list daysWorkw thi that date, looking for an euqal
+      // THen I autically set HourStart and Hour end to the whats in that Custom Date
+      //If user doesnt have the date, it up not scheduled
+      //Will decide to do with Employees not working alter
+      //I get this done I'm basically odne with the schedule!!
       /**
        *if Tabview Shift is seleceted, this will populate the tablview for tableViewShift
        *
        */
-      colEmpName.setCellValueFactory(
+      colEmployeeName.setCellValueFactory(
           new PropertyValueFactory<Employee, String>("name")); //What goes in the () is the name of the Variable in the Employe class
 
 
@@ -196,8 +224,8 @@ ComboBox<String> comboBoxStart1,comboBoxStart2,comboBoxStart3,comboBoxStart4,com
        * Need to look up how setCellValueFactories work
        *
        */
-      columnPayroll.setCellValueFactory(
-          new PropertyValueFactory<Employee, Double>("payHourly"));
+      colTitle.setCellValueFactory(
+          new PropertyValueFactory<Employee, String>("title"));
 
       //TableColumn emailCol = new TableColumn("Email");
       //columnPayroll.setMinWidth(200);
@@ -206,18 +234,33 @@ ComboBox<String> comboBoxStart1,comboBoxStart2,comboBoxStart3,comboBoxStart4,com
        * Need to look up how setCellValueFactories work
        *
        */
-      columnEmployeeID.setCellValueFactory(
+      colEmpID.setCellValueFactory(
           new PropertyValueFactory<Employee, Integer>("employeeID"));
+      /**
+       * This fills the Column name colStart with start hour
+       * Need to look up how setCellValueFactories work
+       *
+       */
+      colStart.setCellValueFactory(
+          new PropertyValueFactory<Employee, String>("shiftStart"));
+
+      /**
+       * This fills the Column name colEnd with end Shift hour
+       * Need to look up how setCellValueFactories work
+       *
+       */
+      colEnd.setCellValueFactory(
+          new PropertyValueFactory<Employee, String>("shiftEnd"));
 
       /**
        * This fills the table with the employee list named data
        *
        */
-      tableViewEmployees.setItems(data);
-      // tableViewEmployees.getColumns().addAll(columnEmployeeID, columnPayroll, columnEmployeeID);
+      tableViewShift.setItems(data);
+      // tableViewShift.getColumns().addAll(columnEmployeeID, columnPayroll, columnEmployeeID);
       // TODO
-      // tableViewEmployees.setOnMousePressed((MouseEvent event) );
-      tableViewEmployees.setOnMouseClicked(new EventHandler<MouseEvent>() {
+      // tableViewShift.setOnMousePressed((MouseEvent event) );
+      tableViewShift.setOnMouseClicked(new EventHandler<MouseEvent>() {
         /**
          * This will add a MouseClick event listener to the TableView Employees
          * that will check if a Employee is selected.
@@ -225,20 +268,19 @@ ComboBox<String> comboBoxStart1,comboBoxStart2,comboBoxStart3,comboBoxStart4,com
          */
         @Override
         public void handle(MouseEvent event) {
-          String employeeSelected = tableViewEmployees.getSelectionModel().getSelectedItem().toString();
+          String employeeSelected = tableViewShift.getSelectionModel().getSelectedItem().toString();
           //System.out.println("To string:"+roomSelected.toString());
 
           for (Employee e: data
           ) {
             if (e.toString().equalsIgnoreCase(employeeSelected)){
               employeeClickedOn= e;
-              System.out.println("Room: "+employeeClickedOn.getName());
-              //Same toString same, set currentRoom to r
+
 
             }
             // System.out.println(r.getName());
           }
-          System.out.println("Here is : "+employeeClickedOn);
+          System.out.println("Employee clicked on is : "+employeeClickedOn);
           // System.out.println("clicked on " + roomListView.getSelectionModel().getSelectedItem());
 
           //Check Room Avability.
@@ -466,7 +508,7 @@ ComboBox<String> comboBoxStart1,comboBoxStart2,comboBoxStart3,comboBoxStart4,com
 
 
 
-              "Set Date",
+              "Set Hour",
               "6:00 AM",
               "7:00 AM",
               "8:00 AM",
@@ -734,8 +776,8 @@ i++;//increment i for next index
             System.out.println("DATA EMPTY\n\n\n\n");
             data =
                 FXCollections.observableArrayList(
-                    new Employee("Jacob", 12.3, 1),
-                    new Employee("Isabella", 13.8, 2),
+                    new Employee("Jacob", 12.3, 1,"Associate","7:00 PM","8:00PM"),
+                    new Employee("Isabella", 13.8, 2,"Associate","7:00 PM","8:00PM"),
                     new Employee("Ethan", 12.8, 3),
                     new Employee("Emma", 12.9, 4),
                     new Employee("Michael", 15.0, 5)
