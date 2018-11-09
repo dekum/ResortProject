@@ -61,9 +61,10 @@ public  class Employee {
     this.name = new SimpleStringProperty(fName);
     this.payHourly = new SimpleDoubleProperty(payme);
     this.employeeID = new SimpleIntegerProperty(id);
-    this.title = this.name;
-    this.shiftStart = this.name;
-    this.shiftEnd = this.name;
+    this.title = new SimpleStringProperty("Unpaid Intern");
+    this.shiftStart =new  SimpleStringProperty("N/A");
+    this.shiftEnd = new SimpleStringProperty("N/A");
+
 
   }
 
@@ -98,7 +99,7 @@ public  class Employee {
   }
 
   public void setShiftEnd(String Fend) {
-    shiftStart.set(Fend);
+    shiftEnd.set(Fend);
   }
 
   public Double getPayHourly() {

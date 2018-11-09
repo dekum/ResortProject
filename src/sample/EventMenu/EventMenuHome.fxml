@@ -15,5 +15,6 @@
       <Button fx:id="buttonSort" layoutX="288.0" layoutY="325.0" mnemonicParsing="false" onAction="#handleSort" text="Show Spas" />
       <Button fx:id="buttonResetList" layoutX="372.0" layoutY="325.0" mnemonicParsing="false" onAction="#handleRestoreList" text="Reset List" />
       <ComboBox fx:id="comboBoxSort" layoutX="286.0" layoutY="257.0" onAction="#handleComboSort" prefWidth="150.0" promptText="Show Only Type:" />
+      <Button fx:id="buttonExit" layoutX="482.0" layoutY="325.0" mnemonicParsing="false" onAction="#handleExit" text="Return Home" />
    </children>
 </AnchorPane>

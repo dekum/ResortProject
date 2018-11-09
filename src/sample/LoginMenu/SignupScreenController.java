@@ -195,7 +195,7 @@ public class SignupScreenController implements Initializable {
 
       allInputsValid = false;
     }
-    if (password.length() <6){
+    if (password.length() < 5){
       labelSubmitSuccess.setText("Password Invalid, See Rules");
       //password doesnt have enough characters
       passwordField.requestFocus();
@@ -240,7 +240,7 @@ public class SignupScreenController implements Initializable {
       }
 
     }
-    if (userName.length()<6){
+    if (userName.length()<5){
       //if username is less than 6 it's invalid
       labelSubmitSuccess.setText("Username Invalid");
       textPasswordRule.setFill(Color.BLACK);

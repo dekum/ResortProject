@@ -46,8 +46,9 @@ public class EventMenuHomeController implements Initializable {
   ArrayList<Event> events = new ArrayList<>();
   static ArrayList<Event> sortList = new ArrayList<>();
 
+
   @FXML
-  Button buttonCreate, buttonSort,buttonResetList;
+  Button buttonCreate, buttonSort,buttonResetList,buttonExit;
   @FXML
   ListView<Event> listViewEvent = new ListView<>();
   @FXML
@@ -62,6 +63,10 @@ public class EventMenuHomeController implements Initializable {
     listViewEvent.setCellFactory(new EventCellFactory()); //Cell Factory allows formatting
   }
 
+@FXML  void handleExit(ActionEvent event){
+    Global.currentScene = buttonCreate.getScene();
+    new Global().openNewWindow(WindowLocation.GUESTMENUHOME);
+}
 
   @FXML
   void handleCreate(ActionEvent event) {

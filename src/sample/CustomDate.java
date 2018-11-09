@@ -8,6 +8,10 @@ public class CustomDate {
   String endHour;
   int hoursWorked;
   LocalDate date;
+  String startHourFirstTwoDigits;
+  String endHourFirstTwoDigits;
+
+
   Boolean hadHours; //did employee work this day?
 
   public String getStartHour() {

@@ -45,6 +45,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.util.Callback;
+import javax.swing.Action;
 import sample.Controller;
 import sample.CustomDate;
 import sample.Employee;
@@ -111,6 +112,7 @@ public class ManagerMenuController extends Controller implements Initializable {
   ArrayList<ComboBox> comboBoxesEnd= new ArrayList<>();
   ArrayList<LocalDate> daysOfSelectedWeek= new ArrayList<>();
   List<Label> listOfLabels= new ArrayList<>();
+  LocalDate workDateSelected;
 
     @FXML//Unused
     public void storeVariables2(ArrayList<String> unLIST, ArrayList<String> pwList,
@@ -132,6 +134,7 @@ public class ManagerMenuController extends Controller implements Initializable {
 
     }
 
+    @FXML Label labelEmployeeName;
     @FXML
     private TabPane tabPane;
     @FXML
@@ -159,7 +162,7 @@ ComboBox<String> comboBoxStart1,comboBoxStart2,comboBoxStart3,comboBoxStart4,com
 
 
     @FXML
-    private Button signoutButton,buttonRemoveGuest;
+    private Button signoutButton,buttonRemoveGuest,buttonSetSchedule;
    // @FXML
     //private Button bookRoombutton;
 
@@ -183,6 +186,68 @@ ComboBox<String> comboBoxStart1,comboBoxStart2,comboBoxStart3,comboBoxStart4,com
   @FXML private TableColumn<Employee, String> colStart;
   @FXML private TableColumn<Employee, String> colEnd;
   @FXML private TableColumn<Employee, String> colTitle;
+  @FXML private DatePicker datePickerShiftDay;
+  @FXML void handleShiftDay(ActionEvent event){
+    /**
+     * When manager selects a date in the datePicker for seing the Daily shift schedule
+     * this method is called
+     * this method will update the tableViewShift with new data, and the date from the DatePicker
+     * The date will be uaed to see if Employee daysWorked array has that,
+     * if it the program will get the start hour and end hour and will populate the tableview with it.
+     *
+     */
+    tableViewShift.setItems(data);
+
+
+    LocalDate shiftDay = datePickerShiftDay.getValue();
+    //System.out.println("changing days");
+    System.out.println(data.get(0).getShiftStart()+"   "+ data.get(0).getShiftEnd());
+
+
+
+
+
+
+
+    for (Employee e : data //go thourgh emplyee list
+    ) {
+      for (CustomDate cdate : e.getWorkDays()){//go through one employee's daysWorked arraylist
+        if (cdate.getDate().isEqual(shiftDay)){
+          //Okay so the employee was schedule hours for this day, now update the employee's hours worked and end
+          System.out.println(e.getName()+ e.getShiftStart() +e.getShiftEnd());
+          System.out.println(cdate.getStartHour()+" ddd "+cdate.getEndHour());
+          e.setShiftStart(cdate.getStartHour());//set Start hour
+          e.setShiftEnd(cdate.getEndHour());//set end date
+          System.out.println("I updated");
+
+
+        }
+
+        }
+
+
+      }
+
+      //THe only way i coudl find to update table view was to make it inisble and then reappear
+    tableViewShift.getColumns().get(0).setVisible(false);
+    tableViewShift.getColumns().get(0).setVisible(true);
+
+
+
+  }
+
+
+
+
+  @FXML void handleSetSchedule(ActionEvent e){
+    if (employeeClickedOn != null){
+      tabPane.getSelectionModel().select(tabEmployeeSchedule);
+      labelEmployeeName.setText(employeeClickedOn.getName());
+
+    }
+
+  }
+
 
   @FXML private Button buttonResetWeek;
   @FXML void handleResetWeek(ActionEvent event){
@@ -201,8 +266,9 @@ ComboBox<String> comboBoxStart1,comboBoxStart2,comboBoxStart3,comboBoxStart4,com
   @FXML
   void handleViewShift(Event event){
     if (tabShift.isSelected()){
+      datePickerShiftDay.setValue(datePickerWeek.getValue());
       //let me try to change first one start day
-      data.get(0).setShiftStart("I win o'ckicj"); //This works
+
       //Okay Logicallly, I want to ask user to pick a date (Automically Locla Date Today)
       //(then I loop through Employee list daysWorkw thi that date, looking for an euqal
       // THen I autically set HourStart and Hour end to the whats in that Custom Date
@@ -295,6 +361,8 @@ ComboBox<String> comboBoxStart1,comboBoxStart2,comboBoxStart3,comboBoxStart4,com
 
     }
 
+
+
   }
 
 
@@ -361,6 +429,7 @@ ComboBox<String> comboBoxStart1,comboBoxStart2,comboBoxStart3,comboBoxStart4,com
       System.out.println("Here");
       System.out.println(datePickerWeek.getValue());
       LocalDate date = datePickerWeek.getValue();
+
       LocalDate date2 = datePickerWeek.getValue();
       TemporalField woy = WeekFields.of(Locale.getDefault()).weekOfWeekBasedYear();
       int weekNumber = date.get(woy);
@@ -565,7 +634,7 @@ ComboBox<String> comboBoxStart1,comboBoxStart2,comboBoxStart3,comboBoxStart4,com
       }
 
       int i =0;
-      employeeClickedOn= data.get(0);
+      //employeeClickedOn= data.get(0);
       if(daysOfSelectedWeek.isEmpty()){
         //if this is empty dont do anytihng
         System.out.println("im empy pick a date yo");
@@ -778,9 +847,9 @@ i++;//increment i for next index
                 FXCollections.observableArrayList(
                     new Employee("Jacob", 12.3, 1,"Associate","7:00 PM","8:00PM"),
                     new Employee("Isabella", 13.8, 2,"Associate","7:00 PM","8:00PM"),
-                    new Employee("Ethan", 12.8, 3),
-                    new Employee("Emma", 12.9, 4),
-                    new Employee("Michael", 15.0, 5)
+                    new Employee("Ethan", 12.8, 3,"Hospitality Agent","N/A","N/A"),
+                    new Employee("Emma", 12.9, 4,"Hospitality Agent","N/A","N/A"),
+                    new Employee("Michael", 15.0, 5,"Hospitality Agent","N/A","N/A")
                 );
 
         }

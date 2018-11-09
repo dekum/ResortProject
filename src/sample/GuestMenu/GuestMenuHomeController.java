@@ -49,7 +49,7 @@ Button buttonBookRoom,buttonEvent,buttonAccount,buttonSettings,buttonExit,button
 
 @FXML
 void handleExit(ActionEvent event){
-  Stage stage = (Stage) buttonExit.getScene().getWindow(); //Asks a object in the window to store it's WindowID
+   Global.currentScene =  buttonExit.getScene(); //Asks a object in the window to store it's WindowID
 
   new Global().openNewWindow(WindowLocation.LOGINMENU);
 }
