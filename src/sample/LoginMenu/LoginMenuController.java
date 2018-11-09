@@ -477,6 +477,8 @@ private CheckBox checkBox; //CheckBo for handling showPassword for guest login
     textFieldForPassword.textProperty().bindBidirectional(passwordField.textProperty()); //MAkes two textfields share share same input
     //If this code isn't there the two textfields are seperate
 
+
+
   }
 
 

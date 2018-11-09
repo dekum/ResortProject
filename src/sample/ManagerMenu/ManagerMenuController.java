@@ -162,7 +162,7 @@ ComboBox<String> comboBoxStart1,comboBoxStart2,comboBoxStart3,comboBoxStart4,com
 
 
     @FXML
-    private Button signoutButton,buttonRemoveGuest,buttonSetSchedule;
+    private Button signoutButton,buttonRemoveGuest,buttonSetSchedule,buttonReturnHome;
    // @FXML
     //private Button bookRoombutton;
 
@@ -187,6 +187,14 @@ ComboBox<String> comboBoxStart1,comboBoxStart2,comboBoxStart3,comboBoxStart4,com
   @FXML private TableColumn<Employee, String> colEnd;
   @FXML private TableColumn<Employee, String> colTitle;
   @FXML private DatePicker datePickerShiftDay;
+
+  @FXML void handleReturnHome(ActionEvent event){
+    Global.currentScene = signoutButton.getScene();
+
+    new Global().openNewWindow(WindowLocation.LOGINMENU);
+
+  }
+
   @FXML void handleShiftDay(ActionEvent event){
     /**
      * When manager selects a date in the datePicker for seing the Daily shift schedule
@@ -266,6 +274,7 @@ ComboBox<String> comboBoxStart1,comboBoxStart2,comboBoxStart3,comboBoxStart4,com
   @FXML
   void handleViewShift(Event event){
     if (tabShift.isSelected()){
+      handleShiftDay(new ActionEvent());
       datePickerShiftDay.setValue(datePickerWeek.getValue());
       //let me try to change first one start day
 

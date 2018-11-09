@@ -19,11 +19,11 @@
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <Button fx:id="bookRoomButton" mnemonicParsing="false" onAction="#handleBookRoom" text="Book Room" GridPane.rowIndex="2" />
-      <Button mnemonicParsing="false" text="sample.Event Menu" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-      <Button mnemonicParsing="false" text="Calender" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-      <Button mnemonicParsing="false" text="Settings" GridPane.rowIndex="3" />
-      <Button mnemonicParsing="false" text="See Account Information" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+      <Button fx:id="bookRoomButton" mnemonicParsing="false" onAction="#handleBookRoom" text="Edit Rooms" GridPane.rowIndex="2" />
+      <Button mnemonicParsing="false" text="Edit Events" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+      <Button mnemonicParsing="false" text="Edit Employees" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+      <Button mnemonicParsing="false" text="Account Settings" GridPane.rowIndex="3" />
+      <Button mnemonicParsing="false" text="Summary Report" GridPane.columnIndex="1" GridPane.rowIndex="3" />
       <GridPane GridPane.columnIndex="2" GridPane.rowIndex="3">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
