@@ -44,7 +44,7 @@
       </Pane>
       <Pane styleClass="pane" GridPane.columnIndex="2" GridPane.rowIndex="2">
          <children>
-            <Button fx:id="buttonCalender" mnemonicParsing="false" onAction="#handleCalender" prefHeight="100.0" prefWidth="201.0" text="Calender" />
+            <Button fx:id="buttonCalender" mnemonicParsing="false" onAction="#handleCalender" prefHeight="100.0" prefWidth="201.0" text="(Delete)" />
             <Text layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" text="See our Event Calender and set up Notications! (Not Happening)" textAlignment="CENTER" wrappingWidth="200.525390625" />
          </children>
       </Pane>
@@ -53,17 +53,17 @@
             <Insets />
          </GridPane.margin>
          <children>
-            <Button fx:id="buttonSettings" mnemonicParsing="false" onAction="#handleSettings" prefHeight="100.0" prefWidth="200.0" text="Change Settings" textAlignment="CENTER">
+            <Button fx:id="buttonSettings" mnemonicParsing="false" onAction="#handleSettings" prefHeight="100.0" prefWidth="200.0" text="Account Settings" textAlignment="CENTER">
                <padding>
                   <Insets top="10.0" />
                </padding>
             </Button>
-            <Text layoutX="14.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" text="View and edit your account information." textAlignment="CENTER" wrappingWidth="177.185546875" />
+            <Text layoutX="14.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" text="View Account settings and history. Edit Account details." textAlignment="CENTER" wrappingWidth="177.185546875" />
          </children>
       </Pane>
       <Pane styleClass="pane" GridPane.columnIndex="1" GridPane.rowIndex="3">
          <children>
-            <Button fx:id="buttonAccount" mnemonicParsing="false" onAction="#handleAccount" prefHeight="100.0" prefWidth="198.0" text="See Account Information...(Delete?)" />
+            <Button fx:id="buttonAccount" mnemonicParsing="false" onAction="#handleAccount" prefHeight="100.0" prefWidth="198.0" text="(Delete)" />
             <Text layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" text="View alerts, Purchase History and more." textAlignment="CENTER" wrappingWidth="200.13671875" />
          </children>
       </Pane>
