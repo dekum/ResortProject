@@ -53,21 +53,32 @@ public class EventCreateController  implements Initializable {
   @FXML private DatePicker checkInDatePicker;
   @FXML private DatePicker checkOutDatePicker;
   @FXML private Button b1;
-  @FXML private TextField textFieldOrganization, textFieldNumberOfGuest, textFieldVendor, textFieldNameofEvent;
+  @FXML
+  TextField nameOfOrganization, numOfPeople, nameOfEvent, selectVendor, otherDetails;
 
   @FXML void b12(ActionEvent event){
-    String organizer, vendor,eventName;
-    int numOfGuest;
+    String nameOrg, nameEvent, numPeople, details, vendor;
+    // creating strings that get the data from the text fields
+    vendor = selectVendor.getText();
+    details = otherDetails.getText();
+    nameOrg = nameOfOrganization.getText();
+    nameEvent = nameOfEvent.getText();
+    numPeople = numOfPeople.getText();
+//    nameOrg = "hi phil";
+//    nameEvent = "im programming";
+//    numPeople ="rr";
 
-    organizer = textFieldOrganization.getText();
-    vendor = textFieldVendor.getText();
-    eventName = textFieldNameofEvent.getText();
+    // creates an object that uses the text fields data
+    Event eventNew = new Event(nameOrg, nameEvent, numPeople, details, vendor);
+    System.out
+        .println(eventNew.getNumOfPeople() + '\n' + eventNew.getNameOfEvent() + '\n' +
+            eventNew.getNameOfOrg() + '\n' +
+            eventNew.getOtherDetails() + '\n' + eventNew.getSelectVendor());
+    // Prints the create objects
+    // Adds the events to the arraylist of events
 
 
-    Event creatEvent = new Event(eventName);
-    creatEvent.setGuestCreator(Global.currentGuestLoggedIn);
-    creatEvent.setNeedsApproval(true);
-    Global.eventList.add(creatEvent);
+    Global.eventList.add(eventNew);
 
 
   }
