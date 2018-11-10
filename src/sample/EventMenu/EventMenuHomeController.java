@@ -43,7 +43,7 @@ import sample.Wedding;
 
 public class EventMenuHomeController implements Initializable {
 
-  ArrayList<Event> events = new ArrayList<>();
+  ArrayList<Event> events; //= new ArrayList<>();
   static ArrayList<Event> sortList = new ArrayList<>();
 
 
@@ -119,6 +119,7 @@ public class EventMenuHomeController implements Initializable {
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
+    events = Global.eventList;
     if (events.isEmpty()) {
       /**
        * This is called first before the window is shown
@@ -136,6 +137,7 @@ public class EventMenuHomeController implements Initializable {
       events.add(new Wedding("Wedding event"));
       events.add(new Meeting("Meeting event"));
       events.add(new Spa("Spa event 2"));
+    }
 
       listViewEvent.itemsProperty().bind(listProperty); //Bind a list property to listview
       listProperty.set(FXCollections.observableArrayList(events)); //Set the elements in the list
@@ -149,7 +151,7 @@ public class EventMenuHomeController implements Initializable {
       listProperty2.set(FXCollections.observableArrayList(listofElements)); //Add a list to the combobox
       comboBoxSort.setCellFactory(new EventCellFactory());/// allows cells to be formatted
 
-    }
+
     //listViewEvent.setItems(buttonCreate);
   }
 }

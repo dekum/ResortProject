@@ -274,8 +274,14 @@ ComboBox<String> comboBoxStart1,comboBoxStart2,comboBoxStart3,comboBoxStart4,com
   @FXML
   void handleViewShift(Event event){
     if (tabShift.isSelected()){
-      handleShiftDay(new ActionEvent());
+      /**
+       * Sets default day value to the same date that was in the setSchedule window
+       *
+       */
       datePickerShiftDay.setValue(datePickerWeek.getValue());
+      handleShiftDay(new ActionEvent());
+
+
       //let me try to change first one start day
 
       //Okay Logicallly, I want to ask user to pick a date (Automically Locla Date Today)

@@ -10,11 +10,12 @@
    <children>
       <ListView fx:id="listViewEvent" layoutX="39.0" layoutY="91.0" prefHeight="200.0" prefWidth="200.0" />
       <Label layoutX="45.0" layoutY="59.0" text="List of Sponsered Events" />
-      <Button layoutX="74.0" layoutY="325.0" mnemonicParsing="false" text="More Info." />
-      <Button fx:id="buttonCreate" layoutX="187.0" layoutY="325.0" mnemonicParsing="false" onAction="#handleCreate" text="Plan a Event" />
-      <Button fx:id="buttonSort" layoutX="288.0" layoutY="325.0" mnemonicParsing="false" onAction="#handleSort" text="Show Spas" />
-      <Button fx:id="buttonResetList" layoutX="372.0" layoutY="325.0" mnemonicParsing="false" onAction="#handleRestoreList" text="Reset List" />
-      <ComboBox fx:id="comboBoxSort" layoutX="286.0" layoutY="257.0" onAction="#handleComboSort" prefWidth="150.0" promptText="Show Only Type:" />
+      <Button layoutX="10.0" layoutY="325.0" mnemonicParsing="false" text="More Info." />
+      <Button fx:id="buttonCreate" layoutX="146.0" layoutY="325.0" mnemonicParsing="false" onAction="#handleCreate" text="Plan a Event" />
+      <Button fx:id="buttonSort" layoutX="250.0" layoutY="325.0" mnemonicParsing="false" onAction="#handleSort" text="Show Spas" />
+      <Button fx:id="buttonResetList" layoutX="361.0" layoutY="325.0" mnemonicParsing="false" onAction="#handleRestoreList" text="Reset List" />
+      <ComboBox fx:id="comboBoxSort" layoutX="248.0" layoutY="279.0" onAction="#handleComboSort" prefWidth="150.0" promptText="Show Only Type:" />
       <Button fx:id="buttonExit" layoutX="482.0" layoutY="325.0" mnemonicParsing="false" onAction="#handleExit" text="Return Home" />
+      <Label layoutX="286.0" layoutY="59.0" text="Event Info" />
    </children>
 </AnchorPane>

@@ -17,12 +17,16 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import javax.xml.ws.Action;
+import sample.Event;
+import sample.Global;
+import sample.Global.WindowLocation;
 
 /**
  * Create event
@@ -49,14 +53,31 @@ public class EventCreateController  implements Initializable {
   @FXML private DatePicker checkInDatePicker;
   @FXML private DatePicker checkOutDatePicker;
   @FXML private Button b1;
+  @FXML private TextField textFieldOrganization, textFieldNumberOfGuest, textFieldVendor, textFieldNameofEvent;
 
   @FXML void b12(ActionEvent event){
-    //These 3 lines give week of year.
+    String organizer, vendor,eventName;
+    int numOfGuest;
+
+    organizer = textFieldOrganization.getText();
+    vendor = textFieldVendor.getText();
+    eventName = textFieldNameofEvent.getText();
+
+
+    Event creatEvent = new Event(eventName);
+    creatEvent.setGuestCreator(Global.currentGuestLoggedIn);
+    creatEvent.setNeedsApproval(true);
+    Global.eventList.add(creatEvent);
 
 
   }
 
 
+  @FXML void handleExit(ActionEvent event){
+    Global.currentScene = b1.getScene();
+    new Global().openNewWindow(WindowLocation.EVENTMENUHOME);
+
+  }
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     System.out.println("hERE");
