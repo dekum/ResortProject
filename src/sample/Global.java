@@ -27,7 +27,7 @@ public class Global {
    * Arraylists can be declared by arraylist list = Global.arraylist and Global will change as list changes
    * However variables such as Ints and Strings wont' be changed by simialar code
    * So you will have to a method like UpdateGlobals() which will update this class's variables to be used in a new window
-   *
+   *;
    * Global.java
    * This class stores all our data, that is shared by all the controllers.
    * By using this we won't have to use a method to pass fields through each controller.
