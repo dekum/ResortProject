@@ -3,7 +3,7 @@ package sample;
  * Employee.java Class
  * Simple____Property allows for ease in making columsn in table views
  * Look up how SimpleStringPropertyWorks
- *
+ *....
  */
 
 import java.time.LocalDate;

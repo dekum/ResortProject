@@ -6,41 +6,52 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.LoginMenu.SignupScreenController">
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ab090959" height="291.0" layoutX="8.0" layoutY="27.0" stroke="BLACK" strokeType="INSIDE" width="542.0" />
-      <TextField fx:id="textFieldUserName" layoutX="84.0" layoutY="43.0" />
-      <TextField fx:id="textFieldForPassword" layoutX="84.0" layoutY="85.0" />
-      <TextField fx:id="textFieldForPasswordConfirm" layoutX="84.0" layoutY="146.0" />
-      <TextField fx:id="textFieldFirstName" layoutX="377.0" layoutY="45.0" />
-      <TextField fx:id="textFieldLastName" layoutX="377.0" layoutY="83.0" />
-      <Label layoutX="14.0" layoutY="47.0" text="User Name:" />
-      <Label layoutX="17.0" layoutY="89.0" text="Password:" />
-      <Label layoutX="16.0" layoutY="139.0" prefHeight="38.0" prefWidth="62.0" text="Confirm Password:" wrapText="true" />
-      <Label layoutX="309.0" layoutY="49.0" text="First Name:" />
-      <Label layoutX="309.0" layoutY="89.0" text="Last Name:" />
-      <Label layoutX="317.0" layoutY="127.0" prefHeight="38.0" prefWidth="53.0" text="Date of Birth:" wrapText="true" />
-      <CheckBox fx:id="checkBox1" layoutX="137.0" layoutY="119.0" mnemonicParsing="false" text="Show/Hide" />
-      <CheckBox fx:id="checkBox2" layoutX="137.0" layoutY="174.0" mnemonicParsing="false" text="Show/Hide" />
-      <Label layoutX="177.0" layoutY="6.0" text="Signup Screen" />
-      <Button fx:id="buttonSubmit" layoutX="452.0" layoutY="361.0" mnemonicParsing="false" onAction="#handleSubmit" text="Submit" />
-      <Button fx:id="buttonExit" layoutX="519.0" layoutY="361.0" mnemonicParsing="false" onAction="#handleExit" text="Exit" />
-      <DatePicker fx:id="datePickerDOB" layoutX="370.0" layoutY="127.0" />
-      <VBox layoutX="28.0" layoutY="146.0" prefHeight="200.0" prefWidth="68.0" />
-      <VBox layoutX="46.0" layoutY="214.0" prefHeight="93.0" prefWidth="112.0" style="-fx-background-color: #AAAAAA;">
+      <ImageView fitHeight="408.0" fitWidth="609.0" layoutX="-7.0" layoutY="-4.0">
+         <image>
+            <Image url="@../Pictures/rubylogo-e1489090066133.jpg" />
+         </image>
+      </ImageView>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="305.0" layoutX="25.0" layoutY="48.0" stroke="BLACK" strokeType="INSIDE" width="551.0" />
+      <TextField fx:id="textFieldUserName" layoutX="137.0" layoutY="73.0" prefHeight="25.0" prefWidth="131.0" />
+      <TextField fx:id="textFieldForPassword" layoutX="137.0" layoutY="128.0" prefHeight="25.0" prefWidth="131.0" />
+      <TextField fx:id="textFieldForPasswordConfirm" layoutX="137.0" layoutY="190.0" prefHeight="25.0" prefWidth="131.0" />
+      <TextField fx:id="textFieldFirstName" layoutX="386.0" layoutY="73.0" />
+      <TextField fx:id="textFieldLastName" layoutX="386.0" layoutY="128.0" />
+      <Label layoutX="69.0" layoutY="77.0" text="User Name:" />
+      <Label layoutX="77.0" layoutY="132.0" text="Password:" />
+      <Label layoutX="320.0" layoutY="77.0" text="First Name:" />
+      <Label layoutX="320.0" layoutY="132.0" text="Last Name:" />
+      <Label layoutX="310.0" layoutY="187.0" prefHeight="32.0" prefWidth="76.0" text="Date of Birth:" wrapText="true" />
+      <CheckBox fx:id="checkBox1" layoutX="188.0" layoutY="163.0" mnemonicParsing="false" text="Show/Hide" />
+      <CheckBox fx:id="checkBox2" layoutX="188.0" layoutY="227.0" mnemonicParsing="false" text="Show/Hide" />
+      <Label layoutX="194.0" text="Signup Screen">
+         <font>
+            <Font size="34.0" />
+         </font></Label>
+      <Button fx:id="buttonSubmit" layoutX="473.0" layoutY="365.0" mnemonicParsing="false" onAction="#handleSubmit" prefWidth="59.0" text="Submit" />
+      <Button fx:id="buttonExit" layoutX="541.0" layoutY="365.0" mnemonicParsing="false" onAction="#handleExit" text="Exit" />
+      <DatePicker fx:id="datePickerDOB" layoutX="386.0" layoutY="190.0" prefHeight="25.0" prefWidth="149.0" />
+      <VBox layoutX="58.0" layoutY="268.0" prefHeight="68.0" prefWidth="35.0" />
+      <PasswordField fx:id="passwordField" layoutX="137.0" layoutY="128.0" prefHeight="25.0" prefWidth="131.0" />
+      <Label fx:id="labelSubmitSuccess" layoutX="415.0" layoutY="338.0" text="." />
+      <PasswordField fx:id="passwordFieldPasswordConfirm" layoutX="137.0" layoutY="190.0" prefHeight="25.0" prefWidth="131.0" />
+      <VBox layoutX="47.0" layoutY="260.0" prefHeight="63.0" prefWidth="211.0" style="-fx-background-color: #ffffff; -fx-border-color: #000000;">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Rules for Username and Password:" />
-            <Text fx:id="textUserNameRule" strokeType="OUTSIDE" strokeWidth="0.0" text="Username must be atleast 5 characters." />
-            <Text fx:id="textPasswordRule" strokeType="OUTSIDE" strokeWidth="0.0" text="Password must be atleast 6 characters and contain 1 number." wrappingWidth="206.7890625" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Rules for Username and Password:" textAlignment="CENTER" wrappingWidth="215.15625" />
+            <Text fx:id="textUserNameRule" strokeType="OUTSIDE" strokeWidth="0.0" text="- Username must be at least 5 characters." textAlignment="CENTER" />
+            <Text fx:id="textPasswordRule" strokeType="OUTSIDE" strokeWidth="0.0" text="- Password must be at least 6 characters and contain 1 number." textAlignment="CENTER" wrappingWidth="214.7890625" />
          </children>
       </VBox>
-      <PasswordField fx:id="passwordField" layoutX="84.0" layoutY="85.0" />
-      <Label fx:id="labelSubmitSuccess" layoutX="415.0" layoutY="338.0" text="." />
-      <PasswordField fx:id="passwordFieldPasswordConfirm" layoutX="84.0" layoutY="146.0" />
+      <Label layoutX="77.0" layoutY="183.0" prefHeight="34.0" prefWidth="60.0" text="Confirm Password:" wrapText="true" />
    </children>
 </AnchorPane>
