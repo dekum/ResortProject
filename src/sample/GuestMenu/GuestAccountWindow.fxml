@@ -10,33 +10,33 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.GuestMenu.GuestAccountWindow">
+<AnchorPane prefHeight="389.0" prefWidth="584.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.GuestMenu.GuestAccountWindow">
    <children>
-      <TabPane layoutX="6.0" layoutY="1.0" prefHeight="400.0" prefWidth="591.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane prefHeight="402.0" prefWidth="597.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab text="Account History">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <ListView layoutX="18.0" layoutY="41.0" prefHeight="55.0" prefWidth="479.0" />
-                        <Label layoutX="31.0" layoutY="17.0" text="Message Logs" />
-                        <Label layoutX="31.0" layoutY="117.0" text="Event Request Log" />
-                        <TableView layoutX="22.0" layoutY="252.0" prefHeight="63.0" prefWidth="471.0">
+                        <ListView layoutX="59.0" layoutY="50.0" prefHeight="55.0" prefWidth="479.0" />
+                        <Label layoutX="58.0" layoutY="26.0" text="Message Logs" />
+                        <Label layoutX="58.0" layoutY="125.0" text="Event Request Log" />
+                        <TableView layoutX="58.0" layoutY="259.0" prefHeight="63.0" prefWidth="471.0">
                           <columns>
                             <TableColumn prefWidth="75.0" text="C1" />
                             <TableColumn prefWidth="75.0" text="C2" />
                           </columns>
                         </TableView>
-                        <Label layoutX="31.0" layoutY="225.0" text="Purchase History" />
-                        <Button layoutX="529.0" layoutY="332.0" mnemonicParsing="false" text="Exit" />
-                        <TableView layoutX="31.0" layoutY="141.0" prefHeight="63.0" prefWidth="479.0">
+                        <Label layoutX="58.0" layoutY="233.0" text="Purchase History" />
+                        <Button layoutX="494.0" layoutY="332.0" mnemonicParsing="false" text="Exit" />
+                        <TableView layoutX="59.0" layoutY="150.0" prefHeight="63.0" prefWidth="476.0">
                           <columns>
                             <TableColumn prefWidth="75.0" text="C1" />
                             <TableColumn prefWidth="75.0" text="C2" />
                           </columns>
                         </TableView>
-                        <Label layoutX="472.0" layoutY="9.0" text="AccountName" />
-                        <Button layoutX="446.0" layoutY="332.0" mnemonicParsing="false" text="More Info" />
+                        <Label layoutX="458.0" layoutY="26.0" text="Account Name" />
+                        <Button layoutX="416.0" layoutY="332.0" mnemonicParsing="false" text="More Info" />
                      </children></AnchorPane>
             </content>
           </Tab>
@@ -44,11 +44,11 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TextField layoutX="28.0" layoutY="186.0" promptText="old password" />
-                        <TextField layoutX="43.0" layoutY="53.0" promptText="new password" />
-                        <TextField layoutX="349.0" layoutY="40.0" promptText="Change Firstname" />
-                        <TextField layoutX="360.0" layoutY="90.0" promptText="Change Lastname" />
-                        <TextField layoutX="28.0" layoutY="103.0" promptText="Change Username" />
+                        <TextField layoutX="28.0" layoutY="130.0" promptText="old password" />
+                        <TextField layoutX="28.0" layoutY="53.0" promptText="new password" />
+                        <TextField layoutX="247.0" layoutY="53.0" promptText="Change Firstname" />
+                        <TextField layoutX="247.0" layoutY="91.0" promptText="Change Lastname" />
+                        <TextField layoutX="28.0" layoutY="91.0" promptText="Change Username" />
                      </children></AnchorPane>
             </content>
           </Tab>
