@@ -26,13 +26,13 @@
                            <image>
                               <Image url="@../Pictures/Room1A.jpg" />
                            </image></ImageView>
-                        <Button fx:id="bookRoombutton" layoutX="218.0" layoutY="267.0" mnemonicParsing="false" onAction="#handleBookRoom" text="Book Room" />
-                        <Text layoutX="180.0" layoutY="214.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Room Price:" />
-                        <Text layoutX="180.0" layoutY="242.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Days Staying:" />
-                        <TextField fx:id="textFieldDaysStaying" layoutX="255.0" layoutY="225.0" prefHeight="25.0" prefWidth="69.0" />
-                        <Label fx:id="labelPricePerDay" layoutX="257.0" layoutY="201.0" text="Price Per Day" />
-                        <Button fx:id="signoutButton" layoutX="157.0" layoutY="269.0" mnemonicParsing="false" onAction="#handleSignout" text="Signout" />
-                        <Label fx:id="labelAvailable" layoutX="48.0" layoutY="271.0" text="Availability" />
+                        <Button fx:id="bookRoombutton" layoutX="251.0" layoutY="269.0" mnemonicParsing="false" onAction="#handleBookRoom" text="Book Room" />
+                        <Text layoutX="184.0" layoutY="214.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Room Price:" />
+                        <Text layoutX="178.0" layoutY="242.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Days Staying:" />
+                        <TextField fx:id="textFieldDaysStaying" layoutX="258.0" layoutY="225.0" prefHeight="25.0" prefWidth="71.0" />
+                        <Label fx:id="labelPricePerDay" layoutX="258.0" layoutY="201.0" text="Price Per Day" />
+                        <Button fx:id="signoutButton" layoutX="187.0" layoutY="269.0" mnemonicParsing="false" onAction="#handleSignout" text="Signout" />
+                        <Label fx:id="labelAvailable" layoutX="66.0" layoutY="273.0" text="Availability" />
                      </children>
                   </AnchorPane>
             </content>
@@ -41,14 +41,14 @@
             <content>
                   <AnchorPane prefHeight="321.0" prefWidth="347.0">
                      <children>
-                        <Text layoutX="60.0" layoutY="128.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name" />
-                        <Text layoutX="60.0" layoutY="165.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Credit Card" />
+                        <Text layoutX="60.0" layoutY="128.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name:" />
+                        <Text layoutX="60.0" layoutY="165.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Credit Card:" />
                         <TextField fx:id="textFieldPaymentName" layoutX="143.0" layoutY="109.0" />
                         <TextField layoutX="143.0" layoutY="148.0" />
                         <Text layoutX="60.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Price:" />
                         <Label fx:id="labelTotalPriceShow" layoutX="143.0" layoutY="73.0" text="Price" />
-                        <Button fx:id="buttonConfirmPayment" layoutX="159.0" layoutY="196.0" mnemonicParsing="false" onAction="#handleConfirmPayment" text="Confirm Payment" />
-                        <Label fx:id="labelPaymentSuccess" layoutX="166.0" layoutY="234.0" text=" " />
+                        <Button fx:id="buttonConfirmPayment" layoutX="143.0" layoutY="196.0" mnemonicParsing="false" onAction="#handleConfirmPayment" text="Confirm Payment" />
+                        <Label fx:id="labelPaymentSuccess" layoutX="143.0" layoutY="234.0" text=" " />
                      </children>
                   </AnchorPane>
             </content>
