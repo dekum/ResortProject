@@ -11,8 +11,7 @@
       <ListView fx:id="listViewEvent" layoutX="39.0" layoutY="91.0" prefHeight="200.0" prefWidth="200.0" />
       <Label layoutX="75.0" layoutY="59.0" text="List of Sponsered Events" />
       <Button layoutX="21.0" layoutY="325.0" mnemonicParsing="false" text="More Info." />
-      <Button fx:id="buttonCreate" layoutX="103.0" layoutY="325.0" mnemonicParsing="false" onAction="#handleCreate" text="Plan Event" />
-      <Button fx:id="buttonSort" layoutX="184.0" layoutY="325.0" mnemonicParsing="false" onAction="#handleSort" text="Show Spas" />
+      <Button fx:id="buttonCreate" layoutX="161.0" layoutY="325.0" mnemonicParsing="false" onAction="#handleCreate" text="Plan Event" />
       <Button fx:id="buttonResetList" layoutX="347.0" layoutY="325.0" mnemonicParsing="false" onAction="#handleRestoreList" text="Reset List" />
       <ComboBox fx:id="comboBoxSort" layoutX="348.0" layoutY="279.0" onAction="#handleComboSort" prefHeight="25.0" prefWidth="158.0" promptText="Show Only Type:" />
       <Button fx:id="buttonExit" layoutX="420.0" layoutY="325.0" mnemonicParsing="false" onAction="#handleExit" prefHeight="25.0" prefWidth="88.0" text="Return Home" />
