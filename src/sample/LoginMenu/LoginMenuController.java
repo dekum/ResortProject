@@ -207,10 +207,7 @@ public class LoginMenuController extends Controller implements Initializable {
     // Bind the textField and passwordField text values bidirectionally.
     textFieldForPasswordManager.textProperty()
         .bindBidirectional(passwordFieldManager.textProperty()); //MAkes two textfie
-
-    // Actual password field
-    //final PasswordField passwordField = new PasswordField();//Password Field shows ***
-
+    
     // CheckBox checkBox = new CheckBox("Show/Hide password");//Create checkbox that will toggle
 
     // Bind properties. Toggle textField and passwordField
