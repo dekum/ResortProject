@@ -1,11 +1,14 @@
 package sample;
 //Great WEbsite https://examples.javacodegeeks.com/desktop-java/javafx-table-example/
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.util.Callback;
 
 public class Room {
+  private StringProperty nameproperty;
   String name;
   String pictureUrl;
   int squareFt;
@@ -19,6 +22,14 @@ public class Room {
     daysStaying = 0;
     isAvailable= true;
 
+  }
+
+  public StringProperty nameProperty(){
+    return nameproperty;
+  }
+
+  public String getName2(){
+    return nameproperty.get();
   }
 
   public int getDaysStaying() {
@@ -77,10 +88,13 @@ public class Room {
     this.price = price;
   }
 
-  public Room(String name, boolean isAvailable, int price) {
+  public Room(String name, boolean isAvailable, int price, String pictureUrl) {
+    nameproperty = new SimpleStringProperty();
     this.name = name;
     this.isAvailable = isAvailable;
     this.price = price;
+    this.pictureUrl = pictureUrl;
+    nameproperty.set(name);
   }
 
   public Room(String name) {

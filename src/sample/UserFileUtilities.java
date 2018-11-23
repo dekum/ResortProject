@@ -85,7 +85,7 @@ public class UserFileUtilities {
     }
     return returnUser;
   }
-
+/*
   public static ArrayList<User2> initializeUsers(){
     ArrayList<User2> userList = new ArrayList<>();
     Initialize();
@@ -98,5 +98,5 @@ public class UserFileUtilities {
     }
     return userList;
   }
-
+*/
 }

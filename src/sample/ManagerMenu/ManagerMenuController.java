@@ -944,31 +944,31 @@ public class ManagerMenuController extends Controller implements Initializable {
  *
  */
 
-    if (rooms.isEmpty()) {
-      System.out.println("ROOM OS EMPTY \n\n\n");
-      rooms.add(new Room("1A", false, 200));
-      rooms.get(0).setAvailable(false);
-      rooms.get(0).setPictureUrl("sample/Pictures/Room1A.jpg"); //Set Picture URL
-      rooms.get(0).setOccupiedGuest(new Guest("BruceWayne", "batman"));//John Doe occupies room 1A
-      rooms.add(new Room("Room 2A", true, 300));
-      rooms.get(1).setAvailable(true);
-      rooms.get(1).setPictureUrl("sample/Pictures/Room2A.jpg"); //Set Picture URL
-      rooms.add(new Room("Room 3A", false, 500));
-      rooms.get(2).setAvailable(false);
-      rooms.get(2).setOccupiedGuest(new Guest("ClarkKent", "superman"));//John Doe occupies room 1A
-      rooms.get(2).setPictureUrl("sample/Pictures/Room3A.jpg"); //Set Picture URL
+//    if (rooms.isEmpty()) {
+  //    System.out.println("ROOM OS EMPTY \n\n\n");
+    //  rooms.add(new Room("1A", false, 200));
+      //rooms.get(0).setAvailable(false);
+//      rooms.get(0).setPictureUrl("sample/Pictures/Room1A.jpg"); //Set Picture URL
+//      rooms.get(0).setOccupiedGuest(new Guest("BruceWayne", "batman"));//John Doe occupies room 1A
+//      rooms.add(new Room("Room 2A", true, 300));
+//      rooms.get(1).setAvailable(true);
+//      rooms.get(1).setPictureUrl("sample/Pictures/Room2A.jpg"); //Set Picture URL
+//      rooms.add(new Room("Room 3A", false, 500));
+//      rooms.get(2).setAvailable(false);
+//      rooms.get(2).setOccupiedGuest(new Guest("ClarkKent", "superman"));//John Doe occupies room 1A
+//      rooms.get(2).setPictureUrl("sample/Pictures/Room3A.jpg"); //Set Picture URL
     }
 
-    roomListView.itemsProperty().bind(listProperty);
+//    roomListView.itemsProperty().bind(listProperty);
 
-    listProperty.set(FXCollections.observableArrayList(rooms));
-    roomListView.setCellFactory(new RoomCellFactory());
+//    listProperty.set(FXCollections.observableArrayList(rooms));
+//    roomListView.setCellFactory(new RoomCellFactory());
     /**
      * Makes a listener so we can know what the user seleceted
      *
      */
-    roomListView.setOnMouseClicked(new EventHandler<MouseEvent>() {
-
+//    roomListView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+/*
       @Override
       public void handle(MouseEvent event) {
         String roomSelected = roomListView.getSelectionModel().getSelectedItem().toString();
@@ -995,7 +995,7 @@ public class ManagerMenuController extends Controller implements Initializable {
     });
 
   }
-
+*/
   @FXML
   private void handleRemoveGuest() {
     /**

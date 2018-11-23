@@ -86,7 +86,7 @@ public class EventCreateController  implements Initializable {
 
   @FXML void handleExit(ActionEvent event){
     Global.currentScene = b1.getScene();
-    new Global().openNewWindow(WindowLocation.EVENTMENUHOME);
+   // new Global().openNewWindow(WindowLocation.EVENTMENUHOME);
 
   }
   @Override

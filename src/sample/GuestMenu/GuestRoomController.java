@@ -5,6 +5,9 @@
  */
 package sample.GuestMenu;
 
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.image.ImageView;
 import java.io.IOException;
 import java.net.URL;
@@ -40,6 +43,7 @@ import sample.Global.WindowLocation;
 import sample.LoginMenu.LoginMenuController;
 import sample.Global;
 import sample.Guest;
+import sample.ResortEvent;
 import sample.Room;
 import sample.Room.RoomCellFactory;
 
@@ -60,7 +64,7 @@ import sample.Room.RoomCellFactory;
  *
  * @author ggraber7402
  */
-public class GuestRoomController extends Controller implements Initializable {
+public class GuestRoomController extends Controller {
 
   private ArrayList<String> usernameList;
   // private ArrayList<String> usernameList =super.getUsernameList();
@@ -99,7 +103,17 @@ public class GuestRoomController extends Controller implements Initializable {
   private Button bookRoombutton;
 
   @FXML
-  private ListView roomListView;
+  private TableView<Room> roomTableView;
+
+  @FXML
+  private TableColumn<Room, String> roomTableColumn;
+
+  @FXML
+  private TableView<ResortEvent> eventTableView;
+
+  @FXML
+  private TableColumn<ResortEvent, String> eventTableColumn;
+
   @FXML
   private Tab tabViewRoomTab;
 
@@ -108,6 +122,55 @@ public class GuestRoomController extends Controller implements Initializable {
   protected List<Room> rooms = new ArrayList<>();
   @FXML
   protected ListProperty<Room> listProperty = new SimpleListProperty<>();
+
+  @FXML
+  void handleCheckIn(ActionEvent event) {
+
+  }
+
+  @FXML
+  void handleCheckOut(ActionEvent event) {
+
+  }
+
+  @FXML
+  void initialize(){
+    List<ResortEvent> event = new ArrayList<>();
+    event.add((new ResortEvent("ZombieCon")));
+    event.add((new ResortEvent("Crab Race")));
+    event.add((new ResortEvent("Karaoke")));
+    event.add((new ResortEvent("Boat Show")));
+    event.add((new ResortEvent("ArtWalk")));
+    event.add((new ResortEvent("Car Show")));
+
+    ObservableList<ResortEvent> event2 = FXCollections.observableArrayList(event);
+    eventTableColumn.setCellValueFactory(cellData -> cellData.getValue().getNameproperty());
+    eventTableView.setItems(event2);
+
+  }
+
+  @FXML
+  void populateRooms(ActionEvent event) {
+    List<Room> rooms2 = new ArrayList<>();
+    rooms2.add(new Room("1 Queen Bed",true,250,"sample/Pictures/QueenBed.jpg"));
+    rooms2.add(new Room("2 Twin Beds",true,200,"sample/Pictures/TwinBed.jpg"));
+    rooms2.add(new Room("Suite - 2 Queen Beds",true,500,"sample/Pictures/SuiteQueen.jpg"));
+    rooms2.add(new Room("Suite - 1 King Bed",true,525,"sample/Pictures/SuiteKing.jpg"));
+
+    ObservableList<Room> rooms2View = FXCollections.observableArrayList(rooms2);
+    roomTableColumn.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
+    roomTableView.setItems(rooms2View);
+
+    roomTableView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+      @Override
+      public void handle(MouseEvent event) {
+        Room roomClickedOn = roomTableView.getSelectionModel().getSelectedItem();
+        labelPricePerDay.setText("$" + roomClickedOn.getPrice());
+        Image image = new Image(roomClickedOn.getPictureUrl());
+        imageViewRoom.setImage(image);
+      }
+    });
+  }
 
 
   @FXML
@@ -167,7 +230,7 @@ public class GuestRoomController extends Controller implements Initializable {
   public void handleSignout(ActionEvent event) {
     Global.currentScene = signoutButton.getScene();//
 
-    new Global().openNewWindow(WindowLocation.GUESTMENUHOME);
+    new Global().openNewWindow(WindowLocation.LOGINMENU);
 
 
   }
@@ -185,17 +248,9 @@ public class GuestRoomController extends Controller implements Initializable {
   /**
    * Initializes the controller class.
    */
+  /*
   @Override
   public void initialize(URL url, ResourceBundle rb) {
-    // TODO
-    /**
-     * Starts after constructor in this program
-     * This starts before the window is shown
-     * It will create a default rooms, if it hasnt' been created yet
-     * It also gives the ListView it's mouseClick listener
-     *
-     *This method first makes sure global variables are saved
-     */
     this.usernameList = Global.usernameList;
     this.passwordList = Global.passwordList;
     this.guestList = Global.guestList;
@@ -220,12 +275,7 @@ public class GuestRoomController extends Controller implements Initializable {
       rooms.get(2).setPictureUrl("sample/Pictures/Room3A.jpg");
     }
 
-    /**
-     * To make a arraylist exist in ListPane first you
-     * Create Arraylist
-     * Create a ItemProperty
-     * Then you bind the arraylist to the Listpane via the item Properrty
-     */
+
     tabPayment.setDisable(true);
     roomListView.itemsProperty().bind(listProperty);
 
@@ -233,18 +283,10 @@ public class GuestRoomController extends Controller implements Initializable {
     roomListView.setCellFactory(new RoomCellFactory()); //Cell Factory allows formatting
     roomListView.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
-      /**
-       * Allows us to know what item of the listView is being seleceted
-       * this also called a method to update the window is the new informoation
-       *
-       * @param event
-       */
+
       @Override
       public void handle(MouseEvent event) {
-        /**
-         * We can only call the Object, not the class
-         * So by comparing toString()'s we know if it matches, then it's the same Object
-         */
+
         String roomSelected = roomListView.getSelectionModel().getSelectedItem().toString();
         //System.out.println("To string:"+roomSelected.toString());
 
@@ -262,9 +304,7 @@ public class GuestRoomController extends Controller implements Initializable {
         // System.out.println("clicked on " + roomListView.getSelectionModel().getSelectedItem());
 
         //Check Room Avability.
-        /**
-         * Call displayRoomFeatures to update Window
-         */
+
         displayRoomFeatures(roomClickedOn);
 
       }
@@ -272,7 +312,7 @@ public class GuestRoomController extends Controller implements Initializable {
     });
 
   }
-
+*/
   @FXML
   private void displayRoomFeatures(Room roomClickedOn) {
     /**

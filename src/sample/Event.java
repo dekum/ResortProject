@@ -1,6 +1,8 @@
 package sample;
 
 import java.util.Date;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.util.Callback;
@@ -15,7 +17,8 @@ import javafx.util.Callback;
  *
  */
 
-public  class Event {
+public class Event {
+  private StringProperty nameproperty;
   String name;
   int numberOfGuests;
   Boolean didManagerCreate; //Check if Manager created sample.MyEvent ornot
@@ -33,6 +36,10 @@ public  class Event {
 
   public String getOtherDetails() {
     return otherDetails;
+  }
+
+  public StringProperty nameProperty(){
+    return nameproperty;
   }
 
   public void setOtherDetails(String otherDetails) {
@@ -75,13 +82,13 @@ public  class Event {
     return name;
   }
 
-  public static class EventCellFactory implements Callback<ListView<Event>, ListCell<Event>> {
+public static class EventCellFactory implements Callback<ListView<Event>, ListCell<Event>> {
 
-    @Override
-    public ListCell<Event> call(ListView<Event> listview) {
-      return new EventCell();
-    }
+  @Override
+  public ListCell<Event> call(ListView<Event> listview) {
+    return new EventCell();
   }
+}
 
   public Event() {
 
@@ -90,6 +97,8 @@ public  class Event {
 
   public Event(String name) {
     this.name = name;
+    nameproperty = new SimpleStringProperty();
+    nameproperty.set(name);
   }
   // Constructor for 5 things used in EventCreateController
 

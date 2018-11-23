@@ -72,7 +72,7 @@ public class EventMenuHomeController implements Initializable {
   void handleCreate(ActionEvent event) {
     Global.currentScene = buttonCreate.getScene();//
 
-    new Global().openNewWindow(WindowLocation.EVENTCREATE);
+    //new Global().openNewWindow(WindowLocation.EVENTCREATE);
 
 
 

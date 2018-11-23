@@ -62,12 +62,12 @@ public class Global {
     SIGNUP("/sample/LoginMenu/SignupScreen.fxml"),
     MANAGERMENU("/sample/ManagerMenu/ManagerMenu.fxml"),
 
-    GUESTMENUHOME("/sample/GuestMenu/GuestMenuHome.fxml"),
-    GUESTMENUROOM("/sample/GuestMenu/GuestRoom.fxml"),
-    GUESTMENUACCOUNT("/sample/GuestMenu/GuestAccountScreen.fxml"),
-    EVENTMENUHOME("/sample/EventMenu/EventMenuHome.fxml"),
+    GUESTMENUHOME("/sample/GuestMenu/GuestRoomTest1.fxml");
+ //   GUESTMENUROOM("/sample/GuestMenu/GuestRoomTest1.fxml"),
+//    GUESTMENUACCOUNT("/sample/GuestMenu/GuestAccountScreen.fxml"),
+//    EVENTMENUHOME("/sample/EventMenu/EventMenuHome.fxml"),
 
-    EVENTCREATE("/sample/EventMenu/EventCreate.fxml");
+//    EVENTCREATE("/sample/EventMenu/EventCreate.fxml");
     private String url;
 
 
