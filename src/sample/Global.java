@@ -62,7 +62,8 @@ public class Global {
     SIGNUP("/sample/LoginMenu/SignupScreen.fxml"),
     MANAGERMENU("/sample/ManagerMenu/ManagerMenu.fxml"),
 
-    GUESTMENUHOME("/sample/GuestMenu/GuestRoomTest1.fxml");
+    GUESTMENUHOME("/sample/GuestMenu/GuestRoomTest1.fxml"),
+    PAYMENT("/sample/GuestMenu/PaymentWindow.fxml");
  //   GUESTMENUROOM("/sample/GuestMenu/GuestRoomTest1.fxml"),
 //    GUESTMENUACCOUNT("/sample/GuestMenu/GuestAccountScreen.fxml"),
 //    EVENTMENUHOME("/sample/EventMenu/EventMenuHome.fxml"),
@@ -122,7 +123,14 @@ public class Global {
 
     Parent p = Loader.getRoot();
     stage = new Stage();
-    stage.setTitle("Login"); //Maybe set title in initialize
+
+    if (currentGuestLoggedIn != null) {
+      stage.setTitle(
+          "Welcome " + currentGuestLoggedIn.getUserName() + "!"); //Maybe set title in initialize
+    }
+    else{
+      stage.setTitle("Welcome");
+    }
     stage.setScene(new Scene(p));
     stage.show(); //Opens new Window
 

@@ -36,6 +36,7 @@ import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import sample.Controller;
 import sample.Employee;
@@ -66,99 +67,77 @@ import sample.Room.RoomCellFactory;
  */
 public class GuestRoomController extends Controller {
 
-  private ArrayList<String> usernameList;
-  // private ArrayList<String> usernameList =super.getUsernameList();
-  private ArrayList<String> passwordList;
-  private ArrayList<Guest> guestList;
-  private Guest currentGuest;
-  private Room roomClickedOn;
-  private int daysStaying;
-  private boolean initializedRooms = false;
-  private ObservableList<Employee> data;
-
-
-  @FXML
-  private Label labelTotalPriceShow, paymentSucces, labelPaymentSuccess;
-
-  @FXML
-  private Button buttonConfirmPayment;
-
-  @FXML
-  private TabPane tabPane;
-  @FXML
-  private Tab tabPayment;
-  @FXML
-  private Label labelAvailable;
   @FXML
   private Label labelPricePerDay;
   @FXML
-  private TextField textFieldDaysStaying;
-  @FXML
   private ImageView imageViewRoom;
-
-
+  @FXML
+  private Label roomPreviewLabel;
+  @FXML
+  private Label roomPriceLabel;
   @FXML
   private Button signoutButton;
   @FXML
   private Button bookRoombutton;
-
   @FXML
   private TableView<Room> roomTableView;
-
   @FXML
   private TableColumn<Room, String> roomTableColumn;
-
   @FXML
   private TableView<ResortEvent> eventTableView;
-
   @FXML
   private TableColumn<ResortEvent, String> eventTableColumn;
-
   @FXML
-  private Tab tabViewRoomTab;
-
-
-  @FXML
-  protected List<Room> rooms = new ArrayList<>();
-  @FXML
-  protected ListProperty<Room> listProperty = new SimpleListProperty<>();
+  private TableColumn<ResortEvent, String> eventDateColumn;
 
   @FXML
   void handleCheckIn(ActionEvent event) {
-
+    //Not used yet
   }
 
   @FXML
   void handleCheckOut(ActionEvent event) {
-
+//Not used yet
   }
 
   @FXML
-  void initialize(){
+  void initialize() {
     List<ResortEvent> event = new ArrayList<>();
-    event.add((new ResortEvent("ZombieCon")));
-    event.add((new ResortEvent("Crab Race")));
-    event.add((new ResortEvent("Karaoke")));
-    event.add((new ResortEvent("Boat Show")));
-    event.add((new ResortEvent("ArtWalk")));
-    event.add((new ResortEvent("Car Show")));
+    event.add((new ResortEvent("ZombieCon", "Nov 29")));
+    event.add((new ResortEvent("Crab Race", "Nov 31")));
+    event.add((new ResortEvent("Karaoke", "Dec 2")));
+    event.add((new ResortEvent("Boat Show", "Dec 4")));
+    event.add((new ResortEvent("ArtWalk", "Dec 5")));
+    event.add((new ResortEvent("Car Show", "Dec 9")));
 
     ObservableList<ResortEvent> event2 = FXCollections.observableArrayList(event);
     eventTableColumn.setCellValueFactory(cellData -> cellData.getValue().getNameproperty());
+    eventDateColumn.setCellValueFactory(cellData -> cellData.getValue().getDateProperty());
     eventTableView.setItems(event2);
+
+    roomTableView.setVisible(false);
+    roomPreviewLabel.setVisible(false);
+    roomPriceLabel.setVisible(false);
+    bookRoombutton.setVisible(false);
 
   }
 
   @FXML
   void populateRooms(ActionEvent event) {
     List<Room> rooms2 = new ArrayList<>();
-    rooms2.add(new Room("1 Queen Bed",true,250,"sample/Pictures/QueenBed.jpg"));
-    rooms2.add(new Room("2 Twin Beds",true,200,"sample/Pictures/TwinBed.jpg"));
-    rooms2.add(new Room("Suite - 2 Queen Beds",true,500,"sample/Pictures/SuiteQueen.jpg"));
-    rooms2.add(new Room("Suite - 1 King Bed",true,525,"sample/Pictures/SuiteKing.jpg"));
+    rooms2.add(new Room("1 Queen Bed", true, 250, "sample/Pictures/QueenBed.jpg"));
+    rooms2.add(new Room("2 Twin Beds", true, 200, "sample/Pictures/TwinBed.jpg"));
+    rooms2.add(new Room("Suite - 2 Queen Beds", true, 500, "sample/Pictures/SuiteQueen.jpg"));
+    rooms2.add(new Room("Suite - 1 King Bed", true, 525, "sample/Pictures/SuiteKing.jpg"));
 
     ObservableList<Room> rooms2View = FXCollections.observableArrayList(rooms2);
     roomTableColumn.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
+
+    roomTableView.setVisible(true);
+    roomPreviewLabel.setVisible(true);
+    roomPriceLabel.setVisible(true);
+    bookRoombutton.setVisible(true);
+
     roomTableView.setItems(rooms2View);
 
     roomTableView.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -175,192 +154,14 @@ public class GuestRoomController extends Controller {
 
   @FXML
   public void handleBookRoom(ActionEvent event) {
-    /**
-     * Called by BookRoom Button
-     * Checks if user inputted DaysStayed textbox
-     * if the input is invalid the Payment button is disabled and user has to go back
-     * otherwise, it will allow user to book room.
-     *
-     */
-    Boolean success = true;
-    tabPane.getSelectionModel().select(tabPayment); //Opens tabPayment tab.
-    try {
-      daysStaying = Integer.parseInt(textFieldDaysStaying.getText()); //Check if valid
-    } catch (NumberFormatException exception) { //Cannot create a Integer from the input, user needs to try again
-      labelTotalPriceShow.setText("Error, Invalid Input");
-      buttonConfirmPayment.setDisable(true);//Disables Confirm Payment Button
-      success = false;
-    }
-    if (success == true) { //Valid Input, run this
-      tabPayment.setDisable(false);
-      buttonConfirmPayment.setDisable(false); //Enables Confirm Payment Button
-      System.out.println("here");
-      labelTotalPriceShow
-          .setText(Double.toString(roomClickedOn.getPrice() * daysStaying)); //total PRice
+    Global.currentScene = signoutButton.getScene();
+    new Global().openNewWindow(WindowLocation.PAYMENT);
 
-    }
-
-
-  }
-
-  @FXML
-  void tabClicked(Event ev) {
-    /**
-     * Checks if tab is clicked
-     */
-    if (tabViewRoomTab.isSelected()) {
-//    buttonConfirmPayment.setDisable(true);
-      //System.out.println("TABLCICK");
-      try { //if ViewRoomTab is clicked, then tabPayment is disabled
-        tabPayment.setDisable(true);
-      } catch (NullPointerException exception) {
-
-      }
-      try {
-        displayRoomFeatures(roomClickedOn);
-      } catch (NullPointerException exception) {
-
-      }
-
-
-    }
   }
 
   @FXML
   public void handleSignout(ActionEvent event) {
     Global.currentScene = signoutButton.getScene();//
-
     new Global().openNewWindow(WindowLocation.LOGINMENU);
-
-
   }
-
-  public GuestRoomController() {
-    /**
-     * Happens before initalize class, this this program atleast.
-     * In others it's the oppopsite
-     * This stores the variables from other controllers so it all matches.
-     */
-    //System.out.println("In Constructor");
-
-  }
-
-  /**
-   * Initializes the controller class.
-   */
-  /*
-  @Override
-  public void initialize(URL url, ResourceBundle rb) {
-    this.usernameList = Global.usernameList;
-    this.passwordList = Global.passwordList;
-    this.guestList = Global.guestList;
-    this.rooms = Global.rooms;
-    this.data = Global.data;
-    this.currentGuest = Global.currentGuestLoggedIn;
-    System.out.println("HERE IN INTAILIZE");
-    bookRoombutton.setDisable(true);
-    if (rooms.isEmpty()) {
-      //Make Default room list
-      //System.out.println("ROOM OS EMPTY \n\n\n");
-      rooms.add(new Room("Room 1A", false, 200));
-      rooms.get(0).setAvailable(false);
-      rooms.get(0).setPictureUrl("sample/Pictures/Room1A.jpg"); //Set Picture URL
-      rooms.get(0).setOccupiedGuest(new Guest("BruceWayne", "batman"));//John Doe occupies room 1A
-      rooms.add(new Room("Room 2A", true, 300));
-      rooms.get(1).setAvailable(true);
-      rooms.get(1).setPictureUrl("sample/Pictures/Room2A.jpg"); //Set Picutre URL
-      rooms.add(new Room("Room 3A", false, 500));
-      rooms.get(2).setAvailable(false);
-      rooms.get(2).setOccupiedGuest(new Guest("ClarkKent", "superman"));//John Doe occupies room 1A
-      rooms.get(2).setPictureUrl("sample/Pictures/Room3A.jpg");
-    }
-
-
-    tabPayment.setDisable(true);
-    roomListView.itemsProperty().bind(listProperty);
-
-    listProperty.set(FXCollections.observableArrayList(rooms));
-    roomListView.setCellFactory(new RoomCellFactory()); //Cell Factory allows formatting
-    roomListView.setOnMouseClicked(new EventHandler<MouseEvent>() {
-
-
-      @Override
-      public void handle(MouseEvent event) {
-
-        String roomSelected = roomListView.getSelectionModel().getSelectedItem().toString();
-        //System.out.println("To string:"+roomSelected.toString());
-
-        for (Room r : rooms
-        ) {
-          if (r.toString().equalsIgnoreCase(roomSelected)) {
-            roomClickedOn = r; //Same ToString so we can set the object to it.
-            System.out.println("Room: " + roomClickedOn.getName());
-            //Same toString same, set currentRoom to r
-
-          }
-          // System.out.println(r.getName());
-        }
-        System.out.println("Here IS : " + roomSelected);
-        // System.out.println("clicked on " + roomListView.getSelectionModel().getSelectedItem());
-
-        //Check Room Avability.
-
-        displayRoomFeatures(roomClickedOn);
-
-      }
-
-    });
-
-  }
-*/
-  @FXML
-  private void displayRoomFeatures(Room roomClickedOn) {
-    /**
-     * This method will update the window with information about Room
-     * The program know and send the current Room clicked on
-     */
-    if (roomClickedOn.getAvailable()) {
-      //true
-      labelAvailable.setText("Available");
-      bookRoombutton.setDisable(false);
-
-    } else {
-      labelAvailable.setText("Not Available");
-      bookRoombutton.setDisable(true);
-
-    }
-    labelPricePerDay.setText(Double.toString(roomClickedOn.getPrice()));
-    Image image = new Image(roomClickedOn.getPictureUrl());
-    imageViewRoom.setImage(image);
-    // Image image = new Image("sample/Room2A.jpg"); THIS WORKS
-    //Image image = new Image(new File("za.png").toURI().toString());
-
-//  ImageView iv2 = new ImageView();
-//  iv2.setImage(image);
-//  iv2.setFitWidth(100);
-//  iv2.setPreserveRatio(true);
-//  iv2.setSmooth(true);
-//  iv2.setCache(true);
-
-  }
-
-  public void handleConfirmPayment(ActionEvent event) {
-    /**
-     * This method adds Guest to Room
-     */
-    labelPaymentSuccess.setText("Payment Success");
-    roomClickedOn.setAvailable(false);
-    roomClickedOn.setOccupiedGuest(currentGuest);
-    System.out.println(
-        "Room:" + roomClickedOn.getName() + " Availe:" + roomClickedOn.getAvailable() + " guest: " +
-            roomClickedOn.getOccupiedGuest().getUserName());
-
-    Stage currentStage = (Stage) signoutButton.getScene().getWindow();
-    currentStage
-        .setTitle("Guest Login: " + currentGuest.getUserName() + " - " + roomClickedOn.getName());
-    roomClickedOn.setDaysStaying(daysStaying);
-
-
-  }
-
 }

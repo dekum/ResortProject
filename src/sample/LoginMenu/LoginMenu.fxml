@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="262.0" prefWidth="320" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.LoginMenu.LoginMenuController">
+<AnchorPane id="AnchorPane" prefHeight="262.0" prefWidth="320" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.LoginMenu.LoginMenuController">
     <children>
       <TabPane prefHeight="322.0" prefWidth="320.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
@@ -33,7 +33,7 @@
                         <Text fill="WHITE" layoutX="28.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" />
                         <Text fill="WHITE" layoutX="28.0" layoutY="161.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" wrappingWidth="53.291015625" />
                         <Button fx:id="buttonExit" layoutX="87.0" layoutY="180.0" mnemonicParsing="false" onAction="#handleButtonExit" prefHeight="25.0" prefWidth="53.0" text="Exit" />
-                        <Text fill="WHITE" layoutX="53.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ruby Resort" textAlignment="CENTER" wrappingWidth="212.13671875">
+                        <Text fill="WHITE" layoutX="54.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ruby Resort" textAlignment="CENTER" wrappingWidth="212.13671875">
                            <font>
                               <Font name="Times New Roman" size="33.0" />
                            </font>
@@ -53,7 +53,7 @@
           </Tab>
           <Tab text="Manager">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #FFFFFFF;">
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
                         <ImageView fitHeight="293.0" fitWidth="320.0">
                            <image>
@@ -69,6 +69,11 @@
                         <Button fx:id="buttonExit1" layoutX="88.0" layoutY="180.0" mnemonicParsing="false" onAction="#handleButtonExit" prefHeight="25.0" prefWidth="53.0" text="Exit" />
                         <TextField fx:id="textFieldForPasswordManager" layoutX="88.0" layoutY="144.0" prefHeight="25.0" prefWidth="196.0" />
                         <CheckBox fx:id="checkBox2" alignment="CENTER" contentDisplay="BOTTOM" layoutX="174.0" layoutY="215.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" prefHeight="0.0" prefWidth="109.0" text="Show Password?" textAlignment="JUSTIFY" />
+                        <Text fill="WHITE" layoutX="54.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ruby Resort" textAlignment="CENTER" wrappingWidth="212.13671875">
+                           <font>
+                              <Font name="Times New Roman" size="33.0" />
+                           </font>
+                        </Text>
                      </children></AnchorPane>
             </content>
           </Tab>

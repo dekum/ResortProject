@@ -44,7 +44,6 @@ import sample.UserFileUtilities;
 
 
 /**
- *
  * @author ggrab
  */
 
@@ -80,15 +79,15 @@ public class LoginMenuController extends Controller implements Initializable {
     String password = passwordField.getText();
 
     UserFileUtilities.Initialize();
-    Boolean checkValid = UserFileUtilities.checkIfPairExists(username,password);
+    Boolean checkValid = UserFileUtilities.checkIfPairExists(username, password);
 
-    if (checkValid){
+    if (checkValid) {
       try {
         Guest guest = new Guest(username, password);
         Global.currentScene = buttonExit.getScene();
         new Global().displayPopUpWindow("Login Successful!");
         openGuestMenu(guest);
-      } catch (IOException e){
+      } catch (IOException e) {
         System.out.println("error");
       }
     } else {
@@ -104,9 +103,9 @@ public class LoginMenuController extends Controller implements Initializable {
     String password = textFieldForPasswordManager.getText();
 
     UserFileUtilities.Initialize();
-    Boolean checkValid = UserFileUtilities.checkIfPairExists(username,password);
+    Boolean checkValid = UserFileUtilities.checkIfPairExists(username, password);
 
-    if (checkValid){
+    if (checkValid) {
       Global.currentScene = buttonExit.getScene();
       new Global().displayPopUpWindow("Login Successful!");
       openManagerMenu();
@@ -181,7 +180,6 @@ public class LoginMenuController extends Controller implements Initializable {
       textfieldUsername.setText(currentGuest.getUserName());
 
     }
-
 
     textFieldForPassword.setManaged(false);
     textFieldForPassword.setVisible(false);//Hide regular textfield
