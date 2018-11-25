@@ -27,7 +27,7 @@ Button bookRoomButton;
 
     //Loads FXML Loader
     FXMLLoader Loader = new FXMLLoader(); //sample.GuestMenu.LoginMenuController
-    Loader.setLocation(getClass().getResource("/sample/GuestMenu/GuestRoom.fxml")); //Call new window
+    Loader.setLocation(getClass().getResource("/sample/Unused/GuestRoom.fxml")); //Call new window
     //Make sure / is at the beginning at the Url if you are leaving the folder
     try {
       Loader.setController(guestController);

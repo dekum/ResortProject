@@ -18,7 +18,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="456.0" prefWidth="456.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ManagerMenu.ManagerMenuController">
+<AnchorPane id="AnchorPane" prefHeight="456.0" prefWidth="456.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Unused.ManagerMenuController">
    <children>
       <TabPane fx:id="tabPane" prefHeight="471.0" prefWidth="480.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>

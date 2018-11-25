@@ -23,7 +23,7 @@ public class TestEventCreate extends Application {
 
   @Override
   public void start(Stage stage) throws Exception {
-    Parent root = FXMLLoader.load(getClass().getResource("EventMenu/EventCreate.fxml"));
+    Parent root = FXMLLoader.load(getClass().getResource("Unused/EventMenu/EventCreate.fxml"));
     //Setting Defaults
 
 

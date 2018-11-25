@@ -4,7 +4,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.EventMenu.EventCheckout">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Unused.EventMenu.EventCheckout">
    <children>
       <TextField layoutX="109.0" layoutY="117.0" text="Enter Name" />
       <TextField layoutX="109.0" layoutY="175.0" text="Credit Card" />

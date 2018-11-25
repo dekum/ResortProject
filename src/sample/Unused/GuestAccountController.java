@@ -1,4 +1,4 @@
-package sample.GuestMenu;
+package sample.Unused;
 
 public class GuestAccountController {
 

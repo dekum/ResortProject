@@ -50,12 +50,12 @@
          <children>
             <ImageView fitHeight="144.0" fitWidth="157.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@QueenBed.jpg" />
+                  <Image url="@../GuestMenu/QueenBed.jpg" />
                </image>
             </ImageView>
             <ImageView fitHeight="138.0" fitWidth="185.0" layoutX="14.0" layoutY="198.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@TwinBed.jpg" />
+                  <Image url="@../GuestMenu/TwinBed.jpg" />
                </image>
             </ImageView>
             <Label layoutX="213.0" layoutY="14.0" text="1 Queen, Microwave, Fridge">

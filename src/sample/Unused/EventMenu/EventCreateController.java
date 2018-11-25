@@ -1,4 +1,4 @@
-package sample.EventMenu;
+package sample.Unused.EventMenu;
 
 import java.net.URL;
 import java.time.LocalDate;
@@ -7,26 +7,18 @@ import java.time.temporal.TemporalField;
 import java.time.temporal.WeekFields;
 import java.util.Locale;
 import java.util.ResourceBundle;
-import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.HPos;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 import javafx.util.Callback;
-import javax.xml.ws.Action;
 import sample.Event;
 import sample.Global;
-import sample.Global.WindowLocation;
 
 /**
  * Create event

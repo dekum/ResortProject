@@ -1,4 +1,4 @@
-package sample.ManagerMenu;
+package sample.Unused;
 
 import static sample.Global.empList;
 import static sample.Global.eventList;

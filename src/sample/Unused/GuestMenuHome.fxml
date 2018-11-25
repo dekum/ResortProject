@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Text?>
 
 
-<AnchorPane xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.GuestMenu.GuestMenuHomeController">
+<AnchorPane xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Unused.GuestMenuHomeController">
   <children>
     <ImageView fitHeight="445.0" fitWidth="600.0" pickOnBounds="true">
       <image>
@@ -72,7 +72,7 @@
         <Label layoutY="30.0" text="Welcome, what would you to do?" GridPane.columnIndex="1" GridPane.rowIndex="1" />
       </children>
       <stylesheets>
-        <URL value="@HomeStyleSheet.css" />
+        <URL value="@../GuestMenu/HomeStyleSheet.css" />
       </stylesheets>
     </GridPane>
   </children>

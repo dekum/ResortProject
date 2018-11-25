@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane prefHeight="385.0" prefWidth="546.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.EventMenu.EventCreateController">
+<AnchorPane prefHeight="385.0" prefWidth="546.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Unused.EventMenu.EventCreateController">
    <children>
       <ComboBox layoutX="62.0" layoutY="37.0" prefWidth="150.0" promptText="Pick Event" />
       <Label layoutX="327.0" layoutY="112.0" text="Picture of Venue" />

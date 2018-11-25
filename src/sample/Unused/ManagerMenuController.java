@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sample.ManagerMenu;
+package sample.Unused;
 
 import java.net.URL;
 import java.text.ParseException;
