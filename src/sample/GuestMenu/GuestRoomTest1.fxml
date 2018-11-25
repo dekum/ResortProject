@@ -20,13 +20,13 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <TableView fx:id="eventTableView" layoutX="434.0" layoutY="155.0" prefHeight="256.0" prefWidth="152.0">
+            <TableView fx:id="eventTableView" layoutX="434.0" layoutY="110.0" prefHeight="301.0" prefWidth="152.0">
                <columns>
                   <TableColumn fx:id="eventTableColumn" prefWidth="75.0" text="Event" />
                   <TableColumn fx:id="eventDateColumn" prefWidth="76.0" text="Date" />
                </columns>
             </TableView>
-            <Label layoutX="441.0" layoutY="97.0" text="Upcoming Events">
+            <Label layoutX="441.0" layoutY="70.0" text="Upcoming Events">
                <font>
                   <Font size="18.0" />
                </font>
@@ -56,9 +56,9 @@
             <AnchorPane layoutX="9.0" layoutY="44.0" prefHeight="106.0" prefWidth="362.0" style="-fx-background-color: E0E0E0;">
                <children>
                   <Label layoutX="14.0" layoutY="33.0" text="Check-In" />
-                  <DatePicker fx:id="checkInDate" layoutX="77.0" layoutY="29.0" onAction="#handleCheckIn" prefHeight="25.0" prefWidth="167.0" />
+                  <DatePicker fx:id="checkInDate" layoutX="77.0" layoutY="29.0" prefHeight="25.0" prefWidth="167.0" />
                   <Label layoutX="9.0" layoutY="66.0" prefHeight="9.0" prefWidth="57.0" text="Check-Out" />
-                  <DatePicker fx:id="checkOutDate" layoutX="77.0" layoutY="62.0" onAction="#handleCheckOut" prefHeight="25.0" prefWidth="167.0" />
+                  <DatePicker fx:id="checkOutDate" layoutX="77.0" layoutY="62.0" prefHeight="25.0" prefWidth="167.0" />
                   <Button fx:id="populateRooms" layoutX="255.0" layoutY="41.0" mnemonicParsing="false" onAction="#populateRooms" text="View Rooms" />
                   <Label layoutX="42.0" layoutY="6.0" text="Please select a check-in and check-out date to begin" />
                </children>

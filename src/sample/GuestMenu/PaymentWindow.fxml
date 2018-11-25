@@ -14,7 +14,7 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="281.0" layoutY="22.0" text="Payment Details">
+      <Label layoutX="270.0" layoutY="22.0" text="Payment Details">
          <font>
             <Font size="18.0" />
          </font>
@@ -23,12 +23,12 @@
          <children>
             <Label layoutX="14.0" layoutY="14.0" text="Check-In" />
             <Label layoutX="119.0" layoutY="14.0" text="Check-Out" />
-            <Label layoutX="14.0" layoutY="41.0" text="12/6/108" />
-            <Label layoutX="120.0" layoutY="41.0" text="12/10/2018" />
+            <Label fx:id="checkInLabel" layoutX="14.0" layoutY="41.0" />
+            <Label fx:id="checkOutLabel" layoutX="120.0" layoutY="41.0" />
             <Label layoutX="14.0" layoutY="81.0" text="Room Type:" />
-            <Label layoutX="116.0" layoutY="81.0" text="2 Twin Beds" />
+            <Label fx:id="roomInfoLabel" layoutX="89.0" layoutY="81.0" />
             <Label layoutX="14.0" layoutY="130.0" text="Estimated Total: " />
-            <Label layoutX="116.0" layoutY="130.0" text="\$800" />
+            <Label fx:id="roomPriceLabel" layoutX="116.0" layoutY="130.0" />
          </children>
       </AnchorPane>
       <AnchorPane layoutX="234.0" layoutY="49.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: E0E0E0;">

@@ -88,7 +88,7 @@ public class Room {
     this.price = price;
   }
 
-  public Room(String name, boolean isAvailable, int price, String pictureUrl) {
+  public Room(String name, boolean isAvailable, double price, String pictureUrl) {
     nameproperty = new SimpleStringProperty();
     this.name = name;
     this.isAvailable = isAvailable;

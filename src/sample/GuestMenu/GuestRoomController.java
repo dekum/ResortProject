@@ -5,6 +5,8 @@
  */
 package sample.GuestMenu;
 
+import java.time.LocalDate;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -80,6 +82,10 @@ public class GuestRoomController extends Controller {
   @FXML
   private Button bookRoombutton;
   @FXML
+  private DatePicker checkInDate;
+  @FXML
+  private DatePicker checkOutDate;
+  @FXML
   private TableView<Room> roomTableView;
   @FXML
   private TableColumn<Room, String> roomTableColumn;
@@ -97,12 +103,12 @@ public class GuestRoomController extends Controller {
 
   @FXML
   void handleCheckOut(ActionEvent event) {
-//Not used yet
+    //Not used yet
   }
 
   @FXML
   void initialize() {
-    List<ResortEvent> event = new ArrayList<>();
+    ArrayList<ResortEvent> event = new ArrayList<>();
     event.add((new ResortEvent("ZombieCon", "Nov 29")));
     event.add((new ResortEvent("Crab Race", "Nov 31")));
     event.add((new ResortEvent("Karaoke", "Dec 2")));
@@ -111,7 +117,7 @@ public class GuestRoomController extends Controller {
     event.add((new ResortEvent("Car Show", "Dec 9")));
 
     ObservableList<ResortEvent> event2 = FXCollections.observableArrayList(event);
-    eventTableColumn.setCellValueFactory(cellData -> cellData.getValue().getNameproperty());
+    eventTableColumn.setCellValueFactory(cellData -> cellData.getValue().getNameProperty());
     eventDateColumn.setCellValueFactory(cellData -> cellData.getValue().getDateProperty());
     eventTableView.setItems(event2);
 
@@ -124,13 +130,8 @@ public class GuestRoomController extends Controller {
 
   @FXML
   void populateRooms(ActionEvent event) {
-    List<Room> rooms2 = new ArrayList<>();
-    rooms2.add(new Room("1 Queen Bed", true, 250, "sample/Pictures/QueenBed.jpg"));
-    rooms2.add(new Room("2 Twin Beds", true, 200, "sample/Pictures/TwinBed.jpg"));
-    rooms2.add(new Room("Suite - 2 Queen Beds", true, 500, "sample/Pictures/SuiteQueen.jpg"));
-    rooms2.add(new Room("Suite - 1 King Bed", true, 525, "sample/Pictures/SuiteKing.jpg"));
 
-    ObservableList<Room> rooms2View = FXCollections.observableArrayList(rooms2);
+    ObservableList<Room> roomsView = FXCollections.observableArrayList(Global.roomList);
     roomTableColumn.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
 
     roomTableView.setVisible(true);
@@ -138,7 +139,7 @@ public class GuestRoomController extends Controller {
     roomPriceLabel.setVisible(true);
     bookRoombutton.setVisible(true);
 
-    roomTableView.setItems(rooms2View);
+    roomTableView.setItems(roomsView);
 
     roomTableView.setOnMouseClicked(new EventHandler<MouseEvent>() {
       @Override
@@ -147,6 +148,8 @@ public class GuestRoomController extends Controller {
         labelPricePerDay.setText("$" + roomClickedOn.getPrice());
         Image image = new Image(roomClickedOn.getPictureUrl());
         imageViewRoom.setImage(image);
+        Global.roomInfo = roomClickedOn.getName();
+        Global.selectedRoom = roomClickedOn;
       }
     });
   }
@@ -154,6 +157,12 @@ public class GuestRoomController extends Controller {
 
   @FXML
   public void handleBookRoom(ActionEvent event) {
+    LocalDate checkinDate = checkInDate.getValue();
+    LocalDate checkoutDate = checkOutDate.getValue();
+    Global.checkInDate = checkinDate;
+    Global.checkOutDate = checkoutDate;
+
+
     Global.currentScene = signoutButton.getScene();
     new Global().openNewWindow(WindowLocation.PAYMENT);
 

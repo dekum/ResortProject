@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="262.0" prefWidth="320" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.LoginMenu.LoginMenuController">
+<AnchorPane id="AnchorPane" prefHeight="262.0" prefWidth="320.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.LoginMenu.LoginMenuController">
     <children>
       <TabPane prefHeight="322.0" prefWidth="320.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
@@ -23,30 +23,27 @@
                      <children>
                         <ImageView fitHeight="297.0" fitWidth="320.0">
                            <image>
-                              <Image url="@../Pictures/RubyRotate.gif" />
+                              <Image url="@../Pictures/abstract-background-design_1297-82.jpg" />
                            </image>
                         </ImageView>
-                        <TextField id="UserTextField" fx:id="textfieldUsername" layoutX="88.0" layoutY="110.0" prefHeight="25.0" prefWidth="196.0" promptText="ex: &quot;michaeljordan12&quot;" />
-                        <PasswordField fx:id="passwordField" layoutX="88.0" layoutY="144.0" prefHeight="25.0" prefWidth="196.0" promptText="ex: &quot;openSesame&quot;" />
-                          <Button id="LoginButton" fx:id="buttonLogin" layoutX="231.0" layoutY="180.0" onAction="#handleButtonLogin" prefHeight="25.0" prefWidth="53.0" text="Login" />
-                          <Label fx:id="labelLoginSuccess" layoutX="14.0" layoutY="207.0" minHeight="16" minWidth="69" prefHeight="41.0" prefWidth="145.0" wrapText="true" />
-                        <Text fill="WHITE" layoutX="28.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" />
-                        <Text fill="WHITE" layoutX="28.0" layoutY="161.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" wrappingWidth="53.291015625" />
-                        <Button fx:id="buttonExit" layoutX="87.0" layoutY="180.0" mnemonicParsing="false" onAction="#handleButtonExit" prefHeight="25.0" prefWidth="53.0" text="Exit" />
-                        <Text fill="WHITE" layoutX="54.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ruby Resort" textAlignment="CENTER" wrappingWidth="212.13671875">
+                        <TextField id="UserTextField" fx:id="textfieldUsername" layoutX="62.0" layoutY="110.0" prefHeight="25.0" prefWidth="196.0" promptText="Username" />
+                        <PasswordField fx:id="passwordField" layoutX="62.0" layoutY="144.0" prefHeight="25.0" prefWidth="196.0" promptText="Password" />
+                          <Button id="LoginButton" fx:id="buttonLogin" layoutX="205.0" layoutY="180.0" onAction="#handleButtonLogin" prefHeight="25.0" prefWidth="53.0" text="Login" />
+                        <Button fx:id="buttonExit" layoutX="62.0" layoutY="180.0" mnemonicParsing="false" onAction="#handleButtonExit" prefHeight="25.0" prefWidth="53.0" text="Exit" />
+                        <Text fill="WHITE" layoutX="54.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ruby Resort" textAlignment="CENTER" wrappingWidth="212.13671875">
                            <font>
                               <Font name="Times New Roman" size="33.0" />
                            </font>
                         </Text>
-                        <CheckBox fx:id="checkBox" alignment="CENTER" contentDisplay="BOTTOM" layoutX="170.0" layoutY="214.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" prefHeight="17.0" prefWidth="113.0" text="Show Password?" textAlignment="JUSTIFY" textFill="WHITE" />
+                        <CheckBox fx:id="checkBox" alignment="CENTER" contentDisplay="BOTTOM" layoutX="149.0" layoutY="214.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" prefHeight="17.0" prefWidth="113.0" text="Show Password?" textAlignment="JUSTIFY" textFill="WHITE" />
                         <TextField fx:id="textFieldForPassword" focusTraversable="false" layoutX="88.0" layoutY="144.0" prefHeight="25.0" prefWidth="196.0" promptText="ex: &quot;openSesame&quot;" visible="false" />
-                        <Label layoutX="70.0" layoutY="258.0" prefHeight="17.0" prefWidth="161.0" text="No Account? Click to Sign Up!" textFill="WHITE" />
+                        <Label layoutX="55.0" layoutY="258.0" prefHeight="17.0" prefWidth="161.0" text="No Account? Click to Sign Up!" textFill="WHITE" />
                         <ImageView fitHeight="43.0" fitWidth="44.0" layoutX="236.0" layoutY="245.0">
                            <image>
                               <Image url="@../Pictures/ruby-on-rails.png" />
                            </image>
                         </ImageView>
-                        <Button id="img_only" fx:id="buttonCreate" layoutX="236.0" layoutY="251.0" mnemonicParsing="false" onAction="#handleButtonCreate" opacity="0.0" prefHeight="32.0" prefWidth="44.0" style="-fx-shape: &quot;M 350 400 L 200 250 L 250 200 L 450 200 L 500 250 L 350 400 &quot;;" text="Create" />
+                        <Button id="img_only" fx:id="buttonCreate" layoutX="221.0" layoutY="251.0" mnemonicParsing="false" onAction="#handleButtonCreate" opacity="0.0" prefHeight="32.0" prefWidth="44.0" style="-fx-shape: &quot;M 350 400 L 200 250 L 250 200 L 450 200 L 500 250 L 350 400 &quot;;" text="Create" />
                      </children>
                   </AnchorPane>
             </content>
@@ -55,25 +52,22 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <ImageView fitHeight="293.0" fitWidth="320.0">
+                        <ImageView fitHeight="297.0" fitWidth="320.0" smooth="false">
                            <image>
-                              <Image url="@../Pictures/abstract-blue-background_1048-1511.jpg" />
+                              <Image url="@../Pictures/abstract-background-design_1297-82.jpg" />
                            </image>
                         </ImageView>
-                        <Text layoutX="28.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" />
-                        <Text layoutX="28.0" layoutY="161.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" wrappingWidth="53.291015625" />
-                        <TextField id="UserTextField" fx:id="textFieldUsernameManager" layoutX="88.0" layoutY="110.0" prefHeight="25.0" prefWidth="196.0" />
+                        <TextField id="UserTextField" fx:id="textFieldUsernameManager" layoutX="62.0" layoutY="110.0" prefHeight="25.0" prefWidth="196.0" promptText="Username" />
                         <Label fx:id="labelManagerLogin" layoutX="105.0" layoutY="227.0" minHeight="16" minWidth="69" prefHeight="17.0" prefWidth="171.0" />
-                        <PasswordField fx:id="passwordFieldManager" layoutX="88.0" layoutY="144.0" prefHeight="25.0" prefWidth="196.0" />
-                        <Button id="LoginButton" fx:id="buttonManagerLogin" layoutX="230.0" layoutY="180.0" mnemonicParsing="false" onAction="#handleButtonLoginManager" prefHeight="25.0" prefWidth="53.0" text="Login" />
-                        <Button fx:id="buttonExit1" layoutX="88.0" layoutY="180.0" mnemonicParsing="false" onAction="#handleButtonExit" prefHeight="25.0" prefWidth="53.0" text="Exit" />
-                        <TextField fx:id="textFieldForPasswordManager" layoutX="88.0" layoutY="144.0" prefHeight="25.0" prefWidth="196.0" />
-                        <CheckBox fx:id="checkBox2" alignment="CENTER" contentDisplay="BOTTOM" layoutX="174.0" layoutY="215.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" prefHeight="0.0" prefWidth="109.0" text="Show Password?" textAlignment="JUSTIFY" />
-                        <Text fill="WHITE" layoutX="54.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ruby Resort" textAlignment="CENTER" wrappingWidth="212.13671875">
+                        <Button id="LoginButton" fx:id="buttonManagerLogin" layoutX="205.0" layoutY="180.0" mnemonicParsing="false" onAction="#handleButtonLoginManager" prefHeight="25.0" prefWidth="53.0" text="Login" />
+                        <Button fx:id="buttonExit1" layoutX="62.0" layoutY="180.0" mnemonicParsing="false" onAction="#handleButtonExit" prefHeight="25.0" prefWidth="53.0" text="Exit" />
+                        <CheckBox fx:id="checkBox2" alignment="CENTER" contentDisplay="BOTTOM" layoutX="149.0" layoutY="214.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" prefHeight="17.0" prefWidth="113.0" text="Show Password?" textAlignment="JUSTIFY" textFill="WHITE" />
+                        <Text fill="WHITE" layoutX="54.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ruby Resort" textAlignment="CENTER" wrappingWidth="212.13671875">
                            <font>
                               <Font name="Times New Roman" size="33.0" />
                            </font>
                         </Text>
+                        <PasswordField fx:id="textFieldForPasswordManager" layoutX="62.0" layoutY="144.0" prefHeight="25.0" prefWidth="196.0" promptText="Password" />
                      </children></AnchorPane>
             </content>
           </Tab>

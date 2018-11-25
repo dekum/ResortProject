@@ -19,7 +19,7 @@ public class ResortEvent {
 
     }
 
-    public StringProperty getNameproperty(){
+    public StringProperty getNameProperty(){
       return nameproperty;
     }
 

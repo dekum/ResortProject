@@ -126,7 +126,7 @@ public class SignupScreenController implements Initializable {
       /**
        * Using UserFileUtilities class to access file in library
        * Must use initialize() method in order to avoid NullPointerException error
-        */
+       */
       UserFileUtilities.Initialize();
       try {
         UserFileUtilities.addUser(userName, password);

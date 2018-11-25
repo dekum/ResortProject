@@ -5,6 +5,7 @@
  */
 package sample;
 
+import java.util.ArrayList;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -23,6 +24,13 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
+
+        ArrayList<Room> rooms = new ArrayList<>();
+        rooms.add(new Room("1 Queen Bed", true, 250, "sample/Pictures/QueenBed.jpg"));
+        rooms.add(new Room("2 Twin Beds", true, 200, "sample/Pictures/TwinBed.jpg"));
+        rooms.add(new Room("Suite: 2 Queen Beds", true, 500, "sample/Pictures/SuiteQueen.jpg"));
+        rooms.add(new Room("Suite: 1 King Bed", true, 525, "sample/Pictures/SuiteKing.jpg"));
+        Global.roomList = rooms;
         Parent root = FXMLLoader.load(getClass().getResource("LoginMenu/LoginMenu.fxml"));
         //Setting Defaults
 
