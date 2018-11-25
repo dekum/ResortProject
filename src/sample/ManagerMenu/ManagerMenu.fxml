@@ -20,7 +20,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="456.0" prefWidth="456.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ManagerMenu.ManagerMenuController">
    <children>
-      <TabPane fx:id="tabPane" prefHeight="456.0" prefWidth="456.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane fx:id="tabPane" prefHeight="471.0" prefWidth="480.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab fx:id="tabEmployeeList" text="Employee List">
             <content>
@@ -33,10 +33,10 @@
                               <TableColumn fx:id="columnPayroll" prefWidth="75.0" text="Payroll" />
                           </columns>
                         </TableView>
-                        <Button fx:id="buttonAdd" layoutX="154.0" layoutY="264.0" mnemonicParsing="false" onAction="#handleAddButton" text="Add" />
-                        <Button fx:id="buttonDelete" layoutX="203.0" layoutY="264.0" mnemonicParsing="false" onAction="#handleDeleteEmployee" text="Delete" />
+                        <Button fx:id="buttonAdd" layoutX="133.0" layoutY="306.0" mnemonicParsing="false" onAction="#handleAddButton" text="Add An Employee" />
+                        <Button fx:id="buttonDelete" layoutX="240.0" layoutY="264.0" mnemonicParsing="false" onAction="#handleDeleteEmployee" text="Delete" />
                         <Text layoutX="38.0" layoutY="281.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Modify Employee:" />
-                        <Button fx:id="buttonSchedule" layoutX="271.0" layoutY="264.0" mnemonicParsing="false" onAction="#handleSetSchedule" text="Set Schedule" />
+                        <Button fx:id="buttonSchedule" layoutX="143.0" layoutY="264.0" mnemonicParsing="false" onAction="#handleSetSchedule" text="Set Schedule" />
                         <Button fx:id="buttonReturnHome" layoutX="305.0" layoutY="388.0" mnemonicParsing="false" onAction="#handleReturnHome" text="Return to Home" />
                      </children>
                   </AnchorPane>
@@ -86,7 +86,7 @@
                         <Label layoutX="146.0" layoutY="14.0" text="Pick Week" />
                         <DatePicker fx:id="datePickerWeek" layoutX="203.0" layoutY="10.0" onAction="#handlePickDate" prefHeight="26.0" prefWidth="138.0" promptText="Pick work Day" />
                         <Label fx:id="labelEmployeeName" layoutX="26.0" layoutY="14.0" text="EmployeeName" />
-                        <GridPane hgap="10.0" layoutX="43.0" layoutY="76.0" vgap="5.0">
+                        <GridPane hgap="10.0" layoutX="43.0" layoutY="90.0" vgap="5.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -129,13 +129,13 @@
                            </children>
                         </GridPane>
                         <Label fx:id="labelWeek" layoutX="43.0" layoutY="50.0" text="Week:" />
-                        <Button fx:id="updateSchedule" layoutX="258.0" layoutY="388.0" mnemonicParsing="false" onAction="#handleUpdate" text="Update" />
+                        <Button fx:id="updateSchedule" layoutX="258.0" layoutY="401.0" mnemonicParsing="false" onAction="#handleUpdate" text="Update" />
                         <Label layoutX="46.0" layoutY="351.0" prefHeight="44.0" prefWidth="68.0" text="Total Hours this Week:" textAlignment="CENTER" wrapText="true" />
                         <Label fx:id="labelHourNumber" layoutX="132.0" layoutY="365.0" text="Hours" />
-                        <Button fx:id="buttonBackWeek" layoutX="258.0" layoutY="46.0" mnemonicParsing="false" text="Pervious Week" />
+                        <Button fx:id="buttonBackWeek" layoutX="211.0" layoutY="46.0" mnemonicParsing="false" text="Pervious Week" />
                         <Button fx:id="buttonFowardWeek" layoutX="354.0" layoutY="46.0" mnemonicParsing="false" text="Next Week" />
-                        <Button fx:id="buttonResetWeek" layoutX="162.0" layoutY="388.0" mnemonicParsing="false" onAction="#handleResetWeek" text="Reset Week" />
-                        <Button fx:id="buttonReturnHome" layoutX="352.0" layoutY="388.0" mnemonicParsing="false" onAction="#handleReturnHome" text="Return to Home" />
+                        <Button fx:id="buttonResetWeek" layoutX="148.0" layoutY="401.0" mnemonicParsing="false" onAction="#handleResetWeek" text="Clear Week" />
+                        <Button fx:id="buttonReturnHome" layoutX="354.0" layoutY="401.0" mnemonicParsing="false" onAction="#handleReturnHome" text="Return to Home" />
                      </children>
                   </AnchorPane>
               </content>
@@ -144,17 +144,17 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView fx:id="tableViewShift" layoutX="72.0" layoutY="14.0" prefHeight="225.0" prefWidth="374.0">
+                        <TableView fx:id="tableViewShift" layoutX="72.0" layoutY="66.0" prefHeight="225.0" prefWidth="374.0">
                           <columns>
                             <TableColumn fx:id="colEmployeeName" prefWidth="75.0" text="Name" />
-                            <TableColumn fx:id="colEmpID" prefWidth="75.0" text="ID" />
-                              <TableColumn fx:id="colTitle" prefWidth="75.0" text="Title" />
-                              <TableColumn fx:id="colStart" prefWidth="75.0" text="Shift Start" />
+                            <TableColumn fx:id="colEmpID" prefWidth="72.0" text="ID" />
+                              <TableColumn fx:id="colStart" prefWidth="78.0" text="Shift Start" />
                               <TableColumn fx:id="colEnd" prefWidth="75.0" text="Shift End" />
+                              <TableColumn fx:id="colTitle" prefWidth="75.0" text="Title" />
                           </columns>
                         </TableView>
-                        <ComboBox layoutX="78.0" layoutY="261.0" prefWidth="150.0" promptText="Starting Hour" />
-                        <ComboBox layoutX="246.0" layoutY="261.0" prefWidth="150.0" promptText="End Hour" />
+                        <ComboBox layoutX="72.0" layoutY="32.0" prefWidth="150.0" promptText="Starting Hour" />
+                        <ComboBox layoutX="240.0" layoutY="32.0" prefWidth="150.0" promptText="End Hour" />
                         <Button layoutX="220.0" layoutY="324.0" mnemonicParsing="false" text="Reset Table" />
                         <Button layoutX="46.0" layoutY="373.0" mnemonicParsing="false" text="View Emp. Info" />
                         <Button fx:id="buttonSchedule" layoutX="168.0" layoutY="373.0" mnemonicParsing="false" onAction="#handleSetSchedule" text="Edit Schedule" />
