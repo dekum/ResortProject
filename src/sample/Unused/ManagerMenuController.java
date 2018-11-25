@@ -6,15 +6,12 @@
 package sample.Unused;
 
 import java.net.URL;
-import java.text.ParseException;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalField;
 import java.time.temporal.WeekFields;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -45,15 +42,13 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.util.Callback;
-import javax.swing.Action;
 import sample.Controller;
 import sample.CustomDate;
-import sample.Employee;
+import sample.EmployeeOld;
 import sample.Global;
 import sample.Global.WindowLocation;
 import sample.Guest;
 import sample.Room;
-import sample.Room.RoomCellFactory;
 
 /**
  * FXML Controller class
@@ -63,8 +58,8 @@ import sample.Room.RoomCellFactory;
  * Manager Window Probably Most Important Manager Can: View Employees Add Employees/Delete Emplyee
  * View Rooms Remove People from rooms.
  *
- * With View Employees: Employees are a class of Employee class and are displayed in Table View.
- * Manager can select an Employee and delete them Mananger can select Add Button,and be taken to
+ * With View Employees: Employees are a class of EmployeeOld class and are displayed in Table View.
+ * Manager can select an EmployeeOld and delete them Mananger can select Add Button,and be taken to
  * tabAddEmployee As long as the fields are correct an employee can be successfully Added.
  *
  * View Rooms: Almost indentical to Guest's Manager can also delete Guest from Room.
@@ -73,12 +68,12 @@ import sample.Room.RoomCellFactory;
  *
  * @author ggraber7402
  *
- * ManagaMenuController also handles Employee schedule The tab ManageSchedule will allow manager to
+ * ManagaMenuController also handles EmployeeOld schedule The tab ManageSchedule will allow manager to
  * set the hours a employee pays. The DatePicker(Calender) will let mamnager pick a day, but what
  * the prgram will read is the week The datepicker has a listener that will call the datePicked
  * method The hours of the week are changed, When the manager is done they will click "Update"
  * Button which opens up a popup showing success or failure If succesfful the program will modify
- * Employee's class varaible daysWorked arraylist with the new data
+ * EmployeeOld's class varaible daysWorked arraylist with the new data
  */
 
 
@@ -90,12 +85,12 @@ public class ManagerMenuController extends Controller implements Initializable {
   private ArrayList<Guest> guestList;
   private Guest currentGuest;
   private Room roomClickedOn;
-  private Employee employeeClickedOn;
+  private EmployeeOld employeeOldClickedOn;
   private int daysStaying;
   private boolean initializedRooms = false;
   @FXML
-  private TableView<Employee> employeeTable = new TableView<Employee>();//Table View to show employees
-  private ObservableList<Employee> data; //This is where Employee List of served
+  private TableView<EmployeeOld> employeeTable = new TableView<EmployeeOld>();//Table View to show employees
+  private ObservableList<EmployeeOld> data; //This is where EmployeeOld List of served
   final HBox hb = new HBox();
   ArrayList<ComboBox> comboBoxes = new ArrayList<>();
   ArrayList<ComboBox> comboBoxesStart = new ArrayList<>();
@@ -171,21 +166,21 @@ public class ManagerMenuController extends Controller implements Initializable {
   @FXML
   Label labelWeek;
   @FXML
-  TableView<Employee> tableViewShift;
+  TableView<EmployeeOld> tableViewShift;
   @FXML
   Tab tabShift;
 
 
   @FXML
-  private TableColumn<Employee, Integer> colEmpID;
+  private TableColumn<EmployeeOld, Integer> colEmpID;
   @FXML
-  private TableColumn<Employee, String> colEmployeeName;
+  private TableColumn<EmployeeOld, String> colEmployeeName;
   @FXML
-  private TableColumn<Employee, String> colStart;
+  private TableColumn<EmployeeOld, String> colStart;
   @FXML
-  private TableColumn<Employee, String> colEnd;
+  private TableColumn<EmployeeOld, String> colEnd;
   @FXML
-  private TableColumn<Employee, String> colTitle;
+  private TableColumn<EmployeeOld, String> colTitle;
   @FXML
   private DatePicker datePickerShiftDay;
 
@@ -203,7 +198,7 @@ public class ManagerMenuController extends Controller implements Initializable {
      * When manager selects a date in the datePicker for seing the Daily shift schedule
      * this method is called
      * this method will update the tableViewShift with new data, and the date from the DatePicker
-     * The date will be uaed to see if Employee daysWorked array has that,
+     * The date will be uaed to see if EmployeeOld daysWorked array has that,
      * if it the program will get the start hour and end hour and will populate the tableview with it.
      *
      */
@@ -213,7 +208,7 @@ public class ManagerMenuController extends Controller implements Initializable {
     //System.out.println("changing days");
     System.out.println(data.get(0).getShiftStart() + "   " + data.get(0).getShiftEnd());
 
-    for (Employee e : data //go thourgh emplyee list
+    for (EmployeeOld e : data //go thourgh emplyee list
     ) {
       for (CustomDate cdate : e.getWorkDays()) {//go through one employee's daysWorked arraylist
         if (cdate.getDate().isEqual(shiftDay)) {
@@ -242,9 +237,9 @@ public class ManagerMenuController extends Controller implements Initializable {
 
   @FXML
   void handleSetSchedule(ActionEvent e) {
-    if (employeeClickedOn != null) {
+    if (employeeOldClickedOn != null) {
       tabPane.getSelectionModel().select(tabEmployeeSchedule);
-      labelEmployeeName.setText(employeeClickedOn.getName());
+      labelEmployeeName.setText(employeeOldClickedOn.getName());
 
     }
 
@@ -256,7 +251,7 @@ public class ManagerMenuController extends Controller implements Initializable {
 
   @FXML
   void handleResetWeek(ActionEvent event) {
-//Clear All Fields and then update the Employee's daysworked array
+//Clear All Fields and then update the EmployeeOld's daysworked array
     for (int j = 0; j < 7; j++) {
       comboBoxesStart.get(j).getSelectionModel().select("Set Hour");
 
@@ -281,7 +276,7 @@ public class ManagerMenuController extends Controller implements Initializable {
       //let me try to change first one start day
 
       //Okay Logicallly, I want to ask user to pick a date (Automically Locla Date Today)
-      //(then I loop through Employee list daysWorkw thi that date, looking for an euqal
+      //(then I loop through EmployeeOld list daysWorkw thi that date, looking for an euqal
       // THen I autically set HourStart and Hour end to the whats in that Custom Date
       //If user doesnt have the date, it up not scheduled
       //Will decide to do with Employees not working alter
@@ -291,7 +286,7 @@ public class ManagerMenuController extends Controller implements Initializable {
        *
        */
       colEmployeeName.setCellValueFactory(
-          new PropertyValueFactory<Employee, String>(
+          new PropertyValueFactory<EmployeeOld, String>(
               "name")); //What goes in the () is the name of the Variable in the Employe class
 
       //TableColumn lastNameCol = new TableColumn("Last Name");
@@ -302,7 +297,7 @@ public class ManagerMenuController extends Controller implements Initializable {
        *
        */
       colTitle.setCellValueFactory(
-          new PropertyValueFactory<Employee, String>("title"));
+          new PropertyValueFactory<EmployeeOld, String>("title"));
 
       //TableColumn emailCol = new TableColumn("Email");
       //columnPayroll.setMinWidth(200);
@@ -312,14 +307,14 @@ public class ManagerMenuController extends Controller implements Initializable {
        *
        */
       colEmpID.setCellValueFactory(
-          new PropertyValueFactory<Employee, Integer>("employeeID"));
+          new PropertyValueFactory<EmployeeOld, Integer>("employeeID"));
       /**
        * This fills the Column name colStart with start hour
        * Need to look up how setCellValueFactories work
        *
        */
       colStart.setCellValueFactory(
-          new PropertyValueFactory<Employee, String>("shiftStart"));
+          new PropertyValueFactory<EmployeeOld, String>("shiftStart"));
 
       /**
        * This fills the Column name colEnd with end Shift hour
@@ -327,7 +322,7 @@ public class ManagerMenuController extends Controller implements Initializable {
        *
        */
       colEnd.setCellValueFactory(
-          new PropertyValueFactory<Employee, String>("shiftEnd"));
+          new PropertyValueFactory<EmployeeOld, String>("shiftEnd"));
 
       /**
        * This fills the table with the employee list named data
@@ -340,7 +335,7 @@ public class ManagerMenuController extends Controller implements Initializable {
       tableViewShift.setOnMouseClicked(new EventHandler<MouseEvent>() {
         /**
          * This will add a MouseClick event listener to the TableView Employees
-         * that will check if a Employee is selected.
+         * that will check if a EmployeeOld is selected.
          *
          */
         @Override
@@ -348,16 +343,16 @@ public class ManagerMenuController extends Controller implements Initializable {
           String employeeSelected = tableViewShift.getSelectionModel().getSelectedItem().toString();
           //System.out.println("To string:"+roomSelected.toString());
 
-          for (Employee e : data
+          for (EmployeeOld e : data
           ) {
             if (e.toString().equalsIgnoreCase(employeeSelected)) {
-              employeeClickedOn = e;
+              employeeOldClickedOn = e;
 
 
             }
             // System.out.println(r.getName());
           }
-          System.out.println("Employee clicked on is : " + employeeClickedOn);
+          System.out.println("EmployeeOld clicked on is : " + employeeOldClickedOn);
           // System.out.println("clicked on " + roomListView.getSelectionModel().getSelectedItem());
 
           //Check Room Avability.
@@ -380,19 +375,19 @@ public class ManagerMenuController extends Controller implements Initializable {
   protected ListProperty<Room> listProperty = new SimpleListProperty<>();
 
   //   @FXML
-  //protected List<Employee> employees = new ArrayList<>();
+  //protected List<EmployeeOld> employees = new ArrayList<>();
   @FXML
-  protected ListProperty<Employee> listPropertyEmployee = new SimpleListProperty<>();
+  protected ListProperty<EmployeeOld> listPropertyEmployeeOld = new SimpleListProperty<>();
 
 
   @FXML
-  private TableView<Employee> tableViewEmployees;
+  private TableView<EmployeeOld> tableViewEmployees;
   @FXML
-  private TableColumn<Employee, Integer> columnEmployeeID;
+  private TableColumn<EmployeeOld, Integer> columnEmployeeID;
   @FXML
-  private TableColumn<Employee, String> columnNameEmployee;
+  private TableColumn<EmployeeOld, String> columnNameEmployee;
   @FXML
-  private TableColumn<Employee, Double> columnPayroll;
+  private TableColumn<EmployeeOld, Double> columnPayroll;
   @FXML
   private Button buttonAdd, buttonDelete;
 
@@ -408,7 +403,7 @@ public class ManagerMenuController extends Controller implements Initializable {
   @FXML
   void setupEmployeeSchedule() {
     /**
-     * Called in initalize, sets up Datepicker and other elements for tab Employee tab
+     * Called in initalize, sets up Datepicker and other elements for tab EmployeeOld tab
      */
     final Callback<DatePicker, DateCell> dayCellFactory =
         new Callback<DatePicker, DateCell>() {
@@ -495,11 +490,11 @@ public class ManagerMenuController extends Controller implements Initializable {
 
     }
 
-    if (employeeClickedOn != null) {
-      if (employeeClickedOn.getWorkDays().isEmpty() == false) {
+    if (employeeOldClickedOn != null) {
+      if (employeeOldClickedOn.getWorkDays().isEmpty() == false) {
         //so there already dates in here now i will populate comboxe with the data in those dates
         ArrayList<CustomDate> datesWorked = new ArrayList<>();
-        datesWorked = employeeClickedOn.getWorkDays();
+        datesWorked = employeeOldClickedOn.getWorkDays();
         for (CustomDate date3 : datesWorked
         ) {
           for (int j = 0; j < 7; j++) {
@@ -642,14 +637,14 @@ public class ManagerMenuController extends Controller implements Initializable {
     }
 
     int i = 0;
-    //employeeClickedOn= data.get(0);
+    //employeeOldClickedOn= data.get(0);
     if (daysOfSelectedWeek.isEmpty()) {
       //if this is empty dont do anytihng
       System.out.println("im empy pick a date yo");
 
 
     } else {
-      daysWorkedForEmployee = employeeClickedOn.getWorkDays();
+      daysWorkedForEmployee = employeeOldClickedOn.getWorkDays();
       for (LocalDate localDate : daysOfSelectedWeek
       ) {
         startDate = String.valueOf(
@@ -659,7 +654,7 @@ public class ManagerMenuController extends Controller implements Initializable {
         //startDate = String.valueOf("7:00"); //get start date from comboboxes of start dates
         //endDate =String.valueOf("8:00");//get start date from comboxes of end date
         // dateofWork = localDate;
-        if (employeeClickedOn.checkIfWorkDayExists(localDate)) {
+        if (employeeOldClickedOn.checkIfWorkDayExists(localDate)) {
           //if tue make new custom date
 
           //Trying to substract two Hours
@@ -686,7 +681,7 @@ public class ManagerMenuController extends Controller implements Initializable {
 
         i++;//increment i for next index
       }
-      employeeClickedOn.setWorkDays(daysWorkedForEmployee);
+      employeeOldClickedOn.setWorkDays(daysWorkedForEmployee);
       System.out.println(daysWorkedForEmployee.size());
     }
 
@@ -712,7 +707,7 @@ public class ManagerMenuController extends Controller implements Initializable {
   @FXML
   void handleSubmit() {
     /**
-     * When user tries to create an Employee this method will run
+     * When user tries to create an EmployeeOld this method will run
      * It will check if the inputs are valud
      * Emp Name needs to be a string
      * EMP ID needs to be a int or it will it throw an error
@@ -731,7 +726,7 @@ public class ManagerMenuController extends Controller implements Initializable {
       empID = Integer.parseInt(textFieldEmpID.getText());
     } catch (NumberFormatException exception) {
       successful11 = false;
-      labelSuccessSubmit.setText("Employee ID Input Error.");
+      labelSuccessSubmit.setText("EmployeeOld ID Input Error.");
     }
 
     Boolean successful12 = true;
@@ -744,11 +739,11 @@ public class ManagerMenuController extends Controller implements Initializable {
     }
     if (successful11 == true && successful12 == true) {
       /**
-       * Allow Employee to be sumbited to employeelist and added to the tableView
+       * Allow EmployeeOld to be sumbited to employeelist and added to the tableView
        */
       //correct inputs, allow submittion
-      labelSuccessSubmit.setText("Employee added succesfully!");
-      data.add(new Employee(empName, empPayRoll, empID));
+      labelSuccessSubmit.setText("EmployeeOld added succesfully!");
+      data.add(new EmployeeOld(empName, empPayRoll, empID));
 
     }
 
@@ -760,12 +755,12 @@ public class ManagerMenuController extends Controller implements Initializable {
     /**
      * This deletes the employee was that seleceted
      */
-    if (employeeClickedOn == null) {
+    if (employeeOldClickedOn == null) {
       //No employee was clicked, so dont do anything
     } else {
-      data.remove(employeeClickedOn);
-      System.out.println(employeeClickedOn.getName() + "IS GONE");
-      employeeClickedOn = null;
+      data.remove(employeeOldClickedOn);
+      System.out.println(employeeOldClickedOn.getName() + "IS GONE");
+      employeeOldClickedOn = null;
     }
 
 
@@ -774,11 +769,11 @@ public class ManagerMenuController extends Controller implements Initializable {
   @FXML
   void handleAdd() { //No Longer used
     System.out.println("add");
-    data.add(new Employee(
+    data.add(new EmployeeOld(
         "Mark Jackson",
         12.3,
         6));
-    // Employee createemp = new Employee("Joe Jackson", "12.0","6");
+    // EmployeeOld createemp = new EmployeeOld("Joe Jackson", "12.0","6");
     //   employees.add(createemp);
 
   }
@@ -799,7 +794,7 @@ public class ManagerMenuController extends Controller implements Initializable {
       i++;
     }
 
-    for (Employee e : data
+    for (EmployeeOld e : data
     ) {
 
       System.out.println(e.getName());
@@ -833,18 +828,18 @@ public class ManagerMenuController extends Controller implements Initializable {
       System.out.println("DATA EMPTY\n\n\n\n");
       data =
           FXCollections.observableArrayList(
-              new Employee("Jacob", 12.3, 1, "Associate", "7:00 PM", "8:00PM"),
-              new Employee("Isabella", 13.8, 2, "Associate", "7:00 PM", "8:00PM"),
-              new Employee("Ethan", 12.8, 3, "Hospitality Agent", "N/A", "N/A"),
-              new Employee("Emma", 12.9, 4, "Hospitality Agent", "N/A", "N/A"),
-              new Employee("Michael", 15.0, 5, "Hospitality Agent", "N/A", "N/A")
+              new EmployeeOld("Jacob", 12.3, 1, "Associate", "7:00 PM", "8:00PM"),
+              new EmployeeOld("Isabella", 13.8, 2, "Associate", "7:00 PM", "8:00PM"),
+              new EmployeeOld("Ethan", 12.8, 3, "Hospitality Agent", "N/A", "N/A"),
+              new EmployeeOld("Emma", 12.9, 4, "Hospitality Agent", "N/A", "N/A"),
+              new EmployeeOld("Michael", 15.0, 5, "Hospitality Agent", "N/A", "N/A")
           );
 
     }
     System.out.println("INTY");
 //        buttonAdd.setOnAction(new EventHandler<ActionEvent>() {
 //            @Override public void handle(ActionEvent e) {
-//                data.add(new Employee(
+//                data.add(new EmployeeOld(
 //                    addFirstName.getText(),
 //                    addLastName.getText(),
 //                    addEmail.getText()
@@ -856,16 +851,16 @@ public class ManagerMenuController extends Controller implements Initializable {
 //        });
 //        buttonAdd.setOnAction(new EventHandler<ActionEvent>() {
 //            @Override public void handle(ActionEvent e) {
-//                data.add(new Employee(
+//                data.add(new EmployeeOld(
 //                  "Mark Jackson",
 //                   "12.3",
 //                    "6"
 //                ));
 //            }
 //        });
-    //columnEmployeeID.setCellValueFactory(new PropertyValueFactory<Employee, String>("id"));
-    //columnNameEmployee.setCellValueFactory(new PropertyValueFactory<Employee, String>("name"));
-    //columnPayroll.setCellValueFactory(new PropertyValueFactory<Employee, String>("active"));
+    //columnEmployeeID.setCellValueFactory(new PropertyValueFactory<EmployeeOld, String>("id"));
+    //columnNameEmployee.setCellValueFactory(new PropertyValueFactory<EmployeeOld, String>("name"));
+    //columnPayroll.setCellValueFactory(new PropertyValueFactory<EmployeeOld, String>("active"));
     //TableColumn firstNameCol = new TableColumn("First Name");
     // columnEmployeeID.setMinWidth(100);
     /**
@@ -874,7 +869,7 @@ public class ManagerMenuController extends Controller implements Initializable {
      *
      */
     columnNameEmployee.setCellValueFactory(
-        new PropertyValueFactory<Employee, String>(
+        new PropertyValueFactory<EmployeeOld, String>(
             "name")); //What goes in the () is the name of the Variable in the Employe class
 
     //TableColumn lastNameCol = new TableColumn("Last Name");
@@ -885,7 +880,7 @@ public class ManagerMenuController extends Controller implements Initializable {
      *
      */
     columnPayroll.setCellValueFactory(
-        new PropertyValueFactory<Employee, Double>("payHourly"));
+        new PropertyValueFactory<EmployeeOld, Double>("payHourly"));
 
     //TableColumn emailCol = new TableColumn("Email");
     //columnPayroll.setMinWidth(200);
@@ -895,7 +890,7 @@ public class ManagerMenuController extends Controller implements Initializable {
      *
      */
     columnEmployeeID.setCellValueFactory(
-        new PropertyValueFactory<Employee, Integer>("employeeID"));
+        new PropertyValueFactory<EmployeeOld, Integer>("employeeID"));
 
     /**
      * This fills the table with the employee list named data
@@ -908,7 +903,7 @@ public class ManagerMenuController extends Controller implements Initializable {
     tableViewEmployees.setOnMouseClicked(new EventHandler<MouseEvent>() {
       /**
        * This will add a MouseClick event listener to the TableView Employees
-       * that will check if a Employee is selected.
+       * that will check if a EmployeeOld is selected.
        *
        */
       @Override
@@ -917,17 +912,17 @@ public class ManagerMenuController extends Controller implements Initializable {
             .toString();
         //System.out.println("To string:"+roomSelected.toString());
 
-        for (Employee e : data
+        for (EmployeeOld e : data
         ) {
           if (e.toString().equalsIgnoreCase(employeeSelected)) {
-            employeeClickedOn = e;
-            System.out.println("Room: " + employeeClickedOn.getName());
+            employeeOldClickedOn = e;
+            System.out.println("Room: " + employeeOldClickedOn.getName());
             //Same toString same, set currentRoom to r
 
           }
           // System.out.println(r.getName());
         }
-        System.out.println("Here is : " + employeeClickedOn);
+        System.out.println("Here is : " + employeeOldClickedOn);
         // System.out.println("clicked on " + roomListView.getSelectionModel().getSelectedItem());
 
         //Check Room Avability.
@@ -1050,15 +1045,15 @@ public class ManagerMenuController extends Controller implements Initializable {
 //            if (employees.isEmpty())
 //            {
 //                System.out.println("Employees is empty \n\n\n");
-//                employees.add(new Employee("Brad",9.5,1));
+//                employees.add(new EmployeeOld("Brad",9.5,1));
 //
-//                employees.add(new Employee("Tom",11.5,2));
-//                employees.add(new Employee("Pete",8.0,3));
+//                employees.add(new EmployeeOld("Tom",11.5,2));
+//                employees.add(new EmployeeOld("Pete",8.0,3));
 //
 //            }
 
   //     tableViewEmployees.itemsProperty().bind(listProperty);
-  //       columnEmployeeID.setCellFactory(new PropertyValueFactory<Employee, String>("EmployeeID"));
+  //       columnEmployeeID.setCellFactory(new PropertyValueFactory<EmployeeOld, String>("EmployeeID"));
 
   //tableViewEmployees.set(FXCollections.observableArrayList(employees));
   // tableViewEmployees.setCellFactory(new RoomCellFactory());
@@ -1069,7 +1064,7 @@ public class ManagerMenuController extends Controller implements Initializable {
 //                    String employeeSelected = tableViewEmployees.getSelectionModel().getSelectedItem().toString();
 //                    //System.out.println("To string:"+roomSelected.toString());
 //
-//                    for (Employee emp: employees
+//                    for (EmployeeOld emp: employees
 //                    ) {
 //                        if (emp.toString().equalsIgnoreCase(employeeSelected)){
 //                            employeeClickedon= emp;

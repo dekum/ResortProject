@@ -1,4 +1,4 @@
-package sample.Unused;
+package sample.ManagerMenu;
 
 import static sample.Global.empList;
 import static sample.Global.eventList;
@@ -20,7 +20,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import sample.Controller;
-import sample.Employee2;
+import sample.Employee;
 import sample.Global;
 import sample.Global.WindowLocation;
 import sample.Report;
@@ -29,29 +29,29 @@ import sample.UserFileUtilities;
 
 public class ManagerHomeController extends Controller {
   @FXML
-  private TableView<Employee2> employeeTableView;
+  private TableView<Employee> employeeTableView; //TableView for Employee
   @FXML
-  private TableColumn<Employee2, String> employeeColumn;
+  private TableColumn<Employee, String> employeeColumn;
   @FXML
-  private TextField firstNameText;
+  private TextField firstNameText; //textfield for employee first name
   @FXML
-  private TextField lastNameText;
+  private TextField lastNameText; //textfield for employee last name
   @FXML
-  private DatePicker DOB;
+  private DatePicker DOB; //Datepicker for DOB of employee
   @FXML
-  private TextField wageText;
+  private TextField wageText; //textField for employee wage
   @FXML
-  private TableView<Room> roomTableView;
+  private TableView<Room> roomTableView; // tableview for the resort Rooms
   @FXML
   private TableColumn<Room, String> roomTableColumn;
   @FXML
-  private TextField roomTypeText;
+  private TextField roomTypeText; //textfield for room type
   @FXML
-  private TextField roomPriceText;
+  private TextField roomPriceText; //textfield for room price
   @FXML
-  private Button signoutButton;
+  private Button signoutButton; //button to signout or leave window
   @FXML
-  private TableView<Report> summaryTableView;
+  private TableView<Report> summaryTableView; //tableview to show summary report
   @FXML
   private TableColumn<Report, String> summaryFields;
   @FXML
@@ -59,34 +59,38 @@ public class ManagerHomeController extends Controller {
 
   @FXML
   void initialize() {
+    /**
+     * This method is excuted first, before the window loads.
+     */
     ObservableList<Room> roomsView = FXCollections.observableArrayList(roomList);
-    roomTableColumn.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
+    roomTableColumn.setCellValueFactory(cellData -> cellData.getValue().nameProperty()); //set Cellfactory for  room column
 
-    roomTableView.setItems(roomsView);
+    roomTableView.setItems(roomsView); //Tableview gets elements from roomsView list
 
     roomTableView.setOnMouseClicked(new EventHandler<MouseEvent>() {
       @Override
       public void handle(MouseEvent event) {
-        Room roomClickedOn = roomTableView.getSelectionModel().getSelectedItem();
-        roomTypeText.setText(roomClickedOn.getName());
-        roomPriceText.setText("" + roomClickedOn.getPrice());
+        Room roomClickedOn = roomTableView.getSelectionModel().getSelectedItem(); //set the current room clicked on
+        roomTypeText.setText(roomClickedOn.getName()); //Update textfield with new room type
+        roomPriceText.setText("" + roomClickedOn.getPrice());//Update textfield with new room price
         selectedRoom = roomClickedOn;
       }
     });
 
-    ObservableList<Employee2> empView = FXCollections.observableArrayList(empList);
+    ObservableList<Employee> empView = FXCollections.observableArrayList(empList);
     employeeColumn.setCellValueFactory(cellData -> cellData.getValue().getBothNamesProperty());
 
     employeeTableView.setItems(empView);
 
     employeeTableView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+      //Add a mouseclick event to the employee TableView
       @Override
       public void handle(MouseEvent event) {
-        Employee2 empClickedOn = employeeTableView.getSelectionModel().getSelectedItem();
-        firstNameText.setText(empClickedOn.getFirstName());
-        lastNameText.setText(empClickedOn.getLastName());
-        wageText.setText(String.valueOf(empClickedOn.getWage()));
-        DOB.setValue(empClickedOn.getDOB());
+        Employee empClickedOn = employeeTableView.getSelectionModel().getSelectedItem();
+        firstNameText.setText(empClickedOn.getFirstName()); //update textfield with current employee's data
+        lastNameText.setText(empClickedOn.getLastName()); //update textfield with current employee's data
+        wageText.setText(String.valueOf(empClickedOn.getWage())); //update textfield with current employee's data
+        DOB.setValue(empClickedOn.getDOB()); //update textfield with current employee's data
         selectedEmp = empClickedOn;
       }
     });
@@ -112,11 +116,12 @@ public class ManagerHomeController extends Controller {
 
   @FXML
   void deleteRoom(ActionEvent event) {
-    roomList.remove(selectedRoom);
-    ObservableList<Room> roomsView = FXCollections.observableArrayList(roomList);
-    roomTableView.setItems(roomsView);
-    roomTypeText.setText(null);
-    roomPriceText.setText(null);
+    //need to check if selected room Exists/ or is null
+    roomList.remove(selectedRoom); //Remove the object stored in SelectedRoom from the roomList Array
+    ObservableList<Room> roomsView = FXCollections.observableArrayList(roomList); //reset list, to show change
+    roomTableView.setItems(roomsView);//clear textfield's data
+    roomTypeText.setText(null);//clear textfield's data
+    roomPriceText.setText(null); //clear textfield's data
 
     populateSummaryReports();
   }
@@ -142,27 +147,58 @@ public class ManagerHomeController extends Controller {
   //TODO
   @FXML
   void addEmployee(ActionEvent event) {
+    String errorMessage="";
+    Global.currentScene = signoutButton.getScene();
+
+    double wage = -1;
+
+
+
+
+
     if (firstNameText.getText().equals("")){
-      Global.currentScene = signoutButton.getScene();
-      new Global().displayPopUpWindow("Please Enter New Employee Information");
+
+      errorMessage += "Please Enter New Employee First Name\n";
+      //new Global().displayPopUpWindow("Please Enter New Employee Information");
     }
-    else if(lastNameText.getText().equals("")){
-      Global.currentScene = signoutButton.getScene();
-      new Global().displayPopUpWindow("Please Enter New Employee Information");
+    if(lastNameText.getText().equals("")){
+
+      errorMessage += "Please Enter New Employee Last Name\n";
+      //Global.currentScene = signoutButton.getScene();
+      //new Global().displayPopUpWindow("Please Enter New Employee Information");
     }
-    else if(wageText.getText().equals("")){
-      Global.currentScene = signoutButton.getScene();
-      new Global().displayPopUpWindow("Please Enter New Employee Information");
-    } else {
+    if(wageText.getText().equals("")){
+      errorMessage += "Please Enter New Employee Wages\n";
+      //Global.currentScene = signoutButton.getScene();
+     // new Global().displayPopUpWindow("Please Enter New Employee Information");
+    }else {
+      //Check if wages is valid
+      Boolean successful12 = true;
+      try {
+        //do this after checking if wagetextfield isnt empty or another error happens.
+        wage = Double.parseDouble(wageText.getText());
+      } catch (NullPointerException exception) {
+        successful12 = false;
+        errorMessage+="Wage input invalid.";
+      }
+
+
+    }
+
+
+    if (!errorMessage.equals("")){
+      new Global().displayPopUpWindow(errorMessage);
+    }
+    else {
       String firstName = firstNameText.getText();
       String lastName = lastNameText.getText();
-      double wage = Double.parseDouble(wageText.getText());
-      LocalDate birthdate = DOB.getValue();
 
-      Employee2 newEmp = new Employee2(firstName,lastName,wage,birthdate);
+      LocalDate birthDate = DOB.getValue();
+
+      Employee newEmp = new Employee(firstName,lastName,wage,birthDate);
       Global.empList.add(newEmp);
 
-      ObservableList<Employee2> empView = FXCollections.observableArrayList(empList);
+      ObservableList<Employee> empView = FXCollections.observableArrayList(empList);
       employeeTableView.setItems(empView);
 
       populateSummaryReports();
@@ -172,7 +208,7 @@ public class ManagerHomeController extends Controller {
   @FXML
   void deleteEmployee(ActionEvent event) {
     empList.remove(selectedEmp);
-    ObservableList<Employee2> empView = FXCollections.observableArrayList(empList);
+    ObservableList<Employee> empView = FXCollections.observableArrayList(empList);
     employeeTableView.setItems(empView);
     firstNameText.setText(null);
     lastNameText.setText(null);
@@ -198,12 +234,12 @@ public class ManagerHomeController extends Controller {
       selectedEmp.setDOB(DOB.getValue());
     }
 
-    Employee2 updatedEmp = new Employee2(selectedEmp.getFirstName(),selectedEmp.getLastName(),
+    Employee updatedEmp = new Employee(selectedEmp.getFirstName(),selectedEmp.getLastName(),
         selectedEmp.getWage(),selectedEmp.getDOB());
     empList.remove(selectedEmp);
     empList.add(updatedEmp);
 
-    ObservableList<Employee2> empView = FXCollections.observableArrayList(empList);
+    ObservableList<Employee> empView = FXCollections.observableArrayList(empList);
     employeeTableView.setItems(empView);
 
     populateSummaryReports();
@@ -228,6 +264,12 @@ public class ManagerHomeController extends Controller {
   }
 
   void populateSummaryReports(){
+    /**
+     * This method sets the Summary Report table information
+     * It gathers the data of employee list, roomlist and event list and prints it in a tableview
+     * The data is then showed to the user for easy readability.
+     *
+     */
     int empCount = 0;
     for (int i = 0; i < empList.size(); i++){
         empCount++;

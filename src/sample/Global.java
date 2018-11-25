@@ -1,7 +1,6 @@
 package sample;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -52,8 +51,8 @@ public class Global {
   static public String roomInfo;
 
   //Used in ManagerHomeController
-  static public ArrayList<Employee2> empList;
-  static public Employee2 selectedEmp;
+  static public ArrayList<Employee> empList;
+  static public Employee selectedEmp;
 
   static public ArrayList<ResortEvent> eventList;
 
@@ -63,7 +62,7 @@ public class Global {
   static public ArrayList<Guest> guestList = new ArrayList<>();//Arraylist of Guests
   static public List<Room> rooms = new ArrayList<>();//Arraylist of rooms that Manager/Guest Menu's use
   static public Guest currentGuestLoggedIn; //LoginMenuController keeps track of guest to send to GuestMenu
-  static public ObservableList<Employee> data = FXCollections
+  static public ObservableList<EmployeeOld> data = FXCollections
       .observableArrayList(); // Arraylist of Employees for MaanagerMenu
   static public Manager admin;//Not used
   static public Scene currentScene;

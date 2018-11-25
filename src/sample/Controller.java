@@ -22,7 +22,7 @@ public abstract class  Controller{
   private ArrayList<Guest> guestList = new ArrayList<>();//Arraylist of Guests
   private List<Room> rooms = new ArrayList<>();//Arraylist of rooms that Manager/Guest Menu's use
  // private Guest currentGuestLoggedIn; //LoginMenuController keeps track of guest to send to GuestMenu
-  private ObservableList<Employee> data= FXCollections.observableArrayList(); // Arraylist of Employees for MaanagerMenu
+  private ObservableList<EmployeeOld> data= FXCollections.observableArrayList(); // Arraylist of Employees for MaanagerMenu
   private Manager admin;//Not used
 
   public ArrayList<String> getUsernameList() {
@@ -57,11 +57,11 @@ public abstract class  Controller{
     this.rooms = rooms;
   }
 
-  public ObservableList<Employee> getData() {
+  public ObservableList<EmployeeOld> getData() {
     return data;
   }
 
-  public void setData(ObservableList<Employee> data) {
+  public void setData(ObservableList<EmployeeOld> data) {
     this.data = data;
   }
 
