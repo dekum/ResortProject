@@ -39,7 +39,7 @@ public class Global {
    *
    * Global also holds enum for WindowLocation will stores url for the FXML files. It makes it
    * easier to get the url just incase the files change location.
-   *
+   *.
    * Expect to be large file.
    */
   //Used in ManagerHomeController
