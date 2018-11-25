@@ -112,6 +112,9 @@ public class GuestRoomController extends Controller {
     roomPriceLabel.setVisible(false);
     bookRoombutton.setVisible(false);
 
+    checkInDate.setValue(LocalDate.now());
+    checkOutDate.setValue(LocalDate.now());
+
   }
 
   @FXML
