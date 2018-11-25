@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.LoginMenu.SignupScreenController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.LoginMenu.SignupScreenController">
    <children>
       <ImageView fitHeight="408.0" fitWidth="609.0" layoutX="-7.0" layoutY="-4.0">
          <image>
@@ -43,7 +43,10 @@
       <DatePicker fx:id="datePickerDOB" layoutX="386.0" layoutY="190.0" prefHeight="25.0" prefWidth="149.0" />
       <VBox layoutX="58.0" layoutY="268.0" prefHeight="68.0" prefWidth="35.0" />
       <PasswordField fx:id="passwordField" layoutX="137.0" layoutY="128.0" prefHeight="25.0" prefWidth="131.0" />
-      <Label fx:id="labelSubmitSuccess" layoutX="415.0" layoutY="338.0" text="." />
+      <Label fx:id="labelSubmitSuccess" layoutX="342.0" layoutY="280.0">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
       <PasswordField fx:id="passwordFieldPasswordConfirm" layoutX="137.0" layoutY="190.0" prefHeight="25.0" prefWidth="131.0" />
       <VBox layoutX="47.0" layoutY="260.0" prefHeight="63.0" prefWidth="211.0" style="-fx-background-color: #ffffff; -fx-border-color: #000000;">
          <children>

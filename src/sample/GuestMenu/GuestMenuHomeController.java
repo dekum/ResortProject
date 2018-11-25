@@ -73,7 +73,7 @@ void handleExit(ActionEvent event){
 
     //Loads FXML Loader
     FXMLLoader Loader = new FXMLLoader();
-    Loader.setLocation(getClass().getResource(WindowLocation.GUESTMENUROOM.getLocation())); //Call new window
+    //Loader.setLocation(getClass().getResource(WindowLocation.GUESTMENUROOM.getLocation())); //Call new window
 
     try {
       //Loader.setController(guestController); //Set Controller as guestMenuRoom doesn't have one linked to fxml.
@@ -116,7 +116,7 @@ void handleExit(ActionEvent event){
       */
     Global.currentScene = buttonExit.getScene();//
 
-    new Global().openNewWindow(WindowLocation.GUESTMENUACCOUNT);
+   // new Global().openNewWindow(WindowLocation.GUESTMENUACCOUNT);
 
 
   }
@@ -129,7 +129,7 @@ void handleExit(ActionEvent event){
   public void handleEventButton(ActionEvent event){
     Global.currentScene = buttonExit.getScene();//
 
-    new Global().openNewWindow(WindowLocation.EVENTMENUHOME);
+    //new Global().openNewWindow(WindowLocation.EVENTMENUHOME);
 
 
   }

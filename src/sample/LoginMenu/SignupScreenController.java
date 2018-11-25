@@ -126,7 +126,7 @@ public class SignupScreenController implements Initializable {
       /**
        * Using UserFileUtilities class to access file in library
        * Must use initialize() method in order to avoid NullPointerException error
-        */
+       */
       UserFileUtilities.Initialize();
       try {
         UserFileUtilities.addUser(userName, password);
@@ -168,7 +168,7 @@ public class SignupScreenController implements Initializable {
     try {
       dob = datePickerDOB.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 
-    } catch (RuntimeException exception) {
+    } catch (java.lang.RuntimeException exception) {
       //this may be unnecessary
       datePickerDOB.requestFocus();
       labelSubmitSuccess.setText("Date is Invalid");

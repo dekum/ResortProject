@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="389.0" prefWidth="454.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ManagerMenu.ManagerHomeController">
+   <children>
+      <TabPane prefHeight="389.0" prefWidth="454.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Employee Info">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="360.0" prefWidth="456.0">
+                     <children>
+                        <TableView fx:id="employeeTableView" layoutX="14.0" layoutY="39.0" prefHeight="279.0" prefWidth="167.0">
+                          <columns>
+                            <TableColumn fx:id="employeeColumn" prefWidth="166.0" text="Employees" />
+                          </columns>
+                        </TableView>
+                        <Label layoutX="14.0" layoutY="14.0" text="Select an employee to edit:">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="firstNameText" layoutX="270.0" layoutY="39.0" prefHeight="25.0" prefWidth="99.0" />
+                        <Label layoutX="200.0" layoutY="43.0" text="First Name:" />
+                        <TextField fx:id="lastNameText" layoutX="270.0" layoutY="72.0" prefHeight="25.0" prefWidth="101.0" />
+                        <Label layoutX="200.0" layoutY="76.0" text="Last Name:" />
+                        <Label layoutX="192.0" layoutY="149.0" text="Date of Birth:" />
+                        <DatePicker fx:id="DOB" layoutX="270.0" layoutY="145.0" prefHeight="25.0" prefWidth="104.0" />
+                        <Label layoutX="201.0" layoutY="111.0" text="Wage $/hr:" />
+                        <TextField fx:id="wageText" layoutX="270.0" layoutY="107.0" prefHeight="25.0" prefWidth="62.0" />
+                        <Button layoutX="193.0" layoutY="180.0" mnemonicParsing="false" onAction="#updateEmployee" prefHeight="25.0" prefWidth="122.0" text="Update Employee" />
+                        <Button layoutX="193.0" layoutY="248.0" mnemonicParsing="false" onAction="#deleteEmployee" prefHeight="25.0" prefWidth="122.0" text="Delete Employee" />
+                        <Button layoutX="193.0" layoutY="214.0" mnemonicParsing="false" onAction="#addEmployee" prefHeight="25.0" prefWidth="122.0" text="Add New Employee" />
+                        <Button layoutX="382.0" layoutY="318.0" mnemonicParsing="false" onAction="#signOut" text="Signout" />
+                        <Button layoutX="321.0" layoutY="180.0" mnemonicParsing="false" onAction="#clearFields" prefHeight="25.0" prefWidth="122.0" text="Clear Fields" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Room Info">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="roomTableView" layoutX="14.0" layoutY="39.0" prefHeight="279.0" prefWidth="167.0">
+                          <columns>
+                            <TableColumn fx:id="roomTableColumn" prefWidth="166.0" text="Rooms" />
+                          </columns>
+                        </TableView>
+                        <Label layoutX="31.0" layoutY="14.0" text="Select a room to edit:">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="roomTypeText" layoutX="253.0" layoutY="39.0" prefHeight="25.0" prefWidth="138.0" />
+                        <Label layoutX="202.0" layoutY="43.0" text="Type:" />
+                        <Label layoutX="204.0" layoutY="78.0" text="Price $:" />
+                        <TextField fx:id="roomPriceText" layoutX="253.0" layoutY="74.0" prefHeight="25.0" prefWidth="56.0" />
+                        <Button fx:id="updateRoomButton" layoutX="197.0" layoutY="123.0" mnemonicParsing="false" onAction="#updateRoom" prefHeight="25.0" prefWidth="95.0" text="Update Room" />
+                        <Button fx:id="deleteRoomButton" layoutX="197.0" layoutY="155.0" mnemonicParsing="false" onAction="#deleteRoom" prefHeight="25.0" prefWidth="95.0" text="Delete Room" />
+                        <Button fx:id="addRoomButton" layoutX="197.0" layoutY="188.0" mnemonicParsing="false" onAction="#addRoom" prefHeight="25.0" prefWidth="95.0" text="Add Room" />
+                        <Button fx:id="signoutButton" layoutX="382.0" layoutY="318.0" mnemonicParsing="false" onAction="#signOut" text="Signout" />
+                        <Button layoutX="309.0" layoutY="123.0" mnemonicParsing="false" onAction="#clearFields" prefHeight="25.0" prefWidth="95.0" text="Clear Fields" />
+                     </children></AnchorPane>
+            </content>
+          </Tab>
+            <Tab text="Summary Reports">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="summaryTableView" layoutY="8.0" prefHeight="300.0" prefWidth="255.0">
+                          <columns>
+                            <TableColumn fx:id="summaryFields" prefWidth="153.0" />
+                            <TableColumn fx:id="summaryTotals" minWidth="0.0" prefWidth="101.0" text="Total" />
+                          </columns>
+                        </TableView>
+                        <Button fx:id="signoutButton1" layoutX="382.0" layoutY="318.0" mnemonicParsing="false" onAction="#signOut" text="Signout" />
+                     </children></AnchorPane>
+               </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>

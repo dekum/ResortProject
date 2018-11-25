@@ -44,7 +44,6 @@ import sample.UserFileUtilities;
 
 
 /**
- *
  * @author ggrab
  */
 
@@ -63,15 +62,13 @@ public class LoginMenuController extends Controller implements Initializable {
   @FXML
   private TextField textFieldUsernameManager;
   @FXML
-  private PasswordField passwordFieldManager;
+  private PasswordField textFieldForPasswordManager;
   @FXML
   private Button buttonExit1;
   @FXML
   private CheckBox checkBox2;
   @FXML
   private TextField textFieldForPassword;
-  @FXML
-  private TextField textFieldForPasswordManager;
 
   @FXML
   void handleButtonLogin(ActionEvent event) {
@@ -80,15 +77,15 @@ public class LoginMenuController extends Controller implements Initializable {
     String password = passwordField.getText();
 
     UserFileUtilities.Initialize();
-    Boolean checkValid = UserFileUtilities.checkIfPairExists(username,password);
+    Boolean checkValid = UserFileUtilities.checkIfPairExists(username, password);
 
-    if (checkValid){
+    if (checkValid) {
       try {
         Guest guest = new Guest(username, password);
         Global.currentScene = buttonExit.getScene();
         new Global().displayPopUpWindow("Login Successful!");
         openGuestMenu(guest);
-      } catch (IOException e){
+      } catch (IOException e) {
         System.out.println("error");
       }
     } else {
@@ -104,12 +101,13 @@ public class LoginMenuController extends Controller implements Initializable {
     String password = textFieldForPasswordManager.getText();
 
     UserFileUtilities.Initialize();
-    Boolean checkValid = UserFileUtilities.checkIfPairExists(username,password);
+    Boolean checkValid = UserFileUtilities.checkIfPairExists(username, password);
 
-    if (checkValid){
+    if (checkValid) {
+      Guest guest = new Guest(username,password);
       Global.currentScene = buttonExit.getScene();
       new Global().displayPopUpWindow("Login Successful!");
-      openManagerMenu();
+      openManagerMenu(guest);
     } else {
       Global.currentScene = buttonExit.getScene();
       new Global().displayPopUpWindow("Login Unsuccessful!");
@@ -155,7 +153,9 @@ public class LoginMenuController extends Controller implements Initializable {
     new Global().openNewWindow(WindowLocation.GUESTMENUHOME);
   }
 
-  private void openManagerMenu() {
+  private void openManagerMenu(Guest gl) {
+    currentGuest = gl;
+    updateGlobal();
     Global.currentScene = buttonExit1.getScene();//
 
     new Global().openNewWindow(WindowLocation.MANAGERMENU);
@@ -181,56 +181,6 @@ public class LoginMenuController extends Controller implements Initializable {
       textfieldUsername.setText(currentGuest.getUserName());
 
     }
-
-
-    textFieldForPassword.setManaged(false);
-    textFieldForPassword.setVisible(false);//Hide regular textfield
-
-    textFieldForPasswordManager.setManaged(false);
-    textFieldForPasswordManager.setVisible(false);//Hide regular textfield
-
-    textFieldForPasswordManager.setFocusTraversable(false); //Tab wont select second textbox
-    textFieldForPasswordManager.focusTraversableProperty()
-        .bind(checkBox2.selectedProperty()); //Bind property to checkbox
-    passwordFieldManager.focusTraversableProperty()
-        .bind(checkBox2.selectedProperty().not()); //Make focusTraanableProperty the opposite
-
-    textFieldForPasswordManager.managedProperty().bind(
-        checkBox2.selectedProperty());// TextField's setManageProperty will be changed by CheckBox
-    textFieldForPasswordManager.visibleProperty().bind(
-        checkBox2.selectedProperty());// TextField's setVisibleProperty will be changed by CheckBox
-
-    passwordFieldManager.managedProperty()
-        .bind(checkBox2.selectedProperty().not());//Same as above but oppsite?
-    passwordFieldManager.visibleProperty().bind(checkBox2.selectedProperty().not());
-
-    // Bind the textField and passwordField text values bidirectionally.
-    textFieldForPasswordManager.textProperty()
-        .bindBidirectional(passwordFieldManager.textProperty()); //MAkes two textfie
-
-    // Actual password field
-    //final PasswordField passwordField = new PasswordField();//Password Field shows ***
-
-    // CheckBox checkBox = new CheckBox("Show/Hide password");//Create checkbox that will toggle
-
-    // Bind properties. Toggle textField and passwordField
-    // visibility and managability properties mutually when checkbox's state is changed.
-    // Because we want to display only one component (textField or passwordField)
-    // on the scene at a time.
-    textFieldForPassword.managedProperty().bind(
-        checkBox.selectedProperty());// TextField's setManageProperty will be changed by CheckBox
-    textFieldForPassword.visibleProperty().bind(
-        checkBox.selectedProperty());// TextField's setVisibleProperty will be changed by CheckBox
-
-    passwordField.managedProperty()
-        .bind(checkBox.selectedProperty().not());//Same as above but oppsite?
-    passwordField.visibleProperty().bind(checkBox.selectedProperty().not());
-
-    // Bind the textField and passwordField text values bidirectionally.
-    textFieldForPassword.textProperty().bindBidirectional(
-        passwordField.textProperty()); //MAkes two textfields share share same input
-    //If this code isn't there the two textfields are seperate
-
   }
 
 
