@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 public  class Employee {
 
@@ -103,13 +104,13 @@ public  class Employee {
   }
 
   public Double getPayHourly() {
-   // System.out.println("HERE");
+    // System.out.println("HERE");
     //return "out";
     return payHourly.get();
   }
 
   public void setPayHourly(Double payme) {
-   // System.out.println("paymee");
+    // System.out.println("paymee");
     payHourly.set(payme);
 
   }

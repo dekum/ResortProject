@@ -42,11 +42,18 @@ public class Global {
    *
    * Expect to be large file.
    */
+  //Used in ManagerHomeController
   static public ArrayList<Room> roomList;
+  static public Room selectedRoom;
+
+  //Used in GuestRoomController and PaymentWindowController
   static public LocalDate checkInDate;
   static public LocalDate checkOutDate;
   static public String roomInfo;
-  static public Room selectedRoom;
+
+  //Used in ManagerHomeController
+  static public ArrayList<Employee2> empList;
+  static public Employee2 selectedEmp;
 
 
 

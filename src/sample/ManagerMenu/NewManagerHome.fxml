@@ -35,11 +35,11 @@
                         <Label layoutX="200.0" layoutY="76.0" text="Last Name:" />
                         <Label layoutX="192.0" layoutY="149.0" text="Date of Birth:" />
                         <DatePicker fx:id="DOB" layoutX="270.0" layoutY="145.0" prefHeight="25.0" prefWidth="104.0" />
-                        <Label layoutX="209.0" layoutY="111.0" text="Wage:" />
+                        <Label layoutX="201.0" layoutY="111.0" text="Wage $/hr:" />
                         <TextField fx:id="wageText" layoutX="270.0" layoutY="107.0" prefHeight="25.0" prefWidth="62.0" />
-                        <Button layoutX="193.0" layoutY="180.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="122.0" text="Update Employee" />
-                        <Button layoutX="193.0" layoutY="248.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="122.0" text="Delete Employee" />
-                        <Button layoutX="193.0" layoutY="214.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="122.0" text="Add New Employee" />
+                        <Button layoutX="193.0" layoutY="180.0" mnemonicParsing="false" onAction="#updateEmployee" prefHeight="25.0" prefWidth="122.0" text="Update Employee" />
+                        <Button layoutX="193.0" layoutY="248.0" mnemonicParsing="false" onAction="#deleteEmployee" prefHeight="25.0" prefWidth="122.0" text="Delete Employee" />
+                        <Button layoutX="193.0" layoutY="214.0" mnemonicParsing="false" onAction="#addEmployee" prefHeight="25.0" prefWidth="122.0" text="Add New Employee" />
                         <Button layoutX="382.0" layoutY="318.0" mnemonicParsing="false" onAction="#signOut" text="Signout" />
                      </children>
                   </AnchorPane>
