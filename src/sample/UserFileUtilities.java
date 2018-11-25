@@ -85,6 +85,14 @@ public class UserFileUtilities {
     }
     return returnUser;
   }
+
+  public static int getGuestAmount(String username, String password){
+    int count = 0;
+    for (String key : properties.stringPropertyNames()){
+      count++;
+    }
+    return count;
+  }
 /*
   public static ArrayList<User2> initializeUsers(){
     ArrayList<User2> userList = new ArrayList<>();

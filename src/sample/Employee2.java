@@ -58,8 +58,4 @@ public class Employee2 {
       return bothNamesProperty;
   }
 
-  public void setBothNames(String bothNames) {
-    this.bothNames = bothNames;
-    bothNamesProperty.set(bothNames);
-  }
 }

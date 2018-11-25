@@ -55,12 +55,12 @@ public class Global {
   static public ArrayList<Employee2> empList;
   static public Employee2 selectedEmp;
 
+  static public ArrayList<ResortEvent> eventList;
 
 
   static public ArrayList<String> usernameList = new ArrayList<>(); //ArrayList of username Fields
   static public ArrayList<String> passwordList = new ArrayList<>();//Array:ist of password Field
   static public ArrayList<Guest> guestList = new ArrayList<>();//Arraylist of Guests
-  static public ArrayList<Event> eventList = new ArrayList<>();//Arraylist of Guests
   static public List<Room> rooms = new ArrayList<>();//Arraylist of rooms that Manager/Guest Menu's use
   static public Guest currentGuestLoggedIn; //LoginMenuController keeps track of guest to send to GuestMenu
   static public ObservableList<Employee> data = FXCollections

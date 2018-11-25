@@ -5,6 +5,8 @@
  */
 package sample.GuestMenu;
 
+import static sample.Global.eventList;
+
 import java.time.LocalDate;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.ScrollPane;
@@ -97,26 +99,10 @@ public class GuestRoomController extends Controller {
   private TableColumn<ResortEvent, String> eventDateColumn;
 
   @FXML
-  void handleCheckIn(ActionEvent event) {
-    //Not used yet
-  }
-
-  @FXML
-  void handleCheckOut(ActionEvent event) {
-    //Not used yet
-  }
-
-  @FXML
   void initialize() {
-    ArrayList<ResortEvent> event = new ArrayList<>();
-    event.add((new ResortEvent("ZombieCon", "Nov 29")));
-    event.add((new ResortEvent("Crab Race", "Nov 31")));
-    event.add((new ResortEvent("Karaoke", "Dec 2")));
-    event.add((new ResortEvent("Boat Show", "Dec 4")));
-    event.add((new ResortEvent("ArtWalk", "Dec 5")));
-    event.add((new ResortEvent("Car Show", "Dec 9")));
 
-    ObservableList<ResortEvent> event2 = FXCollections.observableArrayList(event);
+
+    ObservableList<ResortEvent> event2 = FXCollections.observableArrayList(Global.eventList);
     eventTableColumn.setCellValueFactory(cellData -> cellData.getValue().getNameProperty());
     eventDateColumn.setCellValueFactory(cellData -> cellData.getValue().getDateProperty());
     eventTableView.setItems(event2);
@@ -161,6 +147,7 @@ public class GuestRoomController extends Controller {
     LocalDate checkoutDate = checkOutDate.getValue();
     Global.checkInDate = checkinDate;
     Global.checkOutDate = checkoutDate;
+    Global.selectedRoom.setAvailable(false);
 
 
     Global.currentScene = signoutButton.getScene();

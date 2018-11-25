@@ -1,17 +1,16 @@
 package sample.ManagerMenu;
 
 import static sample.Global.empList;
+import static sample.Global.eventList;
 import static sample.Global.roomList;
 import static sample.Global.selectedEmp;
 import static sample.Global.selectedRoom;
 
-import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -21,11 +20,12 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import sample.Controller;
-import sample.Employee;
 import sample.Employee2;
 import sample.Global;
 import sample.Global.WindowLocation;
+import sample.Report;
 import sample.Room;
+import sample.UserFileUtilities;
 
 public class ManagerHomeController extends Controller {
   @FXML
@@ -50,6 +50,13 @@ public class ManagerHomeController extends Controller {
   private TextField roomPriceText;
   @FXML
   private Button signoutButton;
+  @FXML
+  private TableView<Report> summaryTableView;
+  @FXML
+  private TableColumn<Report, String> summaryFields;
+  @FXML
+  private TableColumn<Report, String> summaryTotals;
+
   @FXML
   void initialize() {
     ObservableList<Room> roomsView = FXCollections.observableArrayList(roomList);
@@ -83,21 +90,24 @@ public class ManagerHomeController extends Controller {
         selectedEmp = empClickedOn;
       }
     });
+    populateSummaryReports();
   }
-
+//TODO
   @FXML
   void addRoom(ActionEvent event) {
-    if (roomTypeText.getText().equals("")) {
-      Global.currentScene = signoutButton.getScene();
-      new Global().displayPopUpWindow("Please Enter New Room Information");
-    } else {
+    if (roomTypeText.getText() != null) {
       String roomName = roomTypeText.getText();
       double roomPrice = Double.parseDouble(roomPriceText.getText());
       Room newRoom = new Room(roomName, true, roomPrice, "/sample/Pictures/SuiteQueen.jpg");
       roomList.add(newRoom);
+    } else {
+      Global.currentScene = signoutButton.getScene();
+      new Global().displayPopUpWindow("Please Enter New Room Information");
     }
     ObservableList<Room> roomsView = FXCollections.observableArrayList(roomList);
     roomTableView.setItems(roomsView);
+
+    populateSummaryReports();
   }
 
   @FXML
@@ -105,8 +115,10 @@ public class ManagerHomeController extends Controller {
     roomList.remove(selectedRoom);
     ObservableList<Room> roomsView = FXCollections.observableArrayList(roomList);
     roomTableView.setItems(roomsView);
-    roomTypeText.setText("");
-    roomPriceText.setText("");
+    roomTypeText.setText(null);
+    roomPriceText.setText(null);
+
+    populateSummaryReports();
   }
 
   @FXML
@@ -124,8 +136,10 @@ public class ManagerHomeController extends Controller {
     ObservableList<Room> roomsView = FXCollections.observableArrayList(roomList);
     roomTableView.setItems(roomsView);
 
+    populateSummaryReports();
   }
 
+  //TODO
   @FXML
   void addEmployee(ActionEvent event) {
     if (firstNameText.getText().equals("")){
@@ -151,6 +165,7 @@ public class ManagerHomeController extends Controller {
       ObservableList<Employee2> empView = FXCollections.observableArrayList(empList);
       employeeTableView.setItems(empView);
 
+      populateSummaryReports();
     }
   }
 
@@ -159,10 +174,12 @@ public class ManagerHomeController extends Controller {
     empList.remove(selectedEmp);
     ObservableList<Employee2> empView = FXCollections.observableArrayList(empList);
     employeeTableView.setItems(empView);
-    firstNameText.setText("");
-    lastNameText.setText("");
-    wageText.setText("");
+    firstNameText.setText(null);
+    lastNameText.setText(null);
+    wageText.setText(null);
     DOB.setValue(null);
+
+    populateSummaryReports();
 
   }
 
@@ -188,12 +205,57 @@ public class ManagerHomeController extends Controller {
 
     ObservableList<Employee2> empView = FXCollections.observableArrayList(empList);
     employeeTableView.setItems(empView);
+
+    populateSummaryReports();
+  }
+
+  @FXML
+  void clearFields(ActionEvent event) {
+
+    firstNameText.setText(null);
+    lastNameText.setText(null);
+    wageText.setText(null);
+    DOB.setValue(null);
+
+    roomTypeText.setText(null);
+    roomPriceText.setText(null);
   }
 
   @FXML
   void signOut(ActionEvent event) {
     Global.currentScene = signoutButton.getScene();//
     new Global().openNewWindow(WindowLocation.LOGINMENU);
+  }
+
+  void populateSummaryReports(){
+    int empCount = 0;
+    for (int i = 0; i < empList.size(); i++){
+        empCount++;
+    }
+
+    int roomCount = 0;
+    for (int i = 0; i < roomList.size(); i++){
+      roomCount++;
+    }
+
+    int eventCount = 0;
+    for (int i = 0; i < eventList.size(); i++){
+      eventCount++;
+    }
+
+    int guestCount = UserFileUtilities.getGuestAmount("","");
+
+    ArrayList<Report> reports = new ArrayList<>();
+    reports.add(new Report("Number of Employees",empCount));
+    reports.add(new Report("Number of Rooms",roomCount));
+    reports.add(new Report("Number of Guests",guestCount));
+    reports.add(new Report("Number of Events",eventCount));
+    reports.add(new Report("Rooms Booked",1));
+
+    summaryFields.setCellValueFactory(cellData -> cellData.getValue().fieldPropertyProperty());
+    summaryTotals.setCellValueFactory(cellData -> cellData.getValue().countPropertyProperty());
+    ObservableList<Report> reportView = FXCollections.observableArrayList(reports);
+    summaryTableView.setItems(reportView);
   }
 
 }

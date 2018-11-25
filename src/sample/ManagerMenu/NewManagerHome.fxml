@@ -41,6 +41,7 @@
                         <Button layoutX="193.0" layoutY="248.0" mnemonicParsing="false" onAction="#deleteEmployee" prefHeight="25.0" prefWidth="122.0" text="Delete Employee" />
                         <Button layoutX="193.0" layoutY="214.0" mnemonicParsing="false" onAction="#addEmployee" prefHeight="25.0" prefWidth="122.0" text="Add New Employee" />
                         <Button layoutX="382.0" layoutY="318.0" mnemonicParsing="false" onAction="#signOut" text="Signout" />
+                        <Button layoutX="321.0" layoutY="180.0" mnemonicParsing="false" onAction="#clearFields" prefHeight="25.0" prefWidth="122.0" text="Clear Fields" />
                      </children>
                   </AnchorPane>
             </content>
@@ -67,12 +68,22 @@
                         <Button fx:id="deleteRoomButton" layoutX="197.0" layoutY="155.0" mnemonicParsing="false" onAction="#deleteRoom" prefHeight="25.0" prefWidth="95.0" text="Delete Room" />
                         <Button fx:id="addRoomButton" layoutX="197.0" layoutY="188.0" mnemonicParsing="false" onAction="#addRoom" prefHeight="25.0" prefWidth="95.0" text="Add Room" />
                         <Button fx:id="signoutButton" layoutX="382.0" layoutY="318.0" mnemonicParsing="false" onAction="#signOut" text="Signout" />
+                        <Button layoutX="309.0" layoutY="123.0" mnemonicParsing="false" onAction="#clearFields" prefHeight="25.0" prefWidth="95.0" text="Clear Fields" />
                      </children></AnchorPane>
             </content>
           </Tab>
-            <Tab text="User Info">
+            <Tab text="Summary Reports">
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="summaryTableView" layoutY="8.0" prefHeight="300.0" prefWidth="255.0">
+                          <columns>
+                            <TableColumn fx:id="summaryFields" prefWidth="153.0" />
+                            <TableColumn fx:id="summaryTotals" minWidth="0.0" prefWidth="101.0" text="Total" />
+                          </columns>
+                        </TableView>
+                        <Button fx:id="signoutButton1" layoutX="382.0" layoutY="318.0" mnemonicParsing="false" onAction="#signOut" text="Signout" />
+                     </children></AnchorPane>
                </content>
             </Tab>
         </tabs>

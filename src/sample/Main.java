@@ -33,10 +33,20 @@ public class Main extends Application {
     ArrayList<Employee2> emps = new ArrayList<>();
     emps.add(new Employee2("Nick","Fileccia",16.8, LocalDate.of(1994, Month.MARCH,23)));
     emps.add(new Employee2("Chris","Garcia",15.5, LocalDate.of(1994, Month.MAY,13)));
-    emps.add(new Employee2("Austin","Finch",12.9, LocalDate.of(1993, Month.AUGUST,3)));
+    emps.add(new Employee2("Ariel","Delgado",12.9, LocalDate.of(1993, Month.AUGUST,3)));
     emps.add(new Employee2("Josh","Hendry",19.9, LocalDate.of(1992, Month.JANUARY,11)));
     emps.add(new Employee2("Gabe","Thorn",10.4, LocalDate.of(1986, Month.FEBRUARY,23)));
+    emps.add(new Employee2("Timmy","Turner",19.9, LocalDate.of(1977, Month.MARCH  ,1)));
     Global.empList = emps;
+
+    ArrayList<ResortEvent> events = new ArrayList<>();
+    events.add((new ResortEvent("ZombieCon", "Nov 29")));
+    events.add((new ResortEvent("Crab Race", "Nov 31")));
+    events.add((new ResortEvent("Karaoke", "Dec 2")));
+    events.add((new ResortEvent("Boat Show", "Dec 4")));
+    events.add((new ResortEvent("ArtWalk", "Dec 5")));
+    events.add((new ResortEvent("Car Show", "Dec 9")));
+    Global.eventList = events;
 
 
     Parent root = FXMLLoader.load(getClass().getResource("LoginMenu/LoginMenu.fxml"));

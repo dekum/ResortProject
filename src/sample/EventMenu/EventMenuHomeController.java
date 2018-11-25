@@ -41,14 +41,14 @@ import sample.Room;
 import sample.Spa;
 import sample.Wedding;
 
-public class EventMenuHomeController implements Initializable {
+public class EventMenuHomeController {
 
   ArrayList<Event> events; //= new ArrayList<>();
   static ArrayList<Event> sortList = new ArrayList<>();
 
 
   @FXML
-  Button buttonCreate, buttonSort,buttonResetList,buttonExit;
+  Button buttonCreate, buttonSort, buttonResetList, buttonExit;
   @FXML
   ListView<Event> listViewEvent = new ListView<>();
   @FXML
@@ -56,17 +56,20 @@ public class EventMenuHomeController implements Initializable {
   ListProperty<Event> listProperty2 = new SimpleListProperty<>();
   @FXML
   ComboBox<Event> comboBoxSort;
-  @FXML void handleComboSort (ActionEvent event){
+
+  @FXML
+  void handleComboSort(ActionEvent event) {
     Event choseEvent = comboBoxSort.getValue();
     showOnlyType(events, choseEvent.getClass());
     listProperty.set(FXCollections.observableArrayList(sortList));
     listViewEvent.setCellFactory(new EventCellFactory()); //Cell Factory allows formatting
   }
 
-@FXML  void handleExit(ActionEvent event){
+  @FXML
+  void handleExit(ActionEvent event) {
     Global.currentScene = buttonCreate.getScene();
     new Global().openNewWindow(WindowLocation.GUESTMENUHOME);
-}
+  }
 
   @FXML
   void handleCreate(ActionEvent event) {
@@ -74,11 +77,10 @@ public class EventMenuHomeController implements Initializable {
 
     //new Global().openNewWindow(WindowLocation.EVENTCREATE);
 
-
-
   }
+
   @FXML
-  void handleRestoreList(ActionEvent event){
+  void handleRestoreList(ActionEvent event) {
 
     listProperty.set(FXCollections.observableArrayList(events));
     listViewEvent.setCellFactory(new EventCellFactory()); //Cell Factory allows formatting
@@ -87,13 +89,13 @@ public class EventMenuHomeController implements Initializable {
   }
 
   @FXML
-  static ArrayList<Event> showOnlyType(List<?> list, Class<? extends Event> c){
+  static ArrayList<Event> showOnlyType(List<?> list, Class<? extends Event> c) {
     sortList.clear();
-    for (Object o : list){
+    for (Object o : list) {
       if (c.isInstance(o)) { //Check if Object's class is a
         //Class Matches
         System.out.println(o.toString());
-       sortList.add((Event) o);
+        sortList.add((Event) o);
 
 
       }
@@ -105,53 +107,16 @@ public class EventMenuHomeController implements Initializable {
   }
 
   @FXML
-  void handleSort(ActionEvent event){
+  void handleSort(ActionEvent event) {
     /**
      * May delete this method
      */
     //listViewEvent.itemsProperty().bind(listProperty);
-    sortList= showOnlyType(events,Spa.class); //alls showOnlyType so it only shows objects of Spa class
+    sortList = showOnlyType(events,
+        Spa.class); //alls showOnlyType so it only shows objects of Spa class
 
     listProperty.set(FXCollections.observableArrayList(sortList));
     listViewEvent.setCellFactory(new EventCellFactory()); //Cell Factory allows formatting
 
-  }
-
-  @Override
-  public void initialize(URL location, ResourceBundle resources) {
-    events = Global.eventList;
-    if (events.isEmpty()) {
-      /**
-       * This is called first before the window is shown
-       * use this to initalize class variables so they are equal to global
-       *
-       */
-      //No events make a default list
-      Event createEvent = new Event("Royal Ball");
-      events.add(createEvent);
-      createEvent = new Event("ZombieFest");
-      events.add(createEvent);
-      createEvent = new Event("Magic Kingdom!");
-      events.add(createEvent);
-      events.add(new Spa("Spa event"));
-      events.add(new Wedding("Wedding event"));
-      events.add(new Meeting("Meeting event"));
-      events.add(new Spa("Spa event 2"));
-    }
-
-      listViewEvent.itemsProperty().bind(listProperty); //Bind a list property to listview
-      listProperty.set(FXCollections.observableArrayList(events)); //Set the elements in the list
-      listViewEvent.setCellFactory(new EventCellFactory()); //Cell Factory allows formatting
-      ArrayList<Event> listofElements = new ArrayList<>();
-      listofElements.add(new Spa("ShowSpa"));
-      listofElements.add(new Meeting("ShowMeeting"));
-      listofElements.add(new Wedding("showweeding"));
-     // comboBoxSort.setItems(listProperty2);
-      comboBoxSort.itemsProperty().bind(listProperty2); //Bind a list property to the combobox
-      listProperty2.set(FXCollections.observableArrayList(listofElements)); //Add a list to the combobox
-      comboBoxSort.setCellFactory(new EventCellFactory());/// allows cells to be formatted
-
-
-    //listViewEvent.setItems(buttonCreate);
   }
 }

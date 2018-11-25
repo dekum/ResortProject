@@ -104,9 +104,10 @@ public class LoginMenuController extends Controller implements Initializable {
     Boolean checkValid = UserFileUtilities.checkIfPairExists(username, password);
 
     if (checkValid) {
+      Guest guest = new Guest(username,password);
       Global.currentScene = buttonExit.getScene();
       new Global().displayPopUpWindow("Login Successful!");
-      openManagerMenu();
+      openManagerMenu(guest);
     } else {
       Global.currentScene = buttonExit.getScene();
       new Global().displayPopUpWindow("Login Unsuccessful!");
@@ -152,7 +153,9 @@ public class LoginMenuController extends Controller implements Initializable {
     new Global().openNewWindow(WindowLocation.GUESTMENUHOME);
   }
 
-  private void openManagerMenu() {
+  private void openManagerMenu(Guest gl) {
+    currentGuest = gl;
+    updateGlobal();
     Global.currentScene = buttonExit1.getScene();//
 
     new Global().openNewWindow(WindowLocation.MANAGERMENU);

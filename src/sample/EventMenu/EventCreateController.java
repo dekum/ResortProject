@@ -78,7 +78,6 @@ public class EventCreateController  implements Initializable {
     // Adds the events to the arraylist of events
 
 
-    Global.eventList.add(eventNew);
 
 
   }
