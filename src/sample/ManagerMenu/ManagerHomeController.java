@@ -96,6 +96,56 @@ public class ManagerHomeController extends Controller {
     });
     populateSummaryReports();
   }
+
+  public String validateEmployeeInputs(){
+    String errorMessage="";
+    Global.currentScene = signoutButton.getScene();
+
+    double wage = -1;
+
+
+
+
+
+    if (firstNameText.getText().equals("")){
+
+      errorMessage += "Please Enter New Employee First Name\n";
+      //new Global().displayPopUpWindow("Please Enter New Employee Information");
+    }
+    if(lastNameText.getText().equals("")){
+
+      errorMessage += "Please Enter New Employee Last Name\n";
+      //Global.currentScene = signoutButton.getScene();
+      //new Global().displayPopUpWindow("Please Enter New Employee Information");
+    }
+    if(wageText.getText().equals("")){
+      errorMessage += "Please Enter New Employee Wages\n";
+      //Global.currentScene = signoutButton.getScene();
+      // new Global().displayPopUpWindow("Please Enter New Employee Information");
+    }else {
+      //Check if wages is valid
+      Boolean successful12 = true;
+      try {
+        //do this after checking if wagetextfield isnt empty or another error happens.
+        wage = Double.parseDouble(wageText.getText());
+      }
+      catch (NullPointerException | NumberFormatException exception ) {
+        //numberformatexpection if user accidently enters a letter
+        successful12 = false;
+        errorMessage+="Wage input invalid.\n";
+      }
+
+
+    }
+
+    if (DOB.getValue()==null){
+      errorMessage += "Please Enter New Employee Date of Birth\n";
+
+    }
+
+    return errorMessage;
+  }
+
 //TODO
   @FXML
   void addRoom(ActionEvent event) {
@@ -147,51 +197,17 @@ public class ManagerHomeController extends Controller {
   //TODO
   @FXML
   void addEmployee(ActionEvent event) {
-    String errorMessage="";
-    Global.currentScene = signoutButton.getScene();
-
-    double wage = -1;
-
-
-
-
-
-    if (firstNameText.getText().equals("")){
-
-      errorMessage += "Please Enter New Employee First Name\n";
-      //new Global().displayPopUpWindow("Please Enter New Employee Information");
-    }
-    if(lastNameText.getText().equals("")){
-
-      errorMessage += "Please Enter New Employee Last Name\n";
-      //Global.currentScene = signoutButton.getScene();
-      //new Global().displayPopUpWindow("Please Enter New Employee Information");
-    }
-    if(wageText.getText().equals("")){
-      errorMessage += "Please Enter New Employee Wages\n";
-      //Global.currentScene = signoutButton.getScene();
-     // new Global().displayPopUpWindow("Please Enter New Employee Information");
-    }else {
-      //Check if wages is valid
-      Boolean successful12 = true;
-      try {
-        //do this after checking if wagetextfield isnt empty or another error happens.
-        wage = Double.parseDouble(wageText.getText());
-      } catch (NullPointerException exception) {
-        successful12 = false;
-        errorMessage+="Wage input invalid.";
-      }
-
-
-    }
-
+    String errorMessage = validateEmployeeInputs();
 
     if (!errorMessage.equals("")){
+      //There was an error, print popup displaying errors
       new Global().displayPopUpWindow(errorMessage);
     }
     else {
+      //Inputs are fine, add employee
       String firstName = firstNameText.getText();
       String lastName = lastNameText.getText();
+      Double wage = Double.parseDouble(wageText.getText());
 
       LocalDate birthDate = DOB.getValue();
 
@@ -200,6 +216,7 @@ public class ManagerHomeController extends Controller {
 
       ObservableList<Employee> empView = FXCollections.observableArrayList(empList);
       employeeTableView.setItems(empView);
+      new Global().displayPopUpWindow("Employee Successfully created");
 
       populateSummaryReports();
     }
@@ -207,15 +224,22 @@ public class ManagerHomeController extends Controller {
 
   @FXML
   void deleteEmployee(ActionEvent event) {
-    empList.remove(selectedEmp);
-    ObservableList<Employee> empView = FXCollections.observableArrayList(empList);
-    employeeTableView.setItems(empView);
-    firstNameText.setText(null);
-    lastNameText.setText(null);
-    wageText.setText(null);
-    DOB.setValue(null);
+    if (selectedEmp != null){
+      empList.remove(selectedEmp);
+      ObservableList<Employee> empView = FXCollections.observableArrayList(empList);
+      employeeTableView.setItems(empView);
+      firstNameText.setText(null);
+      lastNameText.setText(null);
+      wageText.setText(null);
+      DOB.setValue(null);
+      populateSummaryReports();
+    }else
+    {
+      new Global().displayPopUpWindow("Employee not selected.");
+    }
 
-    populateSummaryReports();
+
+
 
   }
 
@@ -243,6 +267,8 @@ public class ManagerHomeController extends Controller {
     employeeTableView.setItems(empView);
 
     populateSummaryReports();
+
+
   }
 
   @FXML
