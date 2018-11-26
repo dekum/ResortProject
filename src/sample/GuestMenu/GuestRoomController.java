@@ -6,9 +6,12 @@
 package sample.GuestMenu;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.ImageView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -19,6 +22,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
+import javafx.util.Callback;
 import sample.Controller;
 import sample.Global.WindowLocation;
 import sample.Global;
@@ -73,7 +77,7 @@ public class GuestRoomController extends Controller {
 
   @FXML
   void initialize() {
-
+    Global.currentTitle="Ruby Resort: Manager View";
 
     ObservableList<ResortEvent> event2 = FXCollections.observableArrayList(Global.eventList);
     eventTableColumn.setCellValueFactory(cellData -> cellData.getValue().getNameProperty());
@@ -86,7 +90,75 @@ public class GuestRoomController extends Controller {
     bookRoombutton.setVisible(false);
 
     checkInDate.setValue(LocalDate.now());
-    checkOutDate.setValue(LocalDate.now());
+
+
+
+
+    final Callback<DatePicker, DateCell> dayCellFactory =
+        new Callback<DatePicker, DateCell>() {
+          @Override
+          public DateCell call(final DatePicker datePicker) {
+            return new DateCell() {
+              @Override
+              public void updateItem(LocalDate item, boolean empty) {
+                super.updateItem(item, empty);
+                //Disables dates for checkout that are before the checkin to avoid errors
+                if (item.isBefore(
+                    checkInDate.getValue().plusDays(1))
+                ) {
+                  setDisable(true);
+                  setStyle("-fx-background-color: #ffc0cb;");
+                }
+                long p = ChronoUnit.DAYS.between(
+                    checkInDate.getValue(), item
+                );
+                setTooltip(new Tooltip(
+                    "The even will last : " + p + " days")
+                );
+
+
+
+              }
+            };
+          }
+        };
+    final Callback<DatePicker, DateCell> dayCellFactory2 =
+        new Callback<DatePicker, DateCell>() {
+          @Override
+          public DateCell call(final DatePicker datePicker) {
+            return new DateCell() {
+              @Override
+              public void updateItem(LocalDate item, boolean empty) {
+                super.updateItem(item, empty);
+                if (checkOutDate.getValue().isBefore(checkInDate.getValue()) ){
+                  System.out.println("...K");
+                  //checkInDatePicker.setFocusTraversable(true);
+                  checkOutDate.requestFocus();
+                  //Maybe set an error Boolean?
+
+
+                }
+                if (item.isBefore(
+                  LocalDate.now()
+
+                )) {
+                  setDisable(true);
+                  setStyle("-fx-background-color: rgba(255,5,21,0.69);");
+                }
+
+
+
+              }
+            };
+          }
+        };
+
+
+    checkOutDate.setDayCellFactory(dayCellFactory);
+    checkInDate.setDayCellFactory(dayCellFactory2);
+    checkOutDate.setValue(checkInDate.getValue().plusDays(1));
+
+
 
   }
 
@@ -123,11 +195,20 @@ public class GuestRoomController extends Controller {
     LocalDate checkoutDate = checkOutDate.getValue();
     Global.checkInDate = checkinDate;
     Global.checkOutDate = checkoutDate;
-    Global.selectedRoom.setAvailable(false);
+    Boolean success1= true;
+    try {
+      Global.selectedRoom.getName();
+    }catch (NullPointerException exception){
+      new Global().displayPopUpWindow("Please click on a room");
+      success1= false;
+    }
+    if (success1){
+      Global.currentScene = signoutButton.getScene();
+      new Global().openNewWindow(WindowLocation.PAYMENT);
+    }
 
 
-    Global.currentScene = signoutButton.getScene();
-    new Global().openNewWindow(WindowLocation.PAYMENT);
+
 
   }
 
@@ -135,5 +216,6 @@ public class GuestRoomController extends Controller {
   public void handleSignout(ActionEvent event) {
     Global.currentScene = signoutButton.getScene();//
     new Global().openNewWindow(WindowLocation.LOGINMENU);
+    Global.selectedRoom= null;
   }
 }

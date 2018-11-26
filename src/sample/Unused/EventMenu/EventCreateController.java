@@ -139,30 +139,12 @@ public class EventCreateController  implements Initializable {
             };
           }
         };
-    /**
-     * These 3 lines will show what week fo the year currentd ate is. Feel free to amend of program
-     * https://stackoverflow.com/questions/26012434/get-week-number-of-localdate-java-8
-     */
-    LocalDate date = LocalDate.now();
-    TemporalField woy = WeekFields.of(Locale.getDefault()).weekOfWeekBasedYear();
-    int weekNumber = date.get(woy);
-    System.out.println(weekNumber+"\n\n\n");
+
 
     checkOutDatePicker.setDayCellFactory(dayCellFactory);
     checkInDatePicker.setDayCellFactory(dayCellFactory2);
     checkOutDatePicker.setValue(checkInDatePicker.getValue().plusDays(1));
-//    GridPane gridPane = new GridPane();
-//    gridPane.setHgap(10);
-//    gridPane.setVgap(10);
-    Label checkInlabel = new Label("Check-In Date:");
-    //gridPane.add(checkInlabel, 0, 0);
-    //GridPane.setHalignment(checkInlabel, HPos.LEFT);
-    //gridPane.add(checkInDatePicker, 0, 1);
-    //Label checkOutlabel = new Label("Check-Out Date:");
-    //gridPane.add(checkOutlabel, 0, 2);
-    //GridPane.setHalignment(checkOutlabel, HPos.LEFT);
-    //gridPane.add(checkOutDatePicker, 0, 3);
-//    vbox.getChildren().add(gridPane);
+
   }
 
 //  private Stage stage;

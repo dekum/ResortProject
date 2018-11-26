@@ -19,6 +19,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 import sample.Controller;
 import sample.Employee;
 import sample.Global;
@@ -62,6 +63,7 @@ public class ManagerHomeController extends Controller {
     /**
      * This method is excuted first, before the window loads.
      */
+    Global.currentTitle="Ruby Resort: Manager View";
     ObservableList<Room> roomsView = FXCollections.observableArrayList(roomList);
     roomTableColumn.setCellValueFactory(cellData -> cellData.getValue().nameProperty()); //set Cellfactory for  room column
 
@@ -149,19 +151,61 @@ public class ManagerHomeController extends Controller {
 //TODO
   @FXML
   void addRoom(ActionEvent event) {
-    if (roomTypeText.getText() != null) {
-      String roomName = roomTypeText.getText();
-      double roomPrice = Double.parseDouble(roomPriceText.getText());
+    double roomPrice=-1;
+    String roomName="";
+    String errorMessage="";
+    boolean validPrice = true;
+    try{
+      if(roomTypeText.getText().equals("")||roomTypeText.getText()== null){
+        //empty textfield
+        errorMessage += "Please Enter New Room Type\n";
+
+      }
+    }catch (NullPointerException exception){
+
+    }
+
+    if(roomPriceText.getText().equals("")||roomPriceText.getText() == null){
+      //empty textfield
+      errorMessage += "Please Enter New Room Price\n";
+
+    }else {
+      //Check if price is valid
+
+      try {
+
+        roomPrice = Double.parseDouble(roomPriceText.getText());
+      }
+      catch (NullPointerException | NumberFormatException exception ) {
+
+        errorMessage+="Wage input invalid.\n";
+      }
+
+
+    }
+
+
+    if (errorMessage.equals("")){
+      //roomPrice = Double.parseDouble(roomPriceText.getText());
+      roomName= roomTypeText.getText();
       Room newRoom = new Room(roomName, true, roomPrice, "/sample/Pictures/SuiteQueen.jpg");
       roomList.add(newRoom);
-    } else {
-      Global.currentScene = signoutButton.getScene();
-      new Global().displayPopUpWindow("Please Enter New Room Information");
-    }
-    ObservableList<Room> roomsView = FXCollections.observableArrayList(roomList);
-    roomTableView.setItems(roomsView);
 
-    populateSummaryReports();
+      ObservableList<Room> roomsView = FXCollections.observableArrayList(roomList);
+      roomTableView.setItems(roomsView);
+
+      populateSummaryReports();
+
+    }
+    else {
+      //There was an error, print popup displaying errors
+      new Global().displayPopUpWindow(errorMessage);
+
+    }
+
+
+
+
   }
 
   @FXML
@@ -257,14 +301,40 @@ public class ManagerHomeController extends Controller {
     if ((DOB.getValue() != null)){
       selectedEmp.setDOB(DOB.getValue());
     }
+    for (Employee e: empList
+    ) {
+      if (e.toString().equals(selectedEmp.toString())){
+        e.setFirstName(firstNameText.getText());
+        System.out.println(firstNameText.getText());
+
+        e.setLastName(lastNameText.getText());
+
+        e.setWage(Double.parseDouble(wageText.getText()));
+        e.setDOB(DOB.getValue());
+
+      }
+
+
+
+
+    }
+    for (Employee e: empList
+    ) {
+      System.out.println(e.getFirstName());
+
+    }
 
     Employee updatedEmp = new Employee(selectedEmp.getFirstName(),selectedEmp.getLastName(),
         selectedEmp.getWage(),selectedEmp.getDOB());
-    empList.remove(selectedEmp);
+//    empList.remove(selectedEmp);
     empList.add(updatedEmp);
+
+
 
     ObservableList<Employee> empView = FXCollections.observableArrayList(empList);
     employeeTableView.setItems(empView);
+
+
 
     populateSummaryReports();
 
@@ -274,13 +344,13 @@ public class ManagerHomeController extends Controller {
   @FXML
   void clearFields(ActionEvent event) {
 
-    firstNameText.setText(null);
-    lastNameText.setText(null);
-    wageText.setText(null);
+    firstNameText.setText("");
+    lastNameText.setText("");
+    wageText.setText("");
     DOB.setValue(null);
+    roomTypeText.setText("");
+    roomPriceText.setText("");
 
-    roomTypeText.setText(null);
-    roomPriceText.setText(null);
   }
 
   @FXML

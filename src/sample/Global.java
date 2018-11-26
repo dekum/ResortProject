@@ -66,6 +66,7 @@ public class Global {
       .observableArrayList(); // Arraylist of Employees for MaanagerMenu
   static public Manager admin;//Not used
   static public Scene currentScene;
+  static public String currentTitle;
 
   /**
    * URl Locations for quick reference
@@ -145,6 +146,10 @@ public class Global {
     stage.setScene(new Scene(p));
     stage.show(); //Opens new Window
 
+  }
+
+  public  void setTitle(String currentTitle) {
+    this.currentTitle = currentTitle;
   }
 
   public void displayPopUpWindow(String message) {

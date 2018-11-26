@@ -39,6 +39,8 @@ public class PaymentController extends Controller {
   @FXML
   private Button confirmBook;
 
+  @FXML Button quitButton;
+
   @FXML
   void initialize(){
     List<Integer> expMonthNums = new ArrayList<>();
@@ -65,6 +67,13 @@ public class PaymentController extends Controller {
     roomPriceLabel.setText("$" + price);
 
     roomInfoLabel.setText(Global.roomInfo);
+  }
+
+  @FXML void handleQuit(ActionEvent event){
+
+    Global.currentScene = confirmBook.getScene();
+
+    new Global().openNewWindow(WindowLocation.GUESTMENUHOME);
   }
 
   @FXML
