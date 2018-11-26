@@ -23,6 +23,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
+import javax.swing.Action;
 import sample.Controller;
 import sample.Global.WindowLocation;
 import sample.Global;
@@ -74,10 +75,13 @@ public class GuestRoomController extends Controller {
   private TableColumn<ResortEvent, String> eventTableColumn;
   @FXML
   private TableColumn<ResortEvent, String> eventDateColumn;
+  @FXML
+  Button buttonPaymentHistory;
 
   @FXML
   void initialize() {
     Global.currentTitle="Ruby Resort: Manager View";
+
 
     ObservableList<ResortEvent> event2 = FXCollections.observableArrayList(Global.eventList);
     eventTableColumn.setCellValueFactory(cellData -> cellData.getValue().getNameProperty());
@@ -91,6 +95,14 @@ public class GuestRoomController extends Controller {
 
     checkInDate.setValue(LocalDate.now());
 
+    if (Global.currentGuestLoggedIn.getRoomRented() ==null){
+
+      buttonPaymentHistory.setVisible(false);
+
+    }else{
+      buttonPaymentHistory.setVisible(true);
+
+    }
 
 
 
@@ -218,4 +230,13 @@ public class GuestRoomController extends Controller {
     new Global().openNewWindow(WindowLocation.LOGINMENU);
     Global.selectedRoom= null;
   }
+
+  @FXML
+  public void handleHistory(ActionEvent event){
+    Global.currentScene = signoutButton.getScene();//
+    new Global().openNewWindow(WindowLocation.ACCOUNTWINDOW);
+    Global.selectedRoom= null;
+
+  }
+
 }

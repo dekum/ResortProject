@@ -1,6 +1,7 @@
 package sample;
 //Great WEbsite https://examples.javacodegeeks.com/desktop-java/javafx-table-example/
 
+import java.time.LocalDate;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.scene.control.ListCell;
@@ -16,6 +17,25 @@ public class Room {
   double price;
   Guest occupiedGuest;
   int daysStaying;
+  double totalPrice;
+  LocalDate dayIn;
+  LocalDate dayOut;
+
+  public LocalDate getDayIn() {
+    return dayIn;
+  }
+
+  public void setDayIn(LocalDate dayIn) {
+    this.dayIn = dayIn;
+  }
+
+  public LocalDate getDayOut() {
+    return dayOut;
+  }
+
+  public void setDayOut(LocalDate dayOut) {
+    this.dayOut = dayOut;
+  }
 
   public void removeGuest(){
     occupiedGuest = null;
@@ -23,6 +43,15 @@ public class Room {
     isAvailable= true;
 
   }
+
+  public double getTotalPrice() {
+    return totalPrice;
+  }
+
+  public void setTotalPrice(double totalPrice) {
+    this.totalPrice = totalPrice;
+  }
+
   public void setnameProperty(String fname){
     nameproperty.set(fname);
   }

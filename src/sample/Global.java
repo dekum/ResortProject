@@ -76,7 +76,7 @@ public class Global {
     LOGINMENU("/sample/LoginMenu/LoginMenu.fxml"),
     SIGNUP("/sample/LoginMenu/SignupScreen.fxml"),
     MANAGERMENU("/sample/ManagerMenu/NewManagerHome.fxml"),
-
+    ACCOUNTWINDOW("/sample/GuestMenu/GuestAccountWindow.fxml"),
     GUESTMENUHOME("/sample/GuestMenu/GuestRoomTest1.fxml"),
     PAYMENT("/sample/GuestMenu/PaymentWindow.fxml");
     //   GUESTMENUROOM("/sample/GuestMenu/GuestRoomTest1.fxml"),

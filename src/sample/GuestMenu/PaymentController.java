@@ -1,5 +1,7 @@
 package sample.GuestMenu;
 
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.collections.FXCollections;
@@ -15,6 +17,7 @@ import sample.Global;
 import sample.Global.WindowLocation;
 
 public class PaymentController extends Controller {
+  double price;
 
   @FXML
   private TextField ccInfoBox;
@@ -62,8 +65,15 @@ public class PaymentController extends Controller {
     checkInLabel.setText(Global.checkInDate.toString());
     checkOutLabel.setText(Global.checkOutDate.toString());
 
-    double price = (Global.checkOutDate.getDayOfMonth() - Global.checkInDate.getDayOfMonth())
-        * Global.selectedRoom.getPrice();
+    //LocalDate weekLater = localDate.plusDays ( 7 );
+    Period period = Period.between ( Global.checkInDate,Global.checkOutDate );
+   // Integer price = period.getDays ();
+
+    //double price = (Global.checkOutDate.get() - Global.checkInDate);
+  //  double price = (Global.checkOutDate.getDayOfMonth() - Global.checkInDate.getDayOfMonth())
+   //     * Global.selectedRoom.getPrice();
+    price = (period.getDays()  * Global.selectedRoom.getPrice());
+    Global.selectedRoom.setTotalPrice(price);
     roomPriceLabel.setText("$" + price);
 
     roomInfoLabel.setText(Global.roomInfo);
@@ -78,8 +88,10 @@ public class PaymentController extends Controller {
 
   @FXML
   void handleConfirm(ActionEvent event) {
-
+    Global.currentGuestLoggedIn.setRoomRented(Global.selectedRoom);
     Global.currentScene = confirmBook.getScene();
+    Global.selectedRoom.setDayIn(Global.checkInDate);
+    Global.selectedRoom.setDayOut(Global.checkOutDate);
 
     new Global().openNewWindow(WindowLocation.GUESTMENUHOME);
   }
