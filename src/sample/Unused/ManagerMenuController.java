@@ -868,6 +868,7 @@ public class ManagerMenuController extends Controller implements Initializable {
      * Need to look up how setCellValueFactories work
      *
      */
+
     columnNameEmployee.setCellValueFactory(
         new PropertyValueFactory<EmployeeOld, String>(
             "name")); //What goes in the () is the name of the Variable in the Employe class

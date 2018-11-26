@@ -166,7 +166,7 @@ public class GuestRoomController extends Controller {
   void populateRooms(ActionEvent event) {
 
     ObservableList<Room> roomsView = FXCollections.observableArrayList(Global.roomList);
-    roomTableColumn.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
+    roomTableColumn.setCellValueFactory(cellData -> cellData.getValue().getnameProperty());
 
     roomTableView.setVisible(true);
     roomPreviewLabel.setVisible(true);

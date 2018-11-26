@@ -18,6 +18,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import sample.Controller;
@@ -65,7 +66,7 @@ public class ManagerHomeController extends Controller {
      */
     Global.currentTitle="Ruby Resort: Manager View";
     ObservableList<Room> roomsView = FXCollections.observableArrayList(roomList);
-    roomTableColumn.setCellValueFactory(cellData -> cellData.getValue().nameProperty()); //set Cellfactory for  room column
+    roomTableColumn.setCellValueFactory(cellData -> cellData.getValue().getnameProperty()); //set Cellfactory for  room column
 
     roomTableView.setItems(roomsView); //Tableview gets elements from roomsView list
 
@@ -81,7 +82,8 @@ public class ManagerHomeController extends Controller {
 
     ObservableList<Employee> empView = FXCollections.observableArrayList(empList);
     employeeColumn.setCellValueFactory(cellData -> cellData.getValue().getBothNamesProperty());
-
+//    employeeColumn.setCellValueFactory(
+//        new PropertyValueFactory<Employee, String>("bothNamesProperty"));
     employeeTableView.setItems(empView);
 
     employeeTableView.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -211,31 +213,81 @@ public class ManagerHomeController extends Controller {
   @FXML
   void deleteRoom(ActionEvent event) {
     //need to check if selected room Exists/ or is null
-    roomList.remove(selectedRoom); //Remove the object stored in SelectedRoom from the roomList Array
-    ObservableList<Room> roomsView = FXCollections.observableArrayList(roomList); //reset list, to show change
-    roomTableView.setItems(roomsView);//clear textfield's data
-    roomTypeText.setText(null);//clear textfield's data
-    roomPriceText.setText(null); //clear textfield's data
+    if (selectedRoom !=null){
+      roomList.remove(selectedRoom); //Remove the object stored in SelectedRoom from the roomList Array
+      ObservableList<Room> roomsView = FXCollections.observableArrayList(roomList); //reset list, to show change
+      roomTableView.setItems(roomsView);//clear textfield's data
+      roomTypeText.setText(null);//clear textfield's data
+      roomPriceText.setText(null); //clear textfield's data
 
-    populateSummaryReports();
+      populateSummaryReports();
+    }else{
+      new Global().displayPopUpWindow("No Room was selected.");
+    }
+
   }
 
   @FXML
   void updateRoom(ActionEvent event) {
-    if (roomTypeText.getText() != null) {
-      selectedRoom.setName(roomTypeText.getText());
-    }
-    if (roomPriceText.getText() != null) {
-      selectedRoom.setPrice(Double.parseDouble(roomPriceText.getText()));
-    }
-    Room updatedRoom = new Room(selectedRoom.getName(),true,selectedRoom.getPrice(),selectedRoom.getPictureUrl());
-    roomList.remove(selectedRoom);
-    roomList.add(updatedRoom);
+    double roomPrice=-1;
+    String roomName="";
+    String errorMessage="";
+    boolean validPrice = true;
+    try{
+      if(roomTypeText.getText().equals("")||roomTypeText.getText()== null){
+        //empty textfield
+        errorMessage += "Please Enter New Room Type\n";
 
-    ObservableList<Room> roomsView = FXCollections.observableArrayList(roomList);
-    roomTableView.setItems(roomsView);
+      }
+    }catch (NullPointerException exception){
 
-    populateSummaryReports();
+    }
+
+    if(roomPriceText.getText().equals("")||roomPriceText.getText() == null){
+      //empty textfield
+      errorMessage += "Please Enter New Room Price\n";
+
+    }else {
+      //Check if price is valid
+
+      try {
+
+        roomPrice = Double.parseDouble(roomPriceText.getText());
+      }
+      catch (NullPointerException | NumberFormatException exception ) {
+
+        errorMessage+="Wage input invalid.\n";
+      }
+
+
+    }
+    if(errorMessage.equals("")){
+      for (Room r: roomList
+      ) {
+        if (r.toString().equals(selectedRoom.toString())){
+          r.setName(roomTypeText.getText());
+          r.setnameProperty(roomTypeText.getText());//Changing this changes text on tableview
+          r.setPrice(Double.parseDouble(roomPriceText.getText()));
+
+          ObservableList<Room> roomsView = FXCollections.observableArrayList(roomList);
+          roomTableView.setItems(roomsView);
+          roomTableColumn.setVisible(false);//To update tableview
+          roomTableColumn.setVisible(true);//to update tableview
+
+          populateSummaryReports();
+
+        }
+
+      }
+    }
+
+
+
+    //Room updatedRoom = new Room(selectedRoom.getName(),true,selectedRoom.getPrice(),selectedRoom.getPictureUrl());
+    //roomList.remove(selectedRoom);
+    //roomList.add(updatedRoom);
+
+
   }
 
   //TODO
@@ -289,54 +341,53 @@ public class ManagerHomeController extends Controller {
 
   @FXML
   void updateEmployee(ActionEvent event) {
-    if (firstNameText.getText() != null){
-      selectedEmp.setFirstName(firstNameText.getText());
-    }
-    if (lastNameText.getText() != null){
-      selectedEmp.setLastName(lastNameText.getText());
-    }
-    if (wageText.getText() != null){
-      selectedEmp.setWage(Double.parseDouble(wageText.getText()));
-    }
-    if ((DOB.getValue() != null)){
-      selectedEmp.setDOB(DOB.getValue());
-    }
-    for (Employee e: empList
-    ) {
-      if (e.toString().equals(selectedEmp.toString())){
-        e.setFirstName(firstNameText.getText());
-        System.out.println(firstNameText.getText());
+    String errorMessage = validateEmployeeInputs();
+    if (errorMessage.equals("")){
+      for (Employee e: empList
+      ) {
+        if (e.toString().equals(selectedEmp.toString())){
+          //Search through empList to find object matching employee selected
+          //Then update the empList's object with new data
+          e.setFirstName(firstNameText.getText());
+          System.out.println(firstNameText.getText());
 
-        e.setLastName(lastNameText.getText());
+          e.setLastName(lastNameText.getText());
 
-        e.setWage(Double.parseDouble(wageText.getText()));
-        e.setDOB(DOB.getValue());
+          e.setWage(Double.parseDouble(wageText.getText()));
+          e.setDOB(DOB.getValue());
+          ObservableList<Employee> empView = FXCollections.observableArrayList(empList);
+          employeeTableView.setItems(empView);
+          employeeColumn.setVisible(false);
+          employeeColumn.setVisible(true);
 
-      }
+          populateSummaryReports();
 
-
-
-
-    }
-    for (Employee e: empList
-    ) {
-      System.out.println(e.getFirstName());
-
+        }
     }
 
-    Employee updatedEmp = new Employee(selectedEmp.getFirstName(),selectedEmp.getLastName(),
-        selectedEmp.getWage(),selectedEmp.getDOB());
-//    empList.remove(selectedEmp);
-    empList.add(updatedEmp);
 
 
 
-    ObservableList<Employee> empView = FXCollections.observableArrayList(empList);
-    employeeTableView.setItems(empView);
+
+    }else{
+ new Global().displayPopUpWindow(errorMessage);
+    }
+//    for (Employee e: empList
+//    ) {
+//      System.out.println(e.getFirstName());
+//
+//    }
+
+//    Employee updatedEmp = new Employee(selectedEmp.getFirstName(),selectedEmp.getLastName(),
+//        selectedEmp.getWage(),selectedEmp.getDOB());
+////    empList.remove(selectedEmp);
+//    empList.add(updatedEmp);
+
+//    employeeTableView.getColumns().get(0).setVisible(false);
+//    employeeTableView.getColumns().get(0).setVisible(true);
 
 
 
-    populateSummaryReports();
 
 
   }

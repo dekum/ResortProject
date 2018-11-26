@@ -53,9 +53,19 @@ public class Employee {
   public void setDOB(LocalDate DOB){
       this.DOB = DOB;
   }
+  //public String getName() { return name.get(); }
+
+  public void setBothNamesProperty(String fName) {
+    bothNamesProperty.set(fName);
+  }
 
   public StringProperty getBothNamesProperty(){
-      return bothNamesProperty;
-  }
+    bothNamesProperty.set(firstName+" "+lastName);
+      return bothNamesProperty; }
+
+//  public String getBothNamesProperty(){
+//      bothNamesProperty.set(firstName+" "+lastName);
+//    return bothNamesProperty.get();
+//  }
 
 }

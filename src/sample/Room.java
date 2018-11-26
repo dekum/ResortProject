@@ -23,8 +23,10 @@ public class Room {
     isAvailable= true;
 
   }
-
-  public StringProperty nameProperty(){
+  public void setnameProperty(String fname){
+    nameproperty.set(fname);
+  }
+  public StringProperty getnameProperty(){
     return nameproperty;
   }
 
