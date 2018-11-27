@@ -15,6 +15,7 @@ import javafx.scene.control.TextField;
 import sample.Controller;
 import sample.Global;
 import sample.Global.WindowLocation;
+import sample.WriteRooms;
 
 public class PaymentController extends Controller {
   double price;
@@ -92,7 +93,8 @@ public class PaymentController extends Controller {
     Global.currentScene = confirmBook.getScene();
     Global.selectedRoom.setDayIn(Global.checkInDate);
     Global.selectedRoom.setDayOut(Global.checkOutDate);
-
+    Global.selectedRoom.setOccupiedGuest(Global.currentGuestLoggedIn);
+    new WriteRooms();
     new Global().openNewWindow(WindowLocation.GUESTMENUHOME);
   }
 

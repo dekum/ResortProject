@@ -82,7 +82,7 @@ public class GuestRoomController extends Controller {
   void initialize() {
     Global.currentTitle="Ruby Resort: Manager View";
 
-
+    System.out.println(Global.currentGuestLoggedIn+Global.roomList.toString());
     ObservableList<ResortEvent> event2 = FXCollections.observableArrayList(Global.eventList);
     eventTableColumn.setCellValueFactory(cellData -> cellData.getValue().getNameProperty());
     eventDateColumn.setCellValueFactory(cellData -> cellData.getValue().getDateProperty());

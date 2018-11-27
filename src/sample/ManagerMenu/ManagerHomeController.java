@@ -28,6 +28,8 @@ import sample.Global.WindowLocation;
 import sample.Report;
 import sample.Room;
 import sample.UserFileUtilities;
+import sample.WriteEmployee;
+import sample.WriteRooms;
 
 public class ManagerHomeController extends Controller {
   @FXML
@@ -195,7 +197,7 @@ public class ManagerHomeController extends Controller {
 
       ObservableList<Room> roomsView = FXCollections.observableArrayList(roomList);
       roomTableView.setItems(roomsView);
-
+      new WriteRooms();
       populateSummaryReports();
 
     }
@@ -219,7 +221,7 @@ public class ManagerHomeController extends Controller {
       roomTableView.setItems(roomsView);//clear textfield's data
       roomTypeText.setText(null);//clear textfield's data
       roomPriceText.setText(null); //clear textfield's data
-
+      new WriteRooms();
       populateSummaryReports();
     }else{
       new Global().displayPopUpWindow("No Room was selected.");
@@ -273,7 +275,7 @@ public class ManagerHomeController extends Controller {
           roomTableView.setItems(roomsView);
           roomTableColumn.setVisible(false);//To update tableview
           roomTableColumn.setVisible(true);//to update tableview
-
+          new WriteRooms();
           populateSummaryReports();
 
         }
@@ -313,7 +315,7 @@ public class ManagerHomeController extends Controller {
       ObservableList<Employee> empView = FXCollections.observableArrayList(empList);
       employeeTableView.setItems(empView);
       new Global().displayPopUpWindow("Employee Successfully created");
-
+      new WriteEmployee();
       populateSummaryReports();
     }
   }
@@ -328,6 +330,7 @@ public class ManagerHomeController extends Controller {
       lastNameText.setText(null);
       wageText.setText(null);
       DOB.setValue(null);
+      new WriteEmployee();
       populateSummaryReports();
     }else
     {
@@ -360,6 +363,7 @@ public class ManagerHomeController extends Controller {
           employeeColumn.setVisible(false);
           employeeColumn.setVisible(true);
 
+          new WriteEmployee();
           populateSummaryReports();
 
         }

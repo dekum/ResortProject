@@ -15,11 +15,13 @@ public class Room {
   int squareFt;
   boolean isAvailable;
   double price;
-  Guest occupiedGuest;
+
   int daysStaying;
-  double totalPrice;
+
   LocalDate dayIn;
   LocalDate dayOut;
+  double totalPrice;
+  Guest occupiedGuest;
 
   public Room() {
     nameproperty = new SimpleStringProperty();

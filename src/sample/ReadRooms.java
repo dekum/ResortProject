@@ -2,6 +2,7 @@ package sample;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 import sample.Global;
@@ -65,6 +66,46 @@ public class ReadRooms {
             //PictureUrl
             createRoom.setPictureUrl(currentLine);
 
+          }
+          if (lineNumberForRoom==5){
+            System.out.println("Helllo");
+            //OccipiedGuest may need to check for null
+//            assert (currentLine.getClass().equals(Guest.class));
+            //createRoom.setOccupiedGuest(currentLine);
+            //check guestlist for matching username, then set the matching guest to room
+            for (Guest g: Global.guestList){
+              System.out.println( g.toString() + "  " + currentLine);
+              if (currentLine.equals(g.toString())){
+                createRoom.setOccupiedGuest(g);
+                System.out.println("HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHdid this" + g.getUserName());
+              }
+
+            }
+
+
+          }
+          if (lineNumberForRoom==6){
+            //totalprice
+            createRoom.setTotalPrice(Double.parseDouble(currentLine));
+
+          }
+          if (lineNumberForRoom==7){
+            //day in
+            if (currentLine.equals("null")){
+              createRoom.setDayIn(null);
+            }else{
+              createRoom.setDayIn(LocalDate.parse(currentLine));
+            }
+
+
+          }
+          if (lineNumberForRoom==8){
+            //day out
+            if (currentLine.equals("null")){
+              createRoom.setDayOut(null);
+            }else {
+              createRoom.setDayOut(LocalDate.parse(currentLine));
+            }
           }
 
 

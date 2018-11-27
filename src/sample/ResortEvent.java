@@ -19,7 +19,47 @@ public class ResortEvent {
 
     }
 
-    public StringProperty getNameProperty(){
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public String getDate() {
+    return date;
+  }
+
+  public void setDate(String date) {
+    this.date = date;
+  }
+
+  public String getNameproperty() {
+    return nameproperty.get();
+  }
+
+  public StringProperty namepropertyProperty() {
+    return nameproperty;
+  }
+
+  public void setNameproperty(String nameproperty) {
+    this.nameproperty.set(nameproperty);
+  }
+
+  public String getDateproperty() {
+    return dateproperty.get();
+  }
+
+  public StringProperty datepropertyProperty() {
+    return dateproperty;
+  }
+
+  public void setDateproperty(String dateproperty) {
+    this.dateproperty.set(dateproperty);
+  }
+
+  public StringProperty getNameProperty(){
       return nameproperty;
     }
 

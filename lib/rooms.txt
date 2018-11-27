@@ -3,22 +3,38 @@
 true
 250.0
 sample/Pictures/1Queen.jpg
+sample.Guest@535cf189
+2000.0
+2018-11-27
+2018-12-05
 |_End_|
 |_Start_|
 2 Twin Beds
 true
 200.0
 sample/Pictures/TwinBed.jpg
+null
+1600.0
+2018-11-30
+2018-12-08
 |_End_|
 |_Start_|
 Suite: 2 Queen Beds
 true
 500.0
 sample/Pictures/2Queen.jpg
+null
+0.0
+null
+null
 |_End_|
 |_Start_|
 Suite: 1 King Bed
 true
 525.0
 sample/Pictures/SuiteKing.jpg
+null
+0.0
+null
+null
 |_End_|

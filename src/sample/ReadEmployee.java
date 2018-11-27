@@ -65,10 +65,7 @@ public class ReadEmployee {
           }
           if (lineNumberForEmployee==4){
             //employee date of birth
-            String str = "1986-04-08 12:30";
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-            LocalDateTime dateTime;
-            createEmployee.setDOB(LocalDate.parse(str, formatter));
+            createEmployee.setDOB(LocalDate.parse(currentLine));
 
           }
           if (lineNumberForEmployee==5){
