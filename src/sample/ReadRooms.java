@@ -68,7 +68,7 @@ public class ReadRooms {
 
           }
           if (lineNumberForRoom==5){
-            System.out.println("Helllo");
+
             //OccipiedGuest may need to check for null
 //            assert (currentLine.getClass().equals(Guest.class));
             //createRoom.setOccupiedGuest(currentLine);
@@ -134,10 +134,10 @@ public class ReadRooms {
     }
     for (Room r :rooms
     ) {
-      System.out.println(r.getName());
-      System.out.println(r.getPrice());
-      System.out.println(r.getAvailable());
-      System.out.println(r.getPictureUrl());
+//      System.out.println(r.getName());
+//      System.out.println(r.getPrice());
+//      System.out.println(r.getAvailable());
+//      System.out.println(r.getPictureUrl());
 
     }
 

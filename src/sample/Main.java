@@ -107,15 +107,19 @@ public class Main extends Application {
 //    Global.empList = emps;
     new ReadRooms();
     new ReadEmployee();
-
-    ArrayList<ResortEvent> events = new ArrayList<>();
-    events.add((new ResortEvent("ZombieCon", "Nov 29")));
-    events.add((new ResortEvent("Crab Race", "Nov 31")));
-    events.add((new ResortEvent("Karaoke", "Dec 2")));
-    events.add((new ResortEvent("Boat Show", "Dec 4")));
-    events.add((new ResortEvent("ArtWalk", "Dec 5")));
-    events.add((new ResortEvent("Car Show", "Dec 9")));
-    Global.eventList = events;
+//    new WriteGuest();
+//
+//    new WriteEvent();
+    new ReadEvents();
+    new ReadGuest();
+//    ArrayList<ResortEvent> events = new ArrayList<>();
+//    events.add((new ResortEvent("ZombieCon", "Nov 29")));
+//    events.add((new ResortEvent("Crab Race", "Nov 31")));
+//    events.add((new ResortEvent("Karaoke", "Dec 2")));
+//    events.add((new ResortEvent("Boat Show", "Dec 4")));
+//    events.add((new ResortEvent("ArtWalk", "Dec 5")));
+//    events.add((new ResortEvent("Car Show", "Dec 9")));
+//    Global.eventList = events;
 
 
     Parent root = FXMLLoader.load(getClass().getResource("LoginMenu/LoginMenu.fxml"));

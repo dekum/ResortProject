@@ -1,5 +1,6 @@
 package sample;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 /**
@@ -15,10 +16,23 @@ public class Guest extends User {
   private String firstName;
   private String lastName;
   private String dateOfBirth; //Format of MM/DD/YY, Actually might stick to Year for simplciity.
+  private LocalDate DOB;
   private ArrayList<Event> eventsCreated = new ArrayList<>();
   private int guestId;
   private static int guestIds; //This increments as new guest accounts are created
   private Room roomRented;
+
+  public Guest() {
+    super("","");
+  }
+
+  public LocalDate getDOB() {
+    return DOB;
+  }
+
+  public void setDOB(LocalDate DOB) {
+    this.DOB = DOB;
+  }
 
   public String getFirstName() {
     return firstName;
@@ -96,6 +110,15 @@ public class Guest extends User {
     this.firstName = firstName;
     this.lastName = lastName;
     this.dateOfBirth = dateOfBirth;
+    guestId= guestIds;
+    guestIds++;
+  }
+  public Guest(String userName, String password, String firstName, String lastName,
+      LocalDate dateOfBirth) {
+    super(userName, password);
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.DOB = dateOfBirth;
     guestId= guestIds;
     guestIds++;
   }

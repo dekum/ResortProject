@@ -18,6 +18,11 @@ public class ResortEvent {
       nameproperty.set(name);
 
     }
+    public ResortEvent(){
+      dateproperty = new SimpleStringProperty();
+
+      nameproperty = new SimpleStringProperty();
+    }
 
   public String getName() {
     return name;
