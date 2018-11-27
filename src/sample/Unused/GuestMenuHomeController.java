@@ -17,7 +17,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
-import sample.Employee;
+import sample.EmployeeOld;
 import sample.Global;
 import sample.Global.WindowLocation;
 import sample.Guest;
@@ -43,7 +43,7 @@ public class GuestMenuHomeController implements Initializable {
   private Room roomClickedOn;
   private int daysStaying;
   private boolean initializedRooms=false;
-  private ObservableList<Employee> data;
+  private ObservableList<EmployeeOld> data;
   protected List<Room> rooms = new ArrayList<>();
 @FXML
 Button buttonBookRoom,buttonEvent,buttonAccount,buttonSettings,buttonExit,buttonCalender ;

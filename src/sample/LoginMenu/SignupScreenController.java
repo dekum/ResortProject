@@ -9,15 +9,10 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
@@ -26,13 +21,11 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 import javafx.util.Callback;
-import sample.Employee;
+import sample.EmployeeOld;
 import sample.Global;
 import sample.Global.WindowLocation;
 import sample.Guest;
-import sample.GuestMenu.GuestRoomController;
 import sample.Room;
 import sample.UserFileUtilities;
 
@@ -55,7 +48,7 @@ public class SignupScreenController implements Initializable {
   private Room roomClickedOn;
   private int daysStaying;
   private boolean initializedRooms = false;
-  private ObservableList<Employee> data;
+  private ObservableList<EmployeeOld> data;
   private final String pattern = "yyyy-MM-dd";
 
   public ArrayList<String> getPasswordList() {

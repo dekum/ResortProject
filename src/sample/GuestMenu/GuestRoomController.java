@@ -5,52 +5,30 @@
  */
 package sample.GuestMenu;
 
-import static sample.Global.eventList;
-
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.ImageView;
-import java.io.IOException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javafx.beans.property.ListProperty;
-import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.text.Text;
-import javafx.stage.Stage;
+import javafx.util.Callback;
+import javax.swing.Action;
 import sample.Controller;
-import sample.Employee;
 import sample.Global.WindowLocation;
-import sample.LoginMenu.LoginMenuController;
 import sample.Global;
-import sample.Guest;
 import sample.ResortEvent;
 import sample.Room;
-import sample.Room.RoomCellFactory;
 
 
 /**
@@ -97,9 +75,12 @@ public class GuestRoomController extends Controller {
   private TableColumn<ResortEvent, String> eventTableColumn;
   @FXML
   private TableColumn<ResortEvent, String> eventDateColumn;
+  @FXML
+  Button buttonPaymentHistory;
 
   @FXML
   void initialize() {
+    Global.currentTitle="Ruby Resort: Manager View";
 
 
     ObservableList<ResortEvent> event2 = FXCollections.observableArrayList(Global.eventList);
@@ -113,7 +94,83 @@ public class GuestRoomController extends Controller {
     bookRoombutton.setVisible(false);
 
     checkInDate.setValue(LocalDate.now());
-    checkOutDate.setValue(LocalDate.now());
+
+    if (Global.currentGuestLoggedIn.getRoomRented() ==null){
+
+      buttonPaymentHistory.setVisible(false);
+
+    }else{
+      buttonPaymentHistory.setVisible(true);
+
+    }
+
+
+
+    final Callback<DatePicker, DateCell> dayCellFactory =
+        new Callback<DatePicker, DateCell>() {
+          @Override
+          public DateCell call(final DatePicker datePicker) {
+            return new DateCell() {
+              @Override
+              public void updateItem(LocalDate item, boolean empty) {
+                super.updateItem(item, empty);
+                //Disables dates for checkout that are before the checkin to avoid errors
+                if (item.isBefore(
+                    checkInDate.getValue().plusDays(1))
+                ) {
+                  setDisable(true);
+                  setStyle("-fx-background-color: #ffc0cb;");
+                }
+                long p = ChronoUnit.DAYS.between(
+                    checkInDate.getValue(), item
+                );
+                setTooltip(new Tooltip(
+                    "The even will last : " + p + " days")
+                );
+
+
+
+              }
+            };
+          }
+        };
+    final Callback<DatePicker, DateCell> dayCellFactory2 =
+        new Callback<DatePicker, DateCell>() {
+          @Override
+          public DateCell call(final DatePicker datePicker) {
+            return new DateCell() {
+              @Override
+              public void updateItem(LocalDate item, boolean empty) {
+                super.updateItem(item, empty);
+                if (checkOutDate.getValue().isBefore(checkInDate.getValue()) ){
+                  System.out.println("...K");
+                  //checkInDatePicker.setFocusTraversable(true);
+                  checkOutDate.requestFocus();
+                  //Maybe set an error Boolean?
+
+
+                }
+                if (item.isBefore(
+                  LocalDate.now()
+
+                )) {
+                  setDisable(true);
+                  setStyle("-fx-background-color: rgba(255,5,21,0.69);");
+                }
+
+
+
+              }
+            };
+          }
+        };
+
+
+    checkOutDate.setDayCellFactory(dayCellFactory);
+    checkInDate.setDayCellFactory(dayCellFactory2);
+    checkOutDate.setValue(checkInDate.getValue().plusDays(1));
+
+
 
   }
 
@@ -121,7 +178,7 @@ public class GuestRoomController extends Controller {
   void populateRooms(ActionEvent event) {
 
     ObservableList<Room> roomsView = FXCollections.observableArrayList(Global.roomList);
-    roomTableColumn.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
+    roomTableColumn.setCellValueFactory(cellData -> cellData.getValue().getnameProperty());
 
     roomTableView.setVisible(true);
     roomPreviewLabel.setVisible(true);
@@ -150,11 +207,20 @@ public class GuestRoomController extends Controller {
     LocalDate checkoutDate = checkOutDate.getValue();
     Global.checkInDate = checkinDate;
     Global.checkOutDate = checkoutDate;
-    Global.selectedRoom.setAvailable(false);
+    Boolean success1= true;
+    try {
+      Global.selectedRoom.getName();
+    }catch (NullPointerException exception){
+      new Global().displayPopUpWindow("Please click on a room");
+      success1= false;
+    }
+    if (success1){
+      Global.currentScene = signoutButton.getScene();
+      new Global().openNewWindow(WindowLocation.PAYMENT);
+    }
 
 
-    Global.currentScene = signoutButton.getScene();
-    new Global().openNewWindow(WindowLocation.PAYMENT);
+
 
   }
 
@@ -162,5 +228,15 @@ public class GuestRoomController extends Controller {
   public void handleSignout(ActionEvent event) {
     Global.currentScene = signoutButton.getScene();//
     new Global().openNewWindow(WindowLocation.LOGINMENU);
+    Global.selectedRoom= null;
   }
+
+  @FXML
+  public void handleHistory(ActionEvent event){
+    Global.currentScene = signoutButton.getScene();//
+    new Global().openNewWindow(WindowLocation.ACCOUNTWINDOW);
+    Global.selectedRoom= null;
+
+  }
+
 }
