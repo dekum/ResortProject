@@ -21,6 +21,10 @@ public class Room {
   LocalDate dayIn;
   LocalDate dayOut;
 
+  public Room() {
+    nameproperty = new SimpleStringProperty();
+  }
+
   public LocalDate getDayIn() {
     return dayIn;
   }

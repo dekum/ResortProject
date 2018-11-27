@@ -7,6 +7,7 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
@@ -72,6 +73,35 @@
                      </children></AnchorPane>
             </content>
           </Tab>
+            <Tab text="Event Info">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="roomTableView" layoutX="14.0" layoutY="39.0" prefHeight="279.0" prefWidth="167.0">
+                           <columns>
+                              <TableColumn fx:id="roomTableColumn" prefWidth="166.0" text="Rooms" />
+                           </columns>
+                        </TableView>
+                        <Label layoutX="31.0" layoutY="14.0" text="Select Event to Edit">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="roomTypeText" layoutX="253.0" layoutY="39.0" prefHeight="25.0" prefWidth="138.0" />
+                        <Label layoutX="202.0" layoutY="43.0" text="Name:" />
+                        <Label layoutX="204.0" layoutY="78.0" text="Date" />
+                        <Button fx:id="updateRoomButton" layoutX="195.0" layoutY="274.0" mnemonicParsing="false" onAction="#updateRoom" prefHeight="25.0" prefWidth="95.0" text="Update Event" />
+                        <Button fx:id="deleteRoomButton" layoutX="309.0" layoutY="274.0" mnemonicParsing="false" onAction="#deleteRoom" prefHeight="25.0" prefWidth="95.0" text="Delete Event" />
+                        <Button fx:id="addRoomButton" layoutX="195.0" layoutY="237.0" mnemonicParsing="false" onAction="#addRoom" prefHeight="25.0" prefWidth="95.0" text="Add Event" />
+                        <Button fx:id="signoutButton" layoutX="382.0" layoutY="318.0" mnemonicParsing="false" onAction="#signOut" text="Signout" />
+                        <Button layoutX="309.0" layoutY="237.0" mnemonicParsing="false" onAction="#clearFields" prefHeight="25.0" prefWidth="95.0" text="Clear Event" />
+                        <Label layoutX="207.0" layoutY="110.0" text="Event Description" />
+                        <TextArea layoutX="208.0" layoutY="131.0" prefHeight="98.0" prefWidth="229.0" />
+                        <DatePicker layoutX="246.0" layoutY="74.0" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
             <Tab text="Summary Reports">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">

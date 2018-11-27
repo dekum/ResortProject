@@ -22,6 +22,10 @@ public class Employee {
       this.bothNamesProperty.set(bothNames);
     }
 
+  public Employee() {
+    this.bothNamesProperty = new SimpleStringProperty();
+  }
+
   public String getFirstName() {
     return firstName;
   }
@@ -67,5 +71,7 @@ public class Employee {
 //      bothNamesProperty.set(firstName+" "+lastName);
 //    return bothNamesProperty.get();
 //  }
+public StringProperty getBothNamesPropertyForReader(){
+  return bothNamesProperty; }
 
 }
