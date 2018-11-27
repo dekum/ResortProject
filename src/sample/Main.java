@@ -105,9 +105,9 @@ public class Main extends Application {
 //      e.printStackTrace();
 //    }
 //    Global.empList = emps;
-
-    new ReadEmployee();
     new ReadRooms();
+    new ReadEmployee();
+
     ArrayList<ResortEvent> events = new ArrayList<>();
     events.add((new ResortEvent("ZombieCon", "Nov 29")));
     events.add((new ResortEvent("Crab Race", "Nov 31")));

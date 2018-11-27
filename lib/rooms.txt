@@ -1,0 +1,24 @@
+|_Start_|
+1 Queen Bed
+true
+250.0
+sample/Pictures/1Queen.jpg
+|_End_|
+|_Start_|
+2 Twin Beds
+true
+200.0
+sample/Pictures/TwinBed.jpg
+|_End_|
+|_Start_|
+Suite: 2 Queen Beds
+true
+500.0
+sample/Pictures/2Queen.jpg
+|_End_|
+|_Start_|
+Suite: 1 King Bed
+true
+525.0
+sample/Pictures/SuiteKing.jpg
+|_End_|
