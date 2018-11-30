@@ -53,6 +53,7 @@ public class Global {
   //Used in ManagerHomeController
   static public ArrayList<Employee> empList;
   static public Employee selectedEmp;
+  static public ResortEvent selectedEvent;
 
   static public ArrayList<ResortEvent> eventList;
 

@@ -8,8 +8,26 @@ public class ResortEvent {
     private String date;
     private StringProperty nameproperty;
     private StringProperty dateproperty;
+    private Double price=0.0;
+    private String eventDescription="";
 
-    public ResortEvent(String name, String date){
+  public Double getPrice() {
+    return price;
+  }
+
+  public void setPrice(Double price) {
+    this.price = price;
+  }
+
+  public String getEventDescription() {
+    return eventDescription;
+  }
+
+  public void setEventDescription(String eventDescription) {
+    this.eventDescription = eventDescription;
+  }
+
+  public ResortEvent(String name, String date){
       this.name = name;
       this.date = date;
       dateproperty = new SimpleStringProperty();
@@ -23,6 +41,17 @@ public class ResortEvent {
 
       nameproperty = new SimpleStringProperty();
     }
+
+  public ResortEvent(String name, String date, Double price, String eventDescription) {
+    this.name = name;
+    this.date = date;
+    this.price = price;
+    this.eventDescription = eventDescription;
+    dateproperty = new SimpleStringProperty();
+    dateproperty.set(date);
+    nameproperty = new SimpleStringProperty();
+    nameproperty.set(name);
+  }
 
   public String getName() {
     return name;

@@ -17,14 +17,16 @@ public class WriteEvent {
     //ArrayList<Guest> emps = Global.guestList;
     // Global.empList = emps;
     //ArrayList<ResortEvent> resortEvents = new ArrayList<>();
-    ArrayList<ResortEvent> events = new ArrayList<>();
-    events.add((new ResortEvent("ZombieCon", "Nov 29")));
-    events.add((new ResortEvent("Crab Race", "Nov 31")));
-    events.add((new ResortEvent("Karaoke", "Dec 2")));
-    events.add((new ResortEvent("Boat Show", "Dec 4")));
-    events.add((new ResortEvent("ArtWalk", "Dec 5")));
-    events.add((new ResortEvent("Car Show", "Dec 9")));
+//    ArrayList<ResortEvent> events = new ArrayList<>();
+//    events.add((new ResortEvent("ZombieCon", "2018-11-29")));
+//    events.get(0).setEventDescription("\n \n \n dfasfasd");
+//    events.add((new ResortEvent("Crab Race", "2018-11-30")));
+//    events.add((new ResortEvent("Karaoke", "2018-12-02")));
+//    events.add((new ResortEvent("Boat Show", "2018-12-04")));
+//    events.add((new ResortEvent("ArtWalk", "2018-12-05")));
+//    events.add((new ResortEvent("Car Show", "2018-12-09")));
     //Global.eventList = events;
+    ArrayList<ResortEvent> events =Global.eventList;
 
     Writer fileWriterEmp = null;
     try {
@@ -40,6 +42,8 @@ public class WriteEvent {
       printWriterEmp.println("|_Start_|");//Needed so filereader nows where to start
       printWriterEmp.println(event.getName());
       printWriterEmp.println(event.getDate());
+      printWriterEmp.println(event.getPrice());
+      printWriterEmp.println(event.getEventDescription());
 
       printWriterEmp.println("|_End_|");//Needed so filereader knows where to end
 

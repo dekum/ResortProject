@@ -4,6 +4,7 @@ import static sample.Global.empList;
 import static sample.Global.eventList;
 import static sample.Global.roomList;
 import static sample.Global.selectedEmp;
+import static sample.Global.selectedEvent;
 import static sample.Global.selectedRoom;
 
 import java.time.LocalDate;
@@ -17,18 +18,22 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import javax.swing.Action;
 import sample.Controller;
 import sample.Employee;
 import sample.Global;
 import sample.Global.WindowLocation;
 import sample.Report;
+import sample.ResortEvent;
 import sample.Room;
 import sample.UserFileUtilities;
 import sample.WriteEmployee;
+import sample.WriteEvent;
 import sample.WriteRooms;
 
 public class ManagerHomeController extends Controller {
@@ -62,11 +67,63 @@ public class ManagerHomeController extends Controller {
   private TableColumn<Report, String> summaryTotals;
 
   @FXML
+  private TableView<ResortEvent> tableViewEvents;
+  @FXML
+  private TextField textfieldEventName, textFieldEventPrice;
+  @FXML
+  private DatePicker datePickerEventDate;
+  @FXML
+  private TableColumn<ResortEvent, String> columnEvent;
+  @FXML
+  private TextArea textAreaEventDes;
+  @FXML
+  Button addEventButton, removeEventButton, updateEventButton;
+
+  @FXML void addEvent (ActionEvent e){
+    //eventName= textfieldEventName.getText();
+    ResortEvent newEvent = new ResortEvent(textfieldEventName.getText(),datePickerEventDate.getValue().toString(),
+        Double.parseDouble(textFieldEventPrice.getText()),textAreaEventDes.getText());
+    eventList.add(newEvent);
+
+    ObservableList<ResortEvent> eventView = FXCollections.observableArrayList(eventList);
+    tableViewEvents.setItems(eventView);
+    new WriteEvent();
+    System.out.println("here");
+    populateSummaryReports();
+
+  }
+  @FXML void deleteEvent (ActionEvent e){
+
+  }
+  @FXML void updateEvent (ActionEvent e){
+
+  }
+
+  @FXML
   void initialize() {
     /**
      * This method is excuted first, before the window loads.
      */
-    Global.currentTitle="Ruby Resort: Manager View";
+    //Global.currentTitle="Ruby Resort: Manager View";
+    ObservableList<ResortEvent> eventsView = FXCollections.observableArrayList(eventList);
+    columnEvent.setCellValueFactory(cellData -> cellData.getValue().getNameProperty()); //set Cellfactory for  room column
+
+    tableViewEvents.setItems(eventsView); //Tableview gets elements from roomsView list
+
+    tableViewEvents.setOnMouseClicked(new EventHandler<MouseEvent>() {
+      @Override
+      public void handle(MouseEvent event) {
+        ResortEvent eventClickedOn = tableViewEvents.getSelectionModel().getSelectedItem(); //set the current room clicked on
+        textfieldEventName.setText(eventClickedOn.getName()); //Update textfield with new room type
+        textFieldEventPrice.setText("" + eventClickedOn.getPrice());//Update textfield with new room price
+        textAreaEventDes.setText(eventClickedOn.getEventDescription());
+
+        datePickerEventDate.setValue(LocalDate.parse(eventClickedOn.getDate()));
+        selectedEvent = eventClickedOn;
+      }
+    });
+
+
     ObservableList<Room> roomsView = FXCollections.observableArrayList(roomList);
     roomTableColumn.setCellValueFactory(cellData -> cellData.getValue().getnameProperty()); //set Cellfactory for  room column
 

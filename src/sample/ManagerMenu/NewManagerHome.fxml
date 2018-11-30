@@ -7,13 +7,14 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="389.0" prefWidth="454.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ManagerMenu.ManagerHomeController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="397.0" prefWidth="464.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ManagerMenu.ManagerHomeController">
    <children>
-      <TabPane prefHeight="389.0" prefWidth="454.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane prefHeight="397.0" prefWidth="464.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab text="Employee Info">
             <content>
@@ -46,6 +47,37 @@
                   </AnchorPane>
             </content>
           </Tab>
+            <Tab text="Event Info">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="tableViewEvents" layoutX="14.0" layoutY="39.0" prefHeight="279.0" prefWidth="167.0">
+                           <columns>
+                              <TableColumn fx:id="columnEvent" prefWidth="166.0" text="Events" />
+                           </columns>
+                        </TableView>
+                        <Label layoutX="31.0" layoutY="14.0" text="Select a Event to Edit:">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="textfieldEventName" layoutX="253.0" layoutY="39.0" prefHeight="25.0" prefWidth="138.0" />
+                        <Label layoutX="202.0" layoutY="43.0" text="Name:" />
+                        <Label layoutX="204.0" layoutY="78.0" text="Price $:" />
+                        <TextField fx:id="textFieldEventPrice" layoutX="253.0" layoutY="74.0" prefHeight="25.0" prefWidth="56.0" />
+                        <Button fx:id="updateEventButton" layoutX="197.0" layoutY="269.0" mnemonicParsing="false" onAction="#updateEvent" prefHeight="25.0" prefWidth="95.0" text="Update Event" />
+                        <Button fx:id="removeEventButton" layoutX="335.0" layoutY="234.0" mnemonicParsing="false" onAction="#deleteEvent" prefHeight="25.0" prefWidth="95.0" text="Delete Event" />
+                        <Button fx:id="addEventButton" layoutX="197.0" layoutY="234.0" mnemonicParsing="false" onAction="#addEvent" prefHeight="25.0" prefWidth="95.0" text="Add Event" />
+                        <Button fx:id="signoutButton" layoutX="382.0" layoutY="318.0" mnemonicParsing="false" onAction="#signOut" text="Signout" />
+                        <Button layoutX="335.0" layoutY="269.0" mnemonicParsing="false" onAction="#clearFields" prefHeight="25.0" prefWidth="95.0" text="Clear Fields" />
+                        <Label layoutX="204.0" layoutY="110.0" text="Date:" />
+                        <Label layoutX="204.0" layoutY="138.0" text="Event Description:" />
+                        <TextArea fx:id="textAreaEventDes" layoutX="192.0" layoutY="159.0" prefHeight="68.0" prefWidth="262.0" />
+                        <DatePicker fx:id="datePickerEventDate" layoutX="254.0" layoutY="106.0" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
           <Tab text="Room Info">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">

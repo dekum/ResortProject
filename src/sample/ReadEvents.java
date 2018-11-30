@@ -23,6 +23,9 @@ public class ReadEvents {
 
     int lineNumber = 0;
     int lineNumberForRoom=0;
+    int lineNumberforEventDes=0;
+    String eventDes ="";
+    Boolean startEventDes = false;
     Boolean passedLine = false;
     ResortEvent creatEvent= new ResortEvent();
     while(scanner.hasNextLine())
@@ -56,14 +59,36 @@ public class ReadEvents {
             creatEvent.setDateproperty(currentLine);
 
           }
+          if (lineNumberForRoom==3){
+            //Event Price
+            creatEvent.setPrice(Double.parseDouble(currentLine));
+           // creatEvent.setDateproperty(currentLine);
+
+          }
+          if (startEventDes){
+            eventDes +="\n" +currentLine;
+
+          }
+          if (lineNumberForRoom==4){
+            //Event Description
+
+            creatEvent.setEventDescription(currentLine);
+            // creatEvent.setDateproperty(currentLine);
+            startEventDes= true;
+            eventDes += currentLine;
+          }
+
 
 
 
         }else {
           //Okay stop, current room data is over
          // System.out.println("End of Room Data");
+          creatEvent.setEventDescription(eventDes);
           events.add(creatEvent);
+          eventDes ="";//clearing
           passedLine=false;
+          startEventDes=false;
 
         }
         lineNumberForRoom++;
