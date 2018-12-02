@@ -28,7 +28,7 @@ If the textfiles arent downloaded, then the program will run on a default datase
 # Images
 Images of Login Screen, Sign up Screen, Guest View, Manager View
 <hr>
-![alt text](/images/Loginpage.png)
+![alt text](https://github.com/dekum/ResortProject/blob/master/images/Loginpage.png?raw=true)
 
 
 
