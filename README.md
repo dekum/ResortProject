@@ -28,7 +28,8 @@ If the textfiles arent downloaded, then the program will run on a default datase
 # Images
 Images of Login Screen, Sign up Screen, Guest View, Manager View
 <hr>
-![alt text](https://github.com/dekum/ResortProject/blob/master/images/Loginpage.png?raw=true)
+![Gui Picture](https://github.com/dekum/ResortProject/blob/master/images/Loginpage.png)<br>
+The login screen, here the user can select the Guest or Manager tab to log in as respective user, the ruby is the signup button and will open the Sign Up Screen
 
 
 
