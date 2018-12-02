@@ -1,6 +1,16 @@
 # ResortProject
+![Image](https://github.com/dekum/ResortProject/blob/master/src/sample/icons8-beach-filled-50.png?raw=true)
 Group Project for Software Engineering Fundamentals
-Contributors:
+
+
+# Table of Contents
+- [Summary](#Summary)
+- [Contributors)(#Contributors)
+- [How To Install](#How_to_Install)
+- [Images](#Images)
+- [Demo](#demo)
+
+# Contributors:
 Team Name: Aces
 * Nicolo Martina - Assisted in both back-end and front-end development and oversaw any changes, njmartina4082@eagle.fgcu.edu
 * Philemon Petit-Frere - Lead back-end programmer,  ppetitfrere9554@eagle.fgcu.edu 
@@ -8,16 +18,9 @@ Team Name: Aces
 * Brad Larson - Assisted in back-end coding, lead SQA tester, blarson1953@eagle.fgcu.edu 
 * Austin Horne - Assisted in program functionality, SQA tester, adhorne0633@eagle.fgcu.edu 
 
-## Table of Contents
-- [Summary](#Summary)
-- [How To Install](#How_to_Install)
-- [Images](#Images)
-- [Demo](#demo)
-    
-
 
 # Summary
-<p>This program demonstrate a GUI based program that allows user to login as a guest or a manager for a Resort. A user can create a new guest account, providing username, password and other credentials.  A guest can pick how many days, and what room they wish to book, and purchase said room. They can then be able to view their purchase history. While the Manager is able to edit, add, or move the Rooms, Events and Employees. The information is stored in 5 separate text files and using the FileReader function, the data is stored even if the program is closed..</p>
+<p>This program demonstrate a GUI based program that allows user to login as a guest or a manager for a Resort. A user can create a new guest account, providing username, password and other credentials.  A guest can pick how many days, and what room they wish to book, and purchase said room. They can then be able to view their purchase history. While the Manager is able to edit, add, or move the Rooms, Events and Employees. The information is stored in 5 separate text files and using the FileReader function, the data is stored even if the program is closed.</p>
 
 
 # How to Install
