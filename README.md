@@ -32,18 +32,16 @@ Images of Login Screen, Sign up Screen, Guest View, Manager View
 The login screen, here the user can select the Guest or Manager tab to log in as respective user, the ruby is the signup button and will open the Sign Up Screen
 ![Gui Picture](https://github.com/dekum/ResortProject/blob/master/images/SignupPage.png)<br>
 This is where the user creates a new account, they must enter a valid username and password. The program will highlight the error if the user fills out a textfield incorrectly. The Date of Birth calender automatically sets the date 18 years from the current date because users must be 18 or older to signup.
-<p align="center">
-  <img  src=https://github.com/dekum/ResortProject/blob/master/images/GuestViewPage.png />
-</p>
-When the user sucessfully logs in this see this window. In the Guest View the user can select the date In and date Out using the datePicker function of javafx. When the user clicks "View Rooms" the rooms are showned the lower middle gray box The price per day is displayed also. If the user approves, they can click bookroom and the payment screen shows up. The User enters credit information and the room is successfully purchased. Then the "Purchase History" button appears in the bottom right, when the user can see the room they purchased.<br>
+![Gui Picture](https://github.com/dekum/ResortProject/blob/master/images/GuestViewPage.png)<br>
+When the user sucessfully logs in this see this window. In the Guest View the user can select the date In and date Out using the datePicker function of javafx. <br>When the user clicks "View Rooms" the rooms are showned the lower middle gray box. The price per day is displayed also. If the user approves, they can click bookroom and the payment screen shows up. The User enters credit information and the room is successfully purchased. <br>Then the "Purchase History" button appears in the bottom right, when the user can see the room they purchased.<br>
 ![Gui Picture](https://github.com/dekum/ResortProject/blob/master/images/PurchaseHistoryPage.png)<br>
 This window displays the room information the user booked.<br>
 ![Gui Picture](https://github.com/dekum/ResortProject/blob/master/images/ManagerViewEmployee.png)<br>
-If user logins as Manager, they can edit employee info fields via Add,Update and Remove Employee buttons.
+If user logins as Manager, they can edit employee info fields via Add,Update and Remove Employee buttons.<br>
 ![Gui Picture](https://github.com/dekum/ResortProject/blob/master/images/ManagerViewRooms.png)<br>
-User can edit room information, the type of room and the price of it. These rooms are connected and displaye to the GuestView.
+User can edit room information, the type of room and the price of it. These rooms are connected and displaye to the GuestView.<br>
 ![Gui Picture](https://github.com/dekum/ResortProject/blob/master/images/ManagerViewEvents.png)<br>
-User can edit event information. Events have a name,price, description and date.
+User can edit event information. Events have a name,price, description and date.<br>
 ![Gui Picture](https://github.com/dekum/ResortProject/blob/master/images/ManagerViewSummary.png)<br>
 This is the summary page, it keeps count of all events, rooms and employees. it updates automatically if any room event or employee is added or removed.
 # Demo
