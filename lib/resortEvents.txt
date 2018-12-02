@@ -1,7 +1,7 @@
 |_Start_|
 DisneyLand
-18-11-29
-0.0
+2018-11-29
+3.0
 Dec12
  
  Description.
@@ -9,8 +9,8 @@ Dec12
 |_Start_|
 Crab Race
 2018-11-30
-0.0
-D
+3.0
+Gamble on our professional racing crabs.
 |_End_|
 |_Start_|
 Karaoke
@@ -25,20 +25,22 @@ Boat Show
 
 |_End_|
 |_Start_|
-ArtWalk
-2018-12-05
-0.0
-
-|_End_|
-|_Start_|
 Car Show
 2018-12-09
 0.0
 
 |_End_|
 |_Start_|
-EventName
-2018-11-15
-2.0
-Des:
+Race Cars
+2018-12-28
+126.0
+fine drinks
+and dining
+and driving.
+|_End_|
+|_Start_|
+ArtWalk
+2018-12-05
+300.0
+Showcase artwork
 |_End_|

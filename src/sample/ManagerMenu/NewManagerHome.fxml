@@ -66,10 +66,10 @@
                         <Label layoutX="204.0" layoutY="78.0" text="Price $:" />
                         <TextField fx:id="textFieldEventPrice" layoutX="253.0" layoutY="74.0" prefHeight="25.0" prefWidth="56.0" />
                         <Button fx:id="updateEventButton" layoutX="197.0" layoutY="269.0" mnemonicParsing="false" onAction="#updateEvent" prefHeight="25.0" prefWidth="95.0" text="Update Event" />
-                        <Button fx:id="removeEventButton" layoutX="335.0" layoutY="234.0" mnemonicParsing="false" onAction="#deleteEvent" prefHeight="25.0" prefWidth="95.0" text="Delete Event" />
+                        <Button fx:id="removeEventButton" layoutX="335.0" layoutY="269.0" mnemonicParsing="false" onAction="#deleteEvent" prefHeight="25.0" prefWidth="95.0" text="Delete Event" />
                         <Button fx:id="addEventButton" layoutX="197.0" layoutY="234.0" mnemonicParsing="false" onAction="#addEvent" prefHeight="25.0" prefWidth="95.0" text="Add Event" />
                         <Button fx:id="signoutButton" layoutX="382.0" layoutY="318.0" mnemonicParsing="false" onAction="#signOut" text="Signout" />
-                        <Button layoutX="335.0" layoutY="269.0" mnemonicParsing="false" onAction="#clearFields" prefHeight="25.0" prefWidth="95.0" text="Clear Fields" />
+                        <Button layoutX="335.0" layoutY="234.0" mnemonicParsing="false" onAction="#clearFields" prefHeight="25.0" prefWidth="95.0" text="Clear Fields" />
                         <Label layoutX="204.0" layoutY="110.0" text="Date:" />
                         <Label layoutX="204.0" layoutY="138.0" text="Event Description:" />
                         <TextArea fx:id="textAreaEventDes" layoutX="192.0" layoutY="159.0" prefHeight="68.0" prefWidth="262.0" />

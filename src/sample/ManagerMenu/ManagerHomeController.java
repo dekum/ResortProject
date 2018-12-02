@@ -80,24 +80,132 @@ public class ManagerHomeController extends Controller {
   Button addEventButton, removeEventButton, updateEventButton;
 
   @FXML void addEvent (ActionEvent e){
-    //eventName= textfieldEventName.getText();
-    ResortEvent newEvent = new ResortEvent(textfieldEventName.getText(),datePickerEventDate.getValue().toString(),
-        Double.parseDouble(textFieldEventPrice.getText()),textAreaEventDes.getText());
-    eventList.add(newEvent);
+    String errorMessage = validateEventInputs();
 
-    ObservableList<ResortEvent> eventView = FXCollections.observableArrayList(eventList);
-    tableViewEvents.setItems(eventView);
-    new WriteEvent();
-    System.out.println("here");
-    populateSummaryReports();
+    if (!errorMessage.equals("")){
+      //There was an error, print popup displaying errors
+      new Global().displayPopUpWindow(errorMessage);
+    }
+    else {
+      //Inputs are fine, add employee
+      String eventName = textfieldEventName.getText();
+      String eventPrice = textAreaEventDes.getText();
+      Double price = Double.parseDouble(textFieldEventPrice.getText());
+
+      LocalDate eventDate = datePickerEventDate.getValue();
+
+      ResortEvent newEvent = new ResortEvent(textfieldEventName.getText(),datePickerEventDate.getValue().toString(),
+          Double.parseDouble(textFieldEventPrice.getText()),textAreaEventDes.getText());
+      eventList.add(newEvent);
+
+      ObservableList<ResortEvent> eventView = FXCollections.observableArrayList(eventList);
+      tableViewEvents.setItems(eventView);
+      new WriteEvent();
+      new Global().displayPopUpWindow("Event Added.");
+      populateSummaryReports();
+    }
 
   }
   @FXML void deleteEvent (ActionEvent e){
+    if (selectedEvent !=null){
+      eventList.remove(selectedEvent); //Remove the object stored in SelectedRoom from the roomList Array
+      selectedEvent= null;
+      ObservableList<ResortEvent> eventView = FXCollections.observableArrayList(eventList); //reset list, to show change
+      tableViewEvents.setItems(eventView);//clear textfield's data
+      textfieldEventName.setText("");
+      textFieldEventPrice.setText("");
+      textAreaEventDes.setText("");
+      datePickerEventDate.setValue(null);
+      new WriteEvent();
+      populateSummaryReports();
+    }else{
+      new Global().displayPopUpWindow("No Room was selected.");
+    }
 
   }
   @FXML void updateEvent (ActionEvent e){
 
+    String errorMessage = validateEventInputs();
+    if(errorMessage.equals("")){
+      for (ResortEvent event: eventList
+      ) {
+        if (event.toString().equals(selectedEvent.toString())){
+          event.setName(textfieldEventName.getText());
+          event.setNameproperty(textfieldEventName.getText());
+          event.setEventDescription(textAreaEventDes.getText());
+          event.setPrice(Double.parseDouble(textFieldEventPrice.getText()));
+          event.setDate(datePickerEventDate.getValue().toString());
+          event.setDateproperty(event.getDate());
+
+          ObservableList<ResortEvent> eventView = FXCollections.observableArrayList(eventList);
+          tableViewEvents.setItems(eventView);
+          new WriteEvent();
+          new Global().displayPopUpWindow("Event updated.");
+          populateSummaryReports();
+
+        }
+
+      }
+    }else{
+      new Global().displayPopUpWindow(errorMessage);
+
+    }
+
+
+
+
+
+
   }
+
+  public String validateEventInputs(){
+    String errorMessage="";
+    Global.currentScene = signoutButton.getScene();
+
+    double priceOfEvent = -1;
+
+
+
+
+
+    if (textfieldEventName.getText().equals("")){
+
+      errorMessage += "Please Enter New Event Name\n";
+
+    }
+
+    if(textFieldEventPrice.getText().equals("")){
+      errorMessage += "Please Enter New Event Price\n";
+
+    }else {
+      //Check if price is valid
+      Boolean successful12 = true;
+      try {
+        //do this after checking if wagetextfield isnt empty or another error happens.
+        priceOfEvent = Double.parseDouble(textFieldEventPrice.getText());
+      }
+      catch (NullPointerException | NumberFormatException exception ) {
+        //numberformatexpection if user accidently enters a letter
+        successful12 = false;
+        errorMessage+="Event Price input is invalid.\n";
+      }
+
+
+    }
+
+    if (datePickerEventDate.getValue()==null){
+      errorMessage += "Please Enter New Event Date\n";
+
+    }
+    if(textAreaEventDes.getText().equals("")){
+
+      errorMessage += "Please Enter New Event Description\n";
+
+    }
+
+    return errorMessage;
+  }
+
 
   @FXML
   void initialize() {
@@ -426,27 +534,9 @@ public class ManagerHomeController extends Controller {
         }
     }
 
-
-
-
-
     }else{
  new Global().displayPopUpWindow(errorMessage);
     }
-//    for (Employee e: empList
-//    ) {
-//      System.out.println(e.getFirstName());
-//
-//    }
-
-//    Employee updatedEmp = new Employee(selectedEmp.getFirstName(),selectedEmp.getLastName(),
-//        selectedEmp.getWage(),selectedEmp.getDOB());
-////    empList.remove(selectedEmp);
-//    empList.add(updatedEmp);
-
-//    employeeTableView.getColumns().get(0).setVisible(false);
-//    employeeTableView.getColumns().get(0).setVisible(true);
-
 
 
 
@@ -462,12 +552,17 @@ public class ManagerHomeController extends Controller {
     DOB.setValue(null);
     roomTypeText.setText("");
     roomPriceText.setText("");
+    textfieldEventName.setText("");
+    textFieldEventPrice.setText("");
+    textAreaEventDes.setText("");
+    datePickerEventDate.setValue(null);
 
   }
 
   @FXML
   void signOut(ActionEvent event) {
     Global.currentScene = signoutButton.getScene();//
+    Global.currentTitle="Ruby Resort: Login Window";
     new Global().openNewWindow(WindowLocation.LOGINMENU);
   }
 

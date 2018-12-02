@@ -138,12 +138,13 @@ public class Global {
     Parent p = Loader.getRoot();
     stage = new Stage();
 
-    if (currentGuestLoggedIn != null) {
-      stage.setTitle(
-          "Welcome " + currentGuestLoggedIn.getUserName() + "!"); //Maybe set title in initialize
-    } else {
-      stage.setTitle("Welcome");
-    }
+//    if (currentGuestLoggedIn != null) {
+//      stage.setTitle(
+//          "Welcome " + currentGuestLoggedIn.getUserName() + "!"); //Maybe set title in initialize
+//    } else {
+//      stage.setTitle("Welcome");
+//    }
+    stage.setTitle(currentTitle);
     stage.setScene(new Scene(p));
     stage.show(); //Opens new Window
 

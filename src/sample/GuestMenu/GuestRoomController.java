@@ -80,9 +80,8 @@ public class GuestRoomController extends Controller {
 
   @FXML
   void initialize() {
-    Global.currentTitle="Ruby Resort: Manager View";
 
-    System.out.println(Global.currentGuestLoggedIn+Global.roomList.toString());
+
     ObservableList<ResortEvent> event2 = FXCollections.observableArrayList(Global.eventList);
     eventTableColumn.setCellValueFactory(cellData -> cellData.getValue().getNameProperty());
     eventDateColumn.setCellValueFactory(cellData -> cellData.getValue().getDateProperty());
@@ -215,6 +214,7 @@ public class GuestRoomController extends Controller {
       success1= false;
     }
     if (success1){
+      Global.currentTitle="Ruby Resort: Book Room";
       Global.currentScene = signoutButton.getScene();
       new Global().openNewWindow(WindowLocation.PAYMENT);
     }
@@ -227,6 +227,7 @@ public class GuestRoomController extends Controller {
   @FXML
   public void handleSignout(ActionEvent event) {
     Global.currentScene = signoutButton.getScene();//
+    Global.currentTitle="Ruby Resort: Login Menu";
     new Global().openNewWindow(WindowLocation.LOGINMENU);
     Global.selectedRoom= null;
   }
@@ -234,6 +235,7 @@ public class GuestRoomController extends Controller {
   @FXML
   public void handleHistory(ActionEvent event){
     Global.currentScene = signoutButton.getScene();//
+    Global.currentTitle="Ruby Resort: Purchase History";
     new Global().openNewWindow(WindowLocation.ACCOUNTWINDOW);
     Global.selectedRoom= null;
 

@@ -121,6 +121,7 @@ public class LoginMenuController extends Controller implements Initializable {
     Global.currentScene = buttonExit1
         .getScene();//Sets the current Scene for Global Class, so it know
     //what window to close
+    Global.currentTitle="Register New Guest";
     new Global().openNewWindow(WindowLocation.SIGNUP); //Open new SignupScreen window
 
   }
@@ -148,6 +149,7 @@ public class LoginMenuController extends Controller implements Initializable {
   public void openGuestMenu(Guest g1) throws IOException {
     currentGuest = g1;
     updateGlobal();
+    Global.currentTitle="Ruby Resort: Guest View";
     Global.currentScene = buttonExit1.getScene();
 
     new Global().openNewWindow(WindowLocation.GUESTMENUHOME);
@@ -156,6 +158,7 @@ public class LoginMenuController extends Controller implements Initializable {
   private void openManagerMenu(Guest gl) {
     currentGuest = gl;
     updateGlobal();
+    Global.currentTitle="Ruby Resort: Manager View";
     Global.currentScene = buttonExit1.getScene();//
 
     new Global().openNewWindow(WindowLocation.MANAGERMENU);

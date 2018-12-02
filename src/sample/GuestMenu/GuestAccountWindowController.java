@@ -39,6 +39,7 @@ public class GuestAccountWindowController implements Initializable {
   @FXML
   void handleExit(ActionEvent event){
     Global.currentScene = labelTotalCost.getScene();//
+    Global.currentTitle="Ruby Resort: Guest View";
     new Global().openNewWindow(WindowLocation.GUESTMENUHOME);
     Global.selectedRoom= null;
 
@@ -58,8 +59,8 @@ public class GuestAccountWindowController implements Initializable {
       imageViewRoom.setImage(image);
 
     }
-    labelFullName.setText(currentGuest.getFirstName()+" "+currentGuest.getLastName());
-    labelDOB.setText(currentGuest.getDateOfBirth());
+    //labelFullName.setText(currentGuest.getFirstName()+" "+currentGuest.getLastName());
+//    labelDOB.setText(currentGuest.getDateOfBirth());
     labelUserName.setText(currentGuest.getUserName());
 
 

@@ -255,6 +255,7 @@ public class SignupScreenController implements Initializable {
 
   @FXML
   void handleExit(ActionEvent event) {
+    Global.currentTitle="Ruby Resort: Login Window";
     Global.currentScene = buttonExit.getScene();//
 
     new Global().openNewWindow(WindowLocation.LOGINMENU);

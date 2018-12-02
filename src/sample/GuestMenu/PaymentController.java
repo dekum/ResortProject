@@ -83,6 +83,7 @@ public class PaymentController extends Controller {
   @FXML void handleQuit(ActionEvent event){
 
     Global.currentScene = confirmBook.getScene();
+    Global.currentTitle = "Ruby Resort:Guest View";
 
     new Global().openNewWindow(WindowLocation.GUESTMENUHOME);
   }

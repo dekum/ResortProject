@@ -126,7 +126,7 @@ public class Main extends Application {
     //Setting Defaults
 
     Scene scene = new Scene(root);
-    stage.setTitle("Login Page");
+    stage.setTitle("Ruby Resort: Login Page");
     stage.setScene(scene);
     stage.show();
   }

@@ -3,12 +3,12 @@ Nick
 Filecci
 16.8
 1994-03-23
-StringProperty [value: Nick Fileccia]
+StringProperty [value: Nick Filecci]
 |_End_|
 |_Start_|
 Chris
 Garcia
-15.5
+15.6
 1994-05-13
 StringProperty [value: Chris Garcia]
 |_End_|
