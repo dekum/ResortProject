@@ -17,15 +17,19 @@
 
 
 # Summary
+This program demostrate a GUI based program about logging in and booking rooms in a Resort.
 
 
 
-#How to Insteall
-
+#How to Install
+Needed Programs: Java IDE.
 
 
 #Images
+Images of Login Screen, Sign up Screen, Guest View, Manager View
 
 
 
 #Demo
+Gif of prgram wokring
+
