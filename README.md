@@ -5,7 +5,7 @@ Group Project for Software Engineering Fundamentals
 
 # Table of Contents
 - [Summary](#Summary)
-- [Contributors)(#Contributors)
+- [Contributors](#Contributors)
 - [How To Install](#How_to_Install)
 - [Images](#Images)
 - [Demo](#demo)
