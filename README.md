@@ -29,7 +29,7 @@ If the textfiles arent downloaded, then the program will run on a default datase
 Images of Login Screen, Sign up Screen, Guest View, Manager View
 <br>
 ![Gui Picture](https://github.com/dekum/ResortProject/blob/master/images/Loginpage.png)<br>
-The login screen, here the user can select the Guest or Manager tab to log in as respective user, the ruby is the signup button and will open the Sign Up Screen
+The login screen, here the user can select the Guest or Manager tab to log in as respective user, the ruby is the signup button and will open the Sign Up Screen<br>
 ![Gui Picture](https://github.com/dekum/ResortProject/blob/master/images/SignupPage.png)<br>
 This is where the user creates a new account, they must enter a valid username and password. The program will highlight the error if the user fills out a textfield incorrectly. The Date of Birth calender automatically sets the date 18 years from the current date because users must be 18 or older to signup.<br>
 ![Gui Picture](https://github.com/dekum/ResortProject/blob/master/images/GuestViewPage.png)<br>
