@@ -1,5 +1,5 @@
 |_Start_|
-DisneyLand
+ZombieCon
 2018-11-29
 3.0
 Dec12
@@ -31,16 +31,8 @@ Car Show
 
 |_End_|
 |_Start_|
-Race Cars
+Puppy Parade
 2018-12-28
 126.0
-fine drinks
-and dining
-and driving.
-|_End_|
-|_Start_|
-ArtWalk
-2018-12-05
-300.0
-Showcase artwork
+ 
 |_End_|
