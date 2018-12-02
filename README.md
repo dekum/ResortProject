@@ -10,7 +10,7 @@
 
 ## Table of Contents
 - [Summary](#Summary)
-- [How To Install](#How to Install)
+- [How To Install](#How)
 - [Images](#Images)
 - [Demo](#demo)
     
