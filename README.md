@@ -21,15 +21,15 @@ This program demostrate a GUI based program about logging in and booking rooms i
 
 
 
-#How to Install
+# How to Install
 Needed Programs: Java IDE.
 
 
-#Images
+# Images
 Images of Login Screen, Sign up Screen, Guest View, Manager View
 
 
 
-#Demo
+# Demo
 Gif of prgram wokring
 
