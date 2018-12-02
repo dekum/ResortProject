@@ -10,19 +10,18 @@
 
 ## Table of Contents
 - [Summary](#Summary)
-- [How To Install](#How to Install)
+- [How To Install](#How)
 - [Images](#Images)
 - [Demo](#demo)
     
 
 
 # Summary
-This program demostrate a GUI based program about logging in and booking rooms in a Resort.
-
+<p>This program demonstrate a GUI based program that allows user to login as a guest or a manager, and perform actions based on the account. A user can create a new guest account, providing username, password and other credentials.  A guest can pick how many days, and what room they wish to book, and purchase said room. They can then be able to view their purchase history. While the Manager is able to edit, add, or move the Rooms, Events and Employees. The information is stored in 5 separate text files, so the user can exit and reopen the program and the data will still exist.</p>
 
 
 # How to Install
-Needed Programs: Java IDE.
+Needed Programs: Java IDE, such as IntellJ IDEA or Eclipse.
 
 
 # Images
