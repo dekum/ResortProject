@@ -12,21 +12,17 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 /**
- * @author ggrab, pPetit Reosrt Project Main.java This project will allow guests to book rooms, and
- * Managers to manage employees and rooms This main file opens the LoginMenuController
+ * Main class to set scene and begin application
+ * Calls Read classes to get text file information
  */
 public class Main extends Application {
 
   @Override
   public void start(Stage stage) throws Exception {
-
     new ReadRooms();
     new ReadEmployee();
-
     new ReadEvents();
     Parent root = FXMLLoader.load(getClass().getResource("LoginMenu/LoginMenu.fxml"));
-    //Setting Defaults
-
     Scene scene = new Scene(root);
     stage.setTitle("Ruby Resort: Login Page");
     stage.setScene(scene);
