@@ -1,0 +1,50 @@
+|_Start_|
+1 Queen Bed
+true
+250.0
+sample/Pictures/1Queen.jpg
+null
+2000.0
+2018-11-27
+2018-12-05
+|_End_|
+|_Start_|
+Suite: 2 Queen Beds
+true
+500.0
+sample/Pictures/2Queen.jpg
+null
+500.0
+2018-12-02
+2018-12-03
+|_End_|
+|_Start_|
+Suite: 1 King Bed
+true
+525.0
+sample/Pictures/SuiteKing.jpg
+null
+525.0
+2018-12-01
+2018-12-02
+|_End_|
+|_Start_|
+Suite: 1 King Bed
+true
+525.0
+/sample/Pictures/SuiteQueen.jpg
+null
+525.0
+2018-12-02
+2018-12-03
+|_End_|
+|_Start_|
+asdf
+true
+333.0
+/sample/Pictures/SuiteQueen.jpg
+sample.Guest@48ce7cc7
+333.0
+2018-12-03
+2018-12-04
+|_End_|

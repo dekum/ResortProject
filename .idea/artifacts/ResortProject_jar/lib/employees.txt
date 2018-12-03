@@ -1,0 +1,42 @@
+|_Start_|
+Nick
+Filecci
+16.8
+1994-03-23
+StringProperty [value: Nick Filecci]
+|_End_|
+|_Start_|
+Chris
+Garcia
+15.6
+1994-05-13
+StringProperty [value: Chris Garcia]
+|_End_|
+|_Start_|
+Josh
+Hendry
+19.9
+1992-01-11
+StringProperty [value: Josh Hendry]
+|_End_|
+|_Start_|
+Gabe
+Thorn
+10.4
+1986-02-23
+StringProperty [value: Gabe Thorn]
+|_End_|
+|_Start_|
+Timmy
+Turner
+19.9
+1977-03-01
+StringProperty [value: Timmy Turner]
+|_End_|
+|_Start_|
+sdf
+sdf
+23.0
+2018-12-04
+StringProperty [value: sdf sdf]
+|_End_|
