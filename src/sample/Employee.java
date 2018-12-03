@@ -4,6 +4,11 @@ import java.time.LocalDate;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
+/**
+ * Class used for Employee info
+ * Contains first and last name, wage, and DOB
+ * StringProperty bothNames used for display in TableViews
+ */
 public class Employee {
     private String firstName;
     private String lastName;
@@ -57,8 +62,6 @@ public class Employee {
   public void setDOB(LocalDate DOB){
       this.DOB = DOB;
   }
-  //public String getName() { return name.get(); }
-
   public void setBothNamesProperty(String fName) {
     bothNamesProperty.set(fName);
   }
@@ -67,10 +70,6 @@ public class Employee {
     bothNamesProperty.set(firstName+" "+lastName);
       return bothNamesProperty; }
 
-//  public String getBothNamesProperty(){
-//      bothNamesProperty.set(firstName+" "+lastName);
-//    return bothNamesProperty.get();
-//  }
 public StringProperty getBothNamesPropertyForReader(){
   return bothNamesProperty; }
 

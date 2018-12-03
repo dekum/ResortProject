@@ -13,13 +13,6 @@ Garcia
 StringProperty [value: Chris Garcia]
 |_End_|
 |_Start_|
-Ariel
-Delgado
-12.9
-1993-08-03
-StringProperty [value: Ariel Delgado]
-|_End_|
-|_Start_|
 Josh
 Hendry
 19.9
@@ -39,4 +32,11 @@ Turner
 19.9
 1977-03-01
 StringProperty [value: Timmy Turner]
+|_End_|
+|_Start_|
+sdf
+sdf
+23.0
+2018-12-04
+StringProperty [value: sdf sdf]
 |_End_|

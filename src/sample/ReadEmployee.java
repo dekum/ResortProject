@@ -10,6 +10,12 @@ import java.util.Scanner;
 import sample.Employee;
 import sample.Global;
 
+/**
+ * Class used to read employee info from text file
+ * Utilizes scanner to iterate through text file
+ * Finds "Start" String and reads each line and sets to corresponding object value
+ * Adds new Employee to Global empList ArrayList of object 'Employee'
+ */
 public class ReadEmployee {
   ReadEmployee() {
 
@@ -24,8 +30,6 @@ public class ReadEmployee {
     String currentLine;
     ArrayList<Employee> emps = new ArrayList<>();
 
-
-    int lineNumber = 0;
     int lineNumberForEmployee=0;
     Boolean passedLine = false;
     Employee createEmployee= new Employee();
@@ -33,19 +37,11 @@ public class ReadEmployee {
     {
 
       currentLine = scanner.nextLine();//read next file line
-      lineNumber++;//increments
-      //System.out.println( currentLine);
       if(passedLine)
       {
-        //System.out.println("Worked!");
-        //Do other task after passing the line.
         if(!currentLine.equals("|_End_|"))
         {
-          //Read line of data for employee variable
 
-
-       //   System.out.println(currentLine + "-"+ lineNumber+ "-"+lineNumberForEmployee);
-          //passedLine =false;
           if (lineNumberForEmployee==1){
             //employee first name
             createEmployee.setFirstName(currentLine);
@@ -76,8 +72,6 @@ public class ReadEmployee {
 
 
         }else {
-          //Okay stop, current room data is over
-          //System.out.println("End of Employee Data");
           emps.add(createEmployee);
           passedLine=false;
 
@@ -94,21 +88,8 @@ public class ReadEmployee {
         lineNumberForEmployee=1; //starting from 1
         //Room has 5 fields currently, 1. First Name 2. Last Name 3.Wages (double) 4. DOB (Local Date) 5. BothNamese (StringProperty)
       }
-
-
-
     }
-    for (Employee e :emps
-    ) {
-//      System.out.println(e.getFirstName());
-//      System.out.println(e.getLastName());
-//      System.out.println(e.getWage());
-//      System.out.println(e.getDOB());
-//      System.out.println(e.getBothNamesProperty());
-
-    }
-
-    System.out.println("Employee Read");
+    //Sets Global Employee ArrayList for use in other windows
     Global.empList= emps;
   }
 }

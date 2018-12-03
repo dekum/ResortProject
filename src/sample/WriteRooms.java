@@ -1,15 +1,16 @@
 package sample;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.Writer;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
 
+/**
+ * Class used to write new room to text file
+ * Gets current list of rooms from Global ArrayList roomList
+ * FileWriter appends textfile with new room information
+ */
 public class WriteRooms {
 
   public WriteRooms(){
@@ -24,7 +25,7 @@ public class WriteRooms {
     PrintWriter printWriter = new PrintWriter(fileWriter);
 
 
-    ArrayList<Room> rooms = (ArrayList<Room>) Global.roomList;
+    ArrayList<Room> rooms = Global.roomList;
 
     for (Room r :rooms
     ) {
@@ -48,51 +49,6 @@ public class WriteRooms {
     } catch (IOException e) {
       e.printStackTrace();
     }
-
-    File roomFile = new File("lib/rooms.txt");
-    Scanner scanner = null;
-    try {
-      scanner = new Scanner(roomFile);
-    } catch (FileNotFoundException e) {
-      System.out.println("File not found");
-      e.printStackTrace();
-    }
-    String currentLine;
-    int lineNumber = 0;
-    Boolean passedLine = false;
-    while(scanner.hasNextLine())
-    {
-      currentLine = scanner.nextLine();
-      lineNumber++;
-      //System.out.println( currentLine);
-      if(passedLine)
-      {
-        //System.out.println("Worked!");
-        //Do other task after passing the line.
-        if(!currentLine.equals("|_End_|"))
-        {
-          //Not the end of the room data
-          //Ok Print room data
-          System.out.println(currentLine);
-          //passedLine =false;
-
-        }else {
-          //Okay stop, current room data is over
-          System.out.println("End of Room Data");
-          passedLine=false;
-
-        }
-
-      }
-
-      if(currentLine.equals("|_Start_|"))
-      {
-        //Do task
-        passedLine = true;
-      }
-
-
-
-    }
   }
+
 }

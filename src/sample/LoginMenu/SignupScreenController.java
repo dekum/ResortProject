@@ -6,10 +6,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -22,16 +20,14 @@ import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.util.Callback;
-import sample.EmployeeOld;
 import sample.Global;
 import sample.Global.WindowLocation;
-import sample.Guest;
 import sample.Room;
 import sample.UserFileUtilities;
 
 /**
- * ScreenupScreenController.java This will allow a user to create a new Guest Account They can input
- * First/Last Name, username password, Date of birth. The Program will verify valid inputs for
+ * Screen for guest and manager sign up page
+ * First/Last Name, username password, Date of birth. The class will verify valid inputs for
  * username and password with rules displayed on the screen If the inputs are valid a new guest
  * account is created and the user can login with it. When user successfully makes new a account,
  * username field in LoginMenu is automatically filled.
@@ -39,49 +35,13 @@ import sample.UserFileUtilities;
 
 public class SignupScreenController implements Initializable {
 
-  private ArrayList<String> usernameList;
-  // private ArrayList<String> usernameList =super.getUsernameList();
   public List<Room> rooms;
-  private ArrayList<String> passwordList;
-  private ArrayList<Guest> guestList;
-  private Guest currentGuest;
-  private Room roomClickedOn;
-  private int daysStaying;
-  private boolean initializedRooms = false;
-  private ObservableList<EmployeeOld> data;
-  private final String pattern = "yyyy-MM-dd";
-
-  public ArrayList<String> getPasswordList() {
-    return passwordList;
-  }
-
-  public void setPasswordList(ArrayList<String> passwordList) {
-    this.passwordList = passwordList;
-  }
-
-  public ArrayList<Guest> getGuestList() {
-    return guestList;
-  }
-
-  public void setGuestList(ArrayList<Guest> guestList) {
-    this.guestList = guestList;
-  }
-
-  public ArrayList<String> getUsernameList() {
-    return usernameList;
-  }
-
-  public void setUsernameList(ArrayList<String> usernameList) {
-    this.usernameList = usernameList;
-  }
-
   @FXML
   Button buttonSubmit, buttonExit;
   @FXML
   TextField textFieldUserName,
       textFieldFirstName, textFieldLastName,
       textFieldForPassword, textFieldForPasswordConfirm;
-
   @FXML
   DatePicker datePickerDOB;
   @FXML
@@ -93,30 +53,20 @@ public class SignupScreenController implements Initializable {
   @FXML
   Text textUserNameRule, textPasswordRule;
 
-  public void createGuest(String n, String pw) {
-
-  }
-
+  /*
+  Method called when "Submit" button is pressed
+  Checks for valid input, creates new user
+  First name, last name, and DOB are not saved anywhere
+   */
   @FXML
   void handleSubmit(ActionEvent event) {
-    String userName, password, firstName, lastName, dob;
+    String userName, password;
     userName = textFieldUserName.getText();
     password = passwordField.getText();
-    firstName = textFieldFirstName.getText();
-    lastName = textFieldLastName.getText();
-
-    //Calls method to create new Guest option nothing special
 
     Boolean isValid = ValidateInputs();
     if (isValid) {
-      //if true then create a new guest
-      dob = datePickerDOB.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-      Guest createGuest = new Guest(userName, password, firstName, lastName, dob);
-      getUsernameList().add(userName);// No need for method this already adds it in
-      getPasswordList().add(password);
-      getGuestList().add(createGuest);
-      Global.currentGuestLoggedIn = createGuest; //May Delete if this is causing errors
-      /**
+      /*
        * Using UserFileUtilities class to access file in library
        * Must use initialize() method in order to avoid NullPointerException error
        */
@@ -127,25 +77,20 @@ public class SignupScreenController implements Initializable {
         System.out.println("Error");
       }
 
-      //I did so LoginMenu's username field will be set the createdGuest's username for user friendlyness
       labelSubmitSuccess.setText("Success");
-      System.out.println(
-          "UserName: " + userName + "\npw: " + password + "\nFname" + firstName + "\nLastname:"
-              + lastName
-              + "\nDOB:" + dob);
       Global.currentScene = buttonExit.getScene();
       new Global().displayPopUpWindow("Signup Complete! Welcome to Ruby Resort");
       handleExit(event);
 
 
-    } else {
-      System.out.println("WRong");
-
     }
-
 
   }
 
+  /*
+  Validates user inputs
+  Checks for necessary username and password inputs
+   */
   private Boolean ValidateInputs() {
     String userName, password, firstName, lastName, dob;
     userName = textFieldUserName.getText();
@@ -153,7 +98,6 @@ public class SignupScreenController implements Initializable {
     String passwordConfirm = passwordFieldPasswordConfirm.getText();
     firstName = textFieldFirstName.getText();
     lastName = textFieldLastName.getText();
-    // dob = datePickerDOB.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
     textUserNameRule.setFill(Color.BLACK);
     textPasswordRule.setFill(Color.BLACK);
     Boolean allInputsValid = true;
@@ -162,10 +106,8 @@ public class SignupScreenController implements Initializable {
       dob = datePickerDOB.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 
     } catch (java.lang.RuntimeException exception) {
-      //this may be unnecessary
       datePickerDOB.requestFocus();
       labelSubmitSuccess.setText("Date is Invalid");
-      System.out.println("Invalid date yo");
       allInputsValid = false;
     }
 
@@ -253,6 +195,9 @@ public class SignupScreenController implements Initializable {
     return allInputsValid;
   }
 
+  /*
+  Takes user back to login screen
+   */
   @FXML
   void handleExit(ActionEvent event) {
     Global.currentTitle="Ruby Resort: Login Window";
@@ -263,14 +208,12 @@ public class SignupScreenController implements Initializable {
 
   }
 
+  /*
+  Initializes text fields to work with password fields
+  Makes it so user cannot select a date that would make them less than 18 years old
+   */
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-    this.usernameList = Global.usernameList;
-    this.passwordList = Global.passwordList;
-    this.guestList = Global.guestList;
-    this.rooms = Global.rooms;
-    this.data = Global.data;
-
     TextField textFieldForPasswordManager = textFieldForPasswordConfirm;
     PasswordField passwordFieldManager = passwordFieldPasswordConfirm;
 
@@ -293,15 +236,6 @@ public class SignupScreenController implements Initializable {
     textFieldForPasswordManager.textProperty()
         .bindBidirectional(passwordFieldManager.textProperty()); //MAkes two textfie
 
-    // Actual password field
-    //final PasswordField passwordField = new PasswordField();//Password Field shows ***
-
-    // CheckBox checkBox = new CheckBox("Show/Hide password");//Create checkbox that will toggle
-
-    // Bind properties. Toggle textField and passwordField
-    // visibility and managability properties mutually when checkbox's state is changed.
-    // Because we want to display only one component (textField or passwordField)
-    // on the scene at a time.
     textFieldForPassword.managedProperty().bind(
         checkBox1.selectedProperty());// TextField's setManageProperty will be changed by CheckBox
     textFieldForPassword.visibleProperty().bind(

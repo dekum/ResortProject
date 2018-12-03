@@ -23,31 +23,20 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
-import javax.swing.Action;
-import sample.Controller;
 import sample.Global.WindowLocation;
 import sample.Global;
 import sample.ResortEvent;
 import sample.Room;
 
 
-/**
- * Notes:ppEtit GuestRoomController.java NEED TO CHNAGE TO GUESTROOMMENU
- *
- * This controller controls the GuestRoom.fxml This allows the gues to: View Room List. Book Room.
- *
- * User can click through list of rooms, the window will update the information  about the room.
- * What updates are: Image(Not yet), Availability, price per room. If room is available, then user
- * can enter daysStaying and book room
- *
- * Otherwise the Guest can logout, and their information is saved.
- *
- * The program is coded so it know what room is selected when booking room. All room information can
- * be seen in Manager Window.
- *
- * @author ggraber7402
- */
-public class GuestRoomController extends Controller {
+  /**
+   * Main guest menu
+   * User must select check in and check out date, then hit view rooms button
+   * Rooms are displayed on TableView and description is shown when clicked on
+   * Events are displayed on TableView on the right
+   * Once a room is chosen, user can book room which takes them to Payment screen
+   **/
+public class GuestRoomController {
 
   @FXML
   private Label labelPricePerDay;
@@ -78,6 +67,11 @@ public class GuestRoomController extends Controller {
   @FXML
   Button buttonPaymentHistory;
 
+  /*
+  Method called when window is opened
+  Gets the ArrayList for events from Global class
+  Creates an ObservableList for display in TableView
+   */
   @FXML
   void initialize() {
 
@@ -87,13 +81,16 @@ public class GuestRoomController extends Controller {
     eventDateColumn.setCellValueFactory(cellData -> cellData.getValue().getDateProperty());
     eventTableView.setItems(event2);
 
+    //Set to invisible until user clicks "view rooms" button
     roomTableView.setVisible(false);
     roomPreviewLabel.setVisible(false);
     roomPriceLabel.setVisible(false);
     bookRoombutton.setVisible(false);
 
+    //Check in date set to current date
     checkInDate.setValue(LocalDate.now());
 
+    //Payment history button not available until user books a room
     if (Global.currentGuestLoggedIn.getRoomRented() ==null){
 
       buttonPaymentHistory.setVisible(false);
@@ -105,6 +102,11 @@ public class GuestRoomController extends Controller {
 
 
 
+    /*
+    Code used to set available DatePicker boxes
+    Doesn't allow you to select before current date for check in
+    Once check in is selected, check out must be at least a day after
+     */
     final Callback<DatePicker, DateCell> dayCellFactory =
         new Callback<DatePicker, DateCell>() {
           @Override
@@ -173,6 +175,11 @@ public class GuestRoomController extends Controller {
 
   }
 
+  /*
+  Method called when user clicks "view room" button
+  Gets the ArrayList for rooms from Global class
+  Creates an ObservableList for display in TableView
+   */
   @FXML
   void populateRooms(ActionEvent event) {
 
@@ -186,6 +193,7 @@ public class GuestRoomController extends Controller {
 
     roomTableView.setItems(roomsView);
 
+    //Displays room information when clicked on in TableView
     roomTableView.setOnMouseClicked(new EventHandler<MouseEvent>() {
       @Override
       public void handle(MouseEvent event) {
@@ -200,6 +208,11 @@ public class GuestRoomController extends Controller {
   }
 
 
+  /*
+  Method called when user clicks "book room"
+  Sets the Global check in and check out date
+  Sends user to payment screen
+   */
   @FXML
   public void handleBookRoom(ActionEvent event) {
     LocalDate checkinDate = checkInDate.getValue();
@@ -218,12 +231,11 @@ public class GuestRoomController extends Controller {
       Global.currentScene = signoutButton.getScene();
       new Global().openNewWindow(WindowLocation.PAYMENT);
     }
-
-
-
-
   }
 
+  /*
+  Takes guest back to login screen
+   */
   @FXML
   public void handleSignout(ActionEvent event) {
     Global.currentScene = signoutButton.getScene();//
@@ -232,6 +244,9 @@ public class GuestRoomController extends Controller {
     Global.selectedRoom= null;
   }
 
+  /*
+  Shows room booking
+   */
   @FXML
   public void handleHistory(ActionEvent event){
     Global.currentScene = signoutButton.getScene();//

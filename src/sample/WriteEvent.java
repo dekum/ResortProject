@@ -9,23 +9,15 @@ import java.time.LocalDate;
 import java.time.Month;
 import java.util.ArrayList;
 
+/**
+ * Class used to write new event to text file
+ * Gets current list of events from Global ArrayList eventList
+ * FileWriter appends textfile with new event information
+ */
 public class WriteEvent {
 
   public WriteEvent(){
-    //FileWrite Guest
 
-    //ArrayList<Guest> emps = Global.guestList;
-    // Global.empList = emps;
-    //ArrayList<ResortEvent> resortEvents = new ArrayList<>();
-//    ArrayList<ResortEvent> events = new ArrayList<>();
-//    events.add((new ResortEvent("ZombieCon", "2018-11-29")));
-//    events.get(0).setEventDescription("\n \n \n dfasfasd");
-//    events.add((new ResortEvent("Crab Race", "2018-11-30")));
-//    events.add((new ResortEvent("Karaoke", "2018-12-02")));
-//    events.add((new ResortEvent("Boat Show", "2018-12-04")));
-//    events.add((new ResortEvent("ArtWalk", "2018-12-05")));
-//    events.add((new ResortEvent("Car Show", "2018-12-09")));
-    //Global.eventList = events;
     ArrayList<ResortEvent> events =Global.eventList;
 
     Writer fileWriterEmp = null;

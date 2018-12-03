@@ -1,12 +1,10 @@
 package sample;
 
-/**
- * User.java
- * Could also be called UserAccount
- * Manager and Guest Class extend from this.
- *
- */
 
+/**
+ * Abstract class used by guest account
+ * Only used to fetch username
+ */
 public abstract class  User {
   private  String userName;
   private  String password;

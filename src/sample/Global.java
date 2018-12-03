@@ -25,21 +25,12 @@ import sample.GuestMenu.GuestRoomController;
 public class Global {
 
   /**
-   * Arraylists can be declared by arraylist list = Global.arraylist and Global will change as list
-   * changes However variables such as Ints and Strings wont' be changed by simialar code So you
-   * will have to a method like UpdateGlobals() which will update this class's variables to be used
-   * in a new window ; Global.java This class stores all our data, that is shared by all the
+   * This class stores all our data, that is shared by all the
    * controllers. By using this we won't have to use a method to pass fields through each
-   * controller. However it doesn't follow effective OOP's practice.
-   *
-   * Since all the fields are static, they change with the class, so changes are global. However
-   * this is bad for testing if the program is too large and you don't knwo whos chaning global
-   * (However we shouldn't have this problem)
-   *
+   * controller.
    * Global also holds enum for WindowLocation will stores url for the FXML files. It makes it
    * easier to get the url just incase the files change location.
-   *.
-   * Expect to be large file.
+   *
    */
   //Used in ManagerHomeController
   static public ArrayList<Room> roomList;
@@ -54,23 +45,21 @@ public class Global {
   static public ArrayList<Employee> empList;
   static public Employee selectedEmp;
   static public ResortEvent selectedEvent;
-
   static public ArrayList<ResortEvent> eventList;
 
 
+  //Used in signup window
   static public ArrayList<String> usernameList = new ArrayList<>(); //ArrayList of username Fields
   static public ArrayList<String> passwordList = new ArrayList<>();//Array:ist of password Field
   static public ArrayList<Guest> guestList = new ArrayList<>();//Arraylist of Guests
   static public List<Room> rooms = new ArrayList<>();//Arraylist of rooms that Manager/Guest Menu's use
   static public Guest currentGuestLoggedIn; //LoginMenuController keeps track of guest to send to GuestMenu
-  static public ObservableList<EmployeeOld> data = FXCollections
-      .observableArrayList(); // Arraylist of Employees for MaanagerMenu
-  static public Manager admin;//Not used
   static public Scene currentScene;
   static public String currentTitle;
 
-  /**
-   * URl Locations for quick reference
+
+  /*
+  Enum for easy reference for window fmxl locations
    */
   public enum WindowLocation {
 
@@ -80,11 +69,6 @@ public class Global {
     ACCOUNTWINDOW("/sample/GuestMenu/GuestAccountWindow.fxml"),
     GUESTMENUHOME("/sample/GuestMenu/GuestRoomTest1.fxml"),
     PAYMENT("/sample/GuestMenu/PaymentWindow.fxml");
-    //   GUESTMENUROOM("/sample/GuestMenu/GuestRoomTest1.fxml"),
-//    GUESTMENUACCOUNT("/sample/GuestMenu/GuestAccountScreen.fxml"),
-//    EVENTMENUHOME("/sample/EventMenu/EventMenuHome.fxml"),
-
-    //    EVENTCREATE("/sample/EventMenu/EventCreate.fxml");
     private String url;
 
 
@@ -100,23 +84,19 @@ public class Global {
 
   }
 
-  public void openNewWindow(WindowLocation window) {/**
-   * Use this method to open a new window
-   * Make sure you define global GlobalStage in the current controller file, so this method knows which window to know
-   * This methos will call a new window from the WindowLocation enum you sent
-   * Make sure to update Global's values before using this method
+  /*
+    Method used to open new window
+    Must set Global currentScene in the current controller file so it can close the window
+   * First Close the Window
+   * Then we get the url of the next FXML/Window from the global WindowLocation Enum
+   * Open the new FXML
+   * When the new window is opened the data is stored.
+   *
+   * Some window calls are different because some of them have have thier Controllers linked to
+   * FXML file, and other dont
+   * In this case GUESTMENUHOME's controller is linked to FXML.
    */
-
-    /*** Simple Process
-     * First Close the Window
-     * Then we get the url of the next FXML/Window from the global WindowLocation Enum
-     * Open the new FXML
-     * When the new window is opened the data is stored.
-     *
-     * Some window calls are different because some of them have have thier Controllers linked to
-     * FXML file, and other dont
-     * In this case GUESTMENUHOME's controller is linked to FXML.
-     */
+  public void openNewWindow(WindowLocation window) {
 
     Stage stage = (Stage) currentScene.getWindow(); //Ask currentScene what window it is.
     stage.close(); //Close current Window
@@ -138,26 +118,22 @@ public class Global {
     Parent p = Loader.getRoot();
     stage = new Stage();
 
-//    if (currentGuestLoggedIn != null) {
-//      stage.setTitle(
-//          "Welcome " + currentGuestLoggedIn.getUserName() + "!"); //Maybe set title in initialize
-//    } else {
-//      stage.setTitle("Welcome");
-//    }
     stage.setTitle(currentTitle);
     stage.setScene(new Scene(p));
     stage.show(); //Opens new Window
 
   }
 
-  public  void setTitle(String currentTitle) {
-    this.currentTitle = currentTitle;
-  }
 
+  /*
+  Method used to display small pop up window
+   */
   public void displayPopUpWindow(String message) {
     final Stage myDialog = new Stage();
+    /*
+    Window modality makes it so user cannot click outside the pop up window
+     */
     myDialog.initModality(Modality.WINDOW_MODAL);
-
     Button okButton = new Button("Ok");
     okButton.setOnAction(new EventHandler<ActionEvent>() {
 

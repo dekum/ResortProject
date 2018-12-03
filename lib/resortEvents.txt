@@ -7,20 +7,8 @@ Dec12
  Description.
 |_End_|
 |_Start_|
-Crab Race
-2018-11-30
-3.0
-Gamble on our professional racing crabs.
-|_End_|
-|_Start_|
 Karaoke
 2018-12-02
-0.0
-
-|_End_|
-|_Start_|
-Boat Show
-2018-12-04
 0.0
 
 |_End_|

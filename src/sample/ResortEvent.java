@@ -3,6 +3,11 @@ package sample;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
+/**
+ * Class used for events
+ * Contains name, date, price, and description
+ * StringProperty used for display in TableView
+ */
 public class ResortEvent {
     private String name;
     private String date;
@@ -27,15 +32,6 @@ public class ResortEvent {
     this.eventDescription = eventDescription;
   }
 
-  public ResortEvent(String name, String date){
-      this.name = name;
-      this.date = date;
-      dateproperty = new SimpleStringProperty();
-      dateproperty.set(date);
-      nameproperty = new SimpleStringProperty();
-      nameproperty.set(name);
-
-    }
     public ResortEvent(){
       dateproperty = new SimpleStringProperty();
 
@@ -69,24 +65,8 @@ public class ResortEvent {
     this.date = date;
   }
 
-  public String getNameproperty() {
-    return nameproperty.get();
-  }
-
-  public StringProperty namepropertyProperty() {
-    return nameproperty;
-  }
-
   public void setNameproperty(String nameproperty) {
     this.nameproperty.set(nameproperty);
-  }
-
-  public String getDateproperty() {
-    return dateproperty.get();
-  }
-
-  public StringProperty datepropertyProperty() {
-    return dateproperty;
   }
 
   public void setDateproperty(String dateproperty) {

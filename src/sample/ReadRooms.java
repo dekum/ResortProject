@@ -8,6 +8,12 @@ import java.util.Scanner;
 import sample.Global;
 import sample.Room;
 
+/**
+ * Class used to read event info from text file
+ * Utilizes scanner to iterate through text file
+ * Finds "Start" String and reads each line and sets to corresponding object value
+ * Adds new Room to Global empList ArrayList of object 'Room'
+ */
 public class ReadRooms {
   ReadRooms() {
 
@@ -23,27 +29,17 @@ public class ReadRooms {
     ArrayList<Room> rooms = new ArrayList<>();
 
 
-    int lineNumber = 0;
     int lineNumberForRoom=0;
     Boolean passedLine = false;
     Room createRoom= new Room();
     while(scanner.hasNextLine())
     {
       currentLine = scanner.nextLine();
-      lineNumber++;
-      //System.out.println( currentLine);
       if(passedLine)
       {
-        //System.out.println("Worked!");
-        //Do other task after passing the line.
+
         if(!currentLine.equals("|_End_|"))
         {
-          //Not the end of the room data
-          //Ok Print room data
-
-
-         // System.out.println(currentLine + "-"+ lineNumber+ "-"+lineNumberForRoom);
-          //passedLine =false;
           if (lineNumberForRoom==1){
             //Room name
             createRoom.setName(currentLine);
@@ -68,16 +64,10 @@ public class ReadRooms {
 
           }
           if (lineNumberForRoom==5){
-
-            //OccipiedGuest may need to check for null
-//            assert (currentLine.getClass().equals(Guest.class));
-            //createRoom.setOccupiedGuest(currentLine);
-            //check guestlist for matching username, then set the matching guest to room
             for (Guest g: Global.guestList){
               System.out.println( g.toString() + "  " + currentLine);
               if (currentLine.equals(g.toString())){
                 createRoom.setOccupiedGuest(g);
-                System.out.println("HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHdid this" + g.getUserName());
               }
 
             }
@@ -110,8 +100,6 @@ public class ReadRooms {
 
 
         }else {
-          //Okay stop, current room data is over
-         // System.out.println("End of Room Data");
           rooms.add(createRoom);
           passedLine=false;
 
@@ -129,19 +117,8 @@ public class ReadRooms {
         //Room has 4 fields currently, 1.Name(Str)  2.IsAvaiable(bool) 3.Price(double) 4.PcitureURL(str)
       }
 
-
-
-    }
-    for (Room r :rooms
-    ) {
-//      System.out.println(r.getName());
-//      System.out.println(r.getPrice());
-//      System.out.println(r.getAvailable());
-//      System.out.println(r.getPictureUrl());
-
     }
 
-    System.out.println("Rooms Read");
     Global.roomList= rooms;
   }
 

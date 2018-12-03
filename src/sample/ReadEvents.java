@@ -6,6 +6,12 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Class used to read event info from text file
+ * Utilizes scanner to iterate through text file
+ * Finds "Start" String and reads each line and sets to corresponding object value
+ * Adds new Event to Global empList ArrayList of object 'Event'
+ */
 public class ReadEvents {
   ReadEvents() {
 
@@ -21,9 +27,7 @@ public class ReadEvents {
     ArrayList<ResortEvent> events = new ArrayList<>();
 
 
-    int lineNumber = 0;
     int lineNumberForRoom=0;
-    int lineNumberforEventDes=0;
     String eventDes ="";
     Boolean startEventDes = false;
     Boolean passedLine = false;
@@ -31,20 +35,10 @@ public class ReadEvents {
     while(scanner.hasNextLine())
     {
       currentLine = scanner.nextLine();
-      lineNumber++;
-      //System.out.println( currentLine);
       if(passedLine)
       {
-        //System.out.println("Worked!");
-        //Do other task after passing the line.
         if(!currentLine.equals("|_End_|"))
         {
-          //Not the end of the room data
-          //Ok Print room data
-
-
-         // System.out.println(currentLine + "-"+ lineNumber+ "-"+lineNumberForRoom);
-          //passedLine =false;
           if (lineNumberForRoom==1){
             //Event name
             creatEvent.setName(currentLine);
@@ -62,7 +56,6 @@ public class ReadEvents {
           if (lineNumberForRoom==3){
             //Event Price
             creatEvent.setPrice(Double.parseDouble(currentLine));
-           // creatEvent.setDateproperty(currentLine);
 
           }
           if (startEventDes){
@@ -73,7 +66,6 @@ public class ReadEvents {
             //Event Description
 
             creatEvent.setEventDescription(currentLine);
-            // creatEvent.setDateproperty(currentLine);
             startEventDes= true;
             eventDes += currentLine;
           }
@@ -82,8 +74,6 @@ public class ReadEvents {
 
 
         }else {
-          //Okay stop, current room data is over
-         // System.out.println("End of Room Data");
           creatEvent.setEventDescription(eventDes);
           events.add(creatEvent);
           eventDes ="";//clearing
@@ -107,15 +97,6 @@ public class ReadEvents {
 
 
     }
-    for (ResortEvent r : events
-    ) {
-//      System.out.println(r.getName());
-//      System.out.println(r.getDate());
-
-
-    }
-
-    System.out.println("Events Read");
     Global.eventList= events;
   }
 

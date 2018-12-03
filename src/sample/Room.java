@@ -9,6 +9,7 @@ import javafx.scene.control.ListView;
 import javafx.util.Callback;
 
 public class Room {
+
   private StringProperty nameproperty;
   String name;
   String pictureUrl;
@@ -43,10 +44,10 @@ public class Room {
     this.dayOut = dayOut;
   }
 
-  public void removeGuest(){
+  public void removeGuest() {
     occupiedGuest = null;
     daysStaying = 0;
-    isAvailable= true;
+    isAvailable = true;
 
   }
 
@@ -58,14 +59,15 @@ public class Room {
     this.totalPrice = totalPrice;
   }
 
-  public void setnameProperty(String fname){
+  public void setnameProperty(String fname) {
     nameproperty.set(fname);
   }
-  public StringProperty getnameProperty(){
+
+  public StringProperty getnameProperty() {
     return nameproperty;
   }
 
-  public String getName2(){
+  public String getName2() {
     return nameproperty.get();
   }
 
@@ -137,39 +139,5 @@ public class Room {
   public Room(String name) {
     this.name = name;
   }
-
-  public static class RoomCellFactory implements Callback<ListView<Room>, ListCell<Room>> {
-
-    @Override
-    public ListCell<Room> call(ListView<Room> listview) {
-      return new RoomCell();
-    }
-  }
 }
-
-class RoomCell  extends ListCell<Room>
-{
-  @Override
-  public void updateItem(Room item, boolean empty)
-  {
-    super.updateItem(item, empty);
-
-    int index = this.getIndex();
-    String name = null;
-
-    // Format name
-    if (item == null || empty)
-    {
-    }
-    else
-    {
-      name = (index + 1) + ". " +
-          item.getName() + ", ";
-    }
-
-    this.setText(name);
-    setGraphic(null);
-  }
-}
-
 

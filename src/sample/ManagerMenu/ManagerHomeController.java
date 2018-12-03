@@ -20,11 +20,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
-import javax.swing.Action;
-import sample.Controller;
 import sample.Employee;
 import sample.Global;
 import sample.Global.WindowLocation;
@@ -36,7 +32,13 @@ import sample.WriteEmployee;
 import sample.WriteEvent;
 import sample.WriteRooms;
 
-public class ManagerHomeController extends Controller {
+/**
+ * Main manager menu
+ * Tabs for employee, room, event, and summary report info
+ * Can update, add, or delete employees, events, and rooms
+ * Summary reports of total information shown
+ */
+public class ManagerHomeController {
   @FXML
   private TableView<Employee> employeeTableView; //TableView for Employee
   @FXML
@@ -79,21 +81,21 @@ public class ManagerHomeController extends Controller {
   @FXML
   Button addEventButton, removeEventButton, updateEventButton;
 
+  /*
+  Method called when "Add Event" button is clicked
+  Gets new event information from TextFields
+  Creates new ResortEvent object
+  Displays it in the TableView using ObservableArrayList
+  Writes it to reortEvents.txt
+  Updates summary report tab
+   */
   @FXML void addEvent (ActionEvent e){
     String errorMessage = validateEventInputs();
 
     if (!errorMessage.equals("")){
-      //There was an error, print popup displaying errors
       new Global().displayPopUpWindow(errorMessage);
     }
     else {
-      //Inputs are fine, add employee
-      String eventName = textfieldEventName.getText();
-      String eventPrice = textAreaEventDes.getText();
-      Double price = Double.parseDouble(textFieldEventPrice.getText());
-
-      LocalDate eventDate = datePickerEventDate.getValue();
-
       ResortEvent newEvent = new ResortEvent(textfieldEventName.getText(),datePickerEventDate.getValue().toString(),
           Double.parseDouble(textFieldEventPrice.getText()),textAreaEventDes.getText());
       eventList.add(newEvent);
@@ -106,12 +108,19 @@ public class ManagerHomeController extends Controller {
     }
 
   }
+
+  /*
+  Method called when "Delete Event" button is pressed
+  If event is selected, removes it from the Global ArrayList for events
+  Clears event from TableView and the TextFields
+  If no event selected, shows error message
+   */
   @FXML void deleteEvent (ActionEvent e){
     if (selectedEvent !=null){
       eventList.remove(selectedEvent); //Remove the object stored in SelectedRoom from the roomList Array
       selectedEvent= null;
       ObservableList<ResortEvent> eventView = FXCollections.observableArrayList(eventList); //reset list, to show change
-      tableViewEvents.setItems(eventView);//clear textfield's data
+      tableViewEvents.setItems(eventView);
       textfieldEventName.setText("");
       textFieldEventPrice.setText("");
       textAreaEventDes.setText("");
@@ -123,6 +132,14 @@ public class ManagerHomeController extends Controller {
     }
 
   }
+  /*
+  Method called when "Update Event" button is pressed
+  Uses ValidateEventInputs method to ensure validity
+  If String is sent back empty, all inputs are valid
+  If valid, selected event is updated and shown in TableView
+  WriteEvent method is called to write the updated event to the text file
+  If invalid, displays error
+   */
   @FXML void updateEvent (ActionEvent e){
 
     String errorMessage = validateEventInputs();
@@ -158,6 +175,12 @@ public class ManagerHomeController extends Controller {
 
   }
 
+  /*
+  String method used to validate event inputs
+  Sets initial string value as empty
+  If invalid input, error message is set to it
+  Returns value of the String
+   */
   public String validateEventInputs(){
     String errorMessage="";
     Global.currentScene = signoutButton.getScene();
@@ -167,13 +190,13 @@ public class ManagerHomeController extends Controller {
 
 
 
-
+    //Checks that there is text in the name field
     if (textfieldEventName.getText().equals("")){
 
       errorMessage += "Please Enter New Event Name\n";
 
     }
-
+    //Checks that there is a valid price in the price field
     if(textFieldEventPrice.getText().equals("")){
       errorMessage += "Please Enter New Event Price\n";
 
@@ -193,10 +216,13 @@ public class ManagerHomeController extends Controller {
 
     }
 
+    //Checks that a date is selected
     if (datePickerEventDate.getValue()==null){
       errorMessage += "Please Enter New Event Date\n";
 
     }
+
+    //Checks that a description is entered
     if(textAreaEventDes.getText().equals("")){
 
       errorMessage += "Please Enter New Event Description\n";
@@ -207,12 +233,13 @@ public class ManagerHomeController extends Controller {
   }
 
 
+  /*
+  Method called when window is opened
+  Gets rooms, employee, and event ArrayList from Global class and populates respective TableViews
+   */
   @FXML
   void initialize() {
-    /**
-     * This method is excuted first, before the window loads.
-     */
-    //Global.currentTitle="Ruby Resort: Manager View";
+
     ObservableList<ResortEvent> eventsView = FXCollections.observableArrayList(eventList);
     columnEvent.setCellValueFactory(cellData -> cellData.getValue().getNameProperty()); //set Cellfactory for  room column
 
@@ -249,8 +276,6 @@ public class ManagerHomeController extends Controller {
 
     ObservableList<Employee> empView = FXCollections.observableArrayList(empList);
     employeeColumn.setCellValueFactory(cellData -> cellData.getValue().getBothNamesProperty());
-//    employeeColumn.setCellValueFactory(
-//        new PropertyValueFactory<Employee, String>("bothNamesProperty"));
     employeeTableView.setItems(empView);
 
     employeeTableView.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -268,6 +293,10 @@ public class ManagerHomeController extends Controller {
     populateSummaryReports();
   }
 
+  /*
+  Method used to validate new employee inputs
+  Same fucntionality as valiateEvents
+   */
   public String validateEmployeeInputs(){
     String errorMessage="";
     Global.currentScene = signoutButton.getScene();
@@ -317,7 +346,11 @@ public class ManagerHomeController extends Controller {
     return errorMessage;
   }
 
-//TODO
+  /*
+  Method called when "Add Room" button is pressed
+  The room page has the validate inputs already in the button handling methods
+  Similar functionality to employee and events
+   */
   @FXML
   void addRoom(ActionEvent event) {
     double roomPrice=-1;
@@ -377,6 +410,11 @@ public class ManagerHomeController extends Controller {
 
   }
 
+  /*
+  Method called when "Delete Room" button is pressed
+  Checks if room is selected
+  If so, deletes it from the Global roomList and writes to file
+   */
   @FXML
   void deleteRoom(ActionEvent event) {
     //need to check if selected room Exists/ or is null
@@ -394,6 +432,10 @@ public class ManagerHomeController extends Controller {
 
   }
 
+  /*
+  Method called when "Update Room" button is pressed
+  Same functionality as add room
+   */
   @FXML
   void updateRoom(ActionEvent event) {
     double roomPrice=-1;
@@ -449,15 +491,13 @@ public class ManagerHomeController extends Controller {
     }
 
 
-
-    //Room updatedRoom = new Room(selectedRoom.getName(),true,selectedRoom.getPrice(),selectedRoom.getPictureUrl());
-    //roomList.remove(selectedRoom);
-    //roomList.add(updatedRoom);
-
-
   }
 
-  //TODO
+  /*
+  Method called when "Add Employee" button is pressed
+  Uses validateEmployeeInputs to check if valid
+  If so, adds new employee to Global list and writes to file
+   */
   @FXML
   void addEmployee(ActionEvent event) {
     String errorMessage = validateEmployeeInputs();
@@ -485,6 +525,10 @@ public class ManagerHomeController extends Controller {
     }
   }
 
+  /*
+  Method called when "Delete Employee" button is pressed
+  Same functionality as delete room and event
+   */
   @FXML
   void deleteEmployee(ActionEvent event) {
     if (selectedEmp != null){
@@ -507,6 +551,10 @@ public class ManagerHomeController extends Controller {
 
   }
 
+  /*
+  Method called when "Update Employee" button is pressed
+  Same functionality as update room and event
+   */
   @FXML
   void updateEmployee(ActionEvent event) {
     String errorMessage = validateEmployeeInputs();
@@ -543,6 +591,10 @@ public class ManagerHomeController extends Controller {
 
   }
 
+  /*
+  Method called when "Clear Fields" button is pressed
+  Clears the TextFields for easier use adding new info
+   */
   @FXML
   void clearFields(ActionEvent event) {
 
@@ -559,6 +611,9 @@ public class ManagerHomeController extends Controller {
 
   }
 
+  /*
+  Sends user back to login screen
+   */
   @FXML
   void signOut(ActionEvent event) {
     Global.currentScene = signoutButton.getScene();//

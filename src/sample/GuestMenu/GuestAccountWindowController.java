@@ -15,6 +15,10 @@ import sample.Global;
 import sample.Global.WindowLocation;
 import sample.Guest;
 
+/**
+ * Screen shown when user clicks "payment history" from GuestRoomController
+ * Shows dates, room info, and total price along with username
+ */
 public class GuestAccountWindowController implements Initializable {
   @FXML
   public Label labelRoomName;
@@ -22,10 +26,6 @@ public class GuestAccountWindowController implements Initializable {
   public Label labelPricePerDay;
   @FXML
   public Label labelTotalCost;
-  @FXML
-  public Label labelDOB;
-  @FXML
-  public Label labelFullName;
   @FXML
   public Label labelUserName;
   @FXML
@@ -35,17 +35,20 @@ public class GuestAccountWindowController implements Initializable {
   @FXML
   private ImageView imageViewRoom;
 
-
+  /*
+  Sends user back to guest menu
+   */
   @FXML
   void handleExit(ActionEvent event){
     Global.currentScene = labelTotalCost.getScene();//
     Global.currentTitle="Ruby Resort: Guest View";
     new Global().openNewWindow(WindowLocation.GUESTMENUHOME);
     Global.selectedRoom= null;
-
-
   }
 
+  /*
+  Method called when window is opened
+   */
   public void initialize(URL location, ResourceBundle resources) {
     Guest currentGuest = Global.currentGuestLoggedIn;
     if (Global.currentGuestLoggedIn.getRoomRented()!=null){
@@ -59,12 +62,6 @@ public class GuestAccountWindowController implements Initializable {
       imageViewRoom.setImage(image);
 
     }
-    //labelFullName.setText(currentGuest.getFirstName()+" "+currentGuest.getLastName());
-//    labelDOB.setText(currentGuest.getDateOfBirth());
     labelUserName.setText(currentGuest.getUserName());
-
-
-
-
   }
 }

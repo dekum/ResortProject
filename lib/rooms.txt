@@ -9,24 +9,14 @@ null
 2018-12-05
 |_End_|
 |_Start_|
-2 Twin Beds
-true
-200.0
-sample/Pictures/TwinBed.jpg
-null
-200.0
-2018-12-01
-2018-12-02
-|_End_|
-|_Start_|
 Suite: 2 Queen Beds
 true
 500.0
 sample/Pictures/2Queen.jpg
-sample.Guest@74c3f655
-2000.0
+null
+500.0
 2018-12-02
-2018-12-06
+2018-12-03
 |_End_|
 |_Start_|
 Suite: 1 King Bed
@@ -37,4 +27,24 @@ null
 525.0
 2018-12-01
 2018-12-02
+|_End_|
+|_Start_|
+Suite: 1 King Bed
+true
+525.0
+/sample/Pictures/SuiteQueen.jpg
+null
+525.0
+2018-12-02
+2018-12-03
+|_End_|
+|_Start_|
+asdf
+true
+333.0
+/sample/Pictures/SuiteQueen.jpg
+null
+0.0
+null
+null
 |_End_|

@@ -11,13 +11,16 @@ import java.time.Month;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Class used to write new employees to text file
+ * Gets current list of employees from Global ArrayList empList
+ * FileWriter appends textfile with new employee information
+ */
 public class WriteEmployee {
 
   public WriteEmployee(){
-    //FileWrite EMployees
 
     ArrayList<Employee> emps = Global.empList;
-    // Global.empList = emps;
 
     Writer fileWriterEmp = null;
     try {

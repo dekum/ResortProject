@@ -8,6 +8,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Properties;
 
+/**
+ * Class used to read guest and manager usernames and password
+ * Uses Properties key and element pair to iterate through text file to find valid match
+ *
+ */
 public class UserFileUtilities {
 
   private static File targetFile;
@@ -15,6 +20,10 @@ public class UserFileUtilities {
   private static String newLine = System.lineSeparator();
 
 
+  /*
+  Called when needed to read file
+  Sets file path and creates properties
+   */
   public static void Initialize(){
 
     targetFile = new File("lib/guestUsernames.txt");
@@ -34,10 +43,16 @@ public class UserFileUtilities {
 
     Initialize();
 
+    //Checks if file exits, if not creates one
     if (!targetFile.exists()) {
       targetFile.createNewFile();
     }
 
+    /*
+    Passes username and password to method to check if username and password exist
+    If they do, then it sends an error
+    If not, creates new username and password and writes to file
+     */
     Boolean doesTheKeyValuePairExist = checkIfPairExists(username, password);
 
     if (doesTheKeyValuePairExist) {
@@ -45,9 +60,6 @@ public class UserFileUtilities {
     } else {
       try {
         addNewCredentials(username, password);
-
-        System.out.println(
-            "Username and password added!");
       } catch (IOException ioe) {
         System.err.println(
             "File not found");
@@ -55,6 +67,9 @@ public class UserFileUtilities {
     }
   }
 
+  /*
+  Creates new BufferedWriter to append text file with new user info
+   */
   private static void addNewCredentials(String username, String password) throws IOException {
     FileWriter writer =  new FileWriter(targetFile.getAbsolutePath(), true);
     BufferedWriter buffered_writer = new BufferedWriter(writer);
@@ -62,6 +77,10 @@ public class UserFileUtilities {
     buffered_writer.close();
   }
 
+  /*
+  Iterates through the text file to check if theres a match between key and element pair
+  If so, returns true
+   */
   public static Boolean checkIfPairExists(String username, String password) {
     for (String key : properties.stringPropertyNames()) {
       if (key.equals(username) && properties.getProperty(key).equals(password)) {
@@ -72,20 +91,9 @@ public class UserFileUtilities {
     return false;
   }
 
-  public static String searchUsers(String username){
-
-    Initialize();
-
-    String returnUser = null;
-
-    for (String key : properties.stringPropertyNames()){
-      if (key.equals(username)){
-        returnUser = username;
-      }
-    }
-    return returnUser;
-  }
-
+  /*
+  Used to iterate through text file and find total amount of guests for display in summary reports
+   */
   public static int getGuestAmount(String username, String password){
     int count = 0;
     for (String key : properties.stringPropertyNames()){
@@ -93,18 +101,4 @@ public class UserFileUtilities {
     }
     return count;
   }
-/*
-  public static ArrayList<User2> initializeUsers(){
-    ArrayList<User2> userList = new ArrayList<>();
-    Initialize();
-
-    for (String key : properties.stringPropertyNames()){
-      User2 user = new User2();
-      user.setUsername(key);
-      user.setPassword(properties.getProperty(key));
-      userList.add(user);
-    }
-    return userList;
-  }
-*/
 }

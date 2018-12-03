@@ -3,6 +3,10 @@ package sample;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
+/**
+ * Class used to print summary reports in Manager window
+ * StringProperty used to display on TableView
+ */
 public class Report {
     private String summaryField;
     private double summaryCount;

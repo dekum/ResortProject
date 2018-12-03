@@ -1,6 +1,5 @@
 package sample.GuestMenu;
 
-import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,12 +11,16 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import sample.Controller;
 import sample.Global;
 import sample.Global.WindowLocation;
 import sample.WriteRooms;
 
-public class PaymentController extends Controller {
+/**
+ * Screen shown when user clicks "book room" from GuestRoomController
+ * Displays picked room info and check in check out date along with total cost
+ * Credit Card info is purely cosmetic and is not used nor stored anywhere
+ */
+public class PaymentController {
   double price;
 
   @FXML
@@ -45,6 +48,13 @@ public class PaymentController extends Controller {
 
   @FXML Button quitButton;
 
+  /*
+  Method called when window is opened
+  Sets the drop down boxes for credit card info using integer List
+  Then converted to ObservableList for display
+  Numbers are purely arbitrary and can be changed
+  Sets the labels for room info, price, and dates
+   */
   @FXML
   void initialize(){
     List<Integer> expMonthNums = new ArrayList<>();
@@ -66,13 +76,7 @@ public class PaymentController extends Controller {
     checkInLabel.setText(Global.checkInDate.toString());
     checkOutLabel.setText(Global.checkOutDate.toString());
 
-    //LocalDate weekLater = localDate.plusDays ( 7 );
     Period period = Period.between ( Global.checkInDate,Global.checkOutDate );
-   // Integer price = period.getDays ();
-
-    //double price = (Global.checkOutDate.get() - Global.checkInDate);
-  //  double price = (Global.checkOutDate.getDayOfMonth() - Global.checkInDate.getDayOfMonth())
-   //     * Global.selectedRoom.getPrice();
     price = (period.getDays()  * Global.selectedRoom.getPrice());
     Global.selectedRoom.setTotalPrice(price);
     roomPriceLabel.setText("$" + price);
@@ -80,6 +84,9 @@ public class PaymentController extends Controller {
     roomInfoLabel.setText(Global.roomInfo);
   }
 
+  /*
+  Takes user back to guest menu
+   */
   @FXML void handleQuit(ActionEvent event){
 
     Global.currentScene = confirmBook.getScene();
@@ -88,6 +95,9 @@ public class PaymentController extends Controller {
     new Global().openNewWindow(WindowLocation.GUESTMENUHOME);
   }
 
+  /*
+  Sets current room and writes it to the room file
+   */
   @FXML
   void handleConfirm(ActionEvent event) {
     Global.currentGuestLoggedIn.setRoomRented(Global.selectedRoom);
