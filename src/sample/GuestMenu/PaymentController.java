@@ -18,7 +18,7 @@ import sample.WriteRooms;
 /**
  * Screen shown when user clicks "book room" from GuestRoomController
  * Displays picked room info and check in check out date along with total cost
- * Credit Card info is purely cosmetic and is not used nor stored anywhere
+ * Credit Card info is purely cosmetic and is not used nor stored anywhere.
  */
 public class PaymentController {
   double price;
