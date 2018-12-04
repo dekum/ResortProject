@@ -1,22 +1,14 @@
 # ResortProject
 ![Image](https://github.com/dekum/ResortProject/blob/master/src/sample/Pictures/icons8-beach-filled-50.png?raw=true)
-Group Project for Software Engineering Fundamentals
+Group Project for Software Engineering Fundamentals.
 
 
 # Table of Contents
 - [Summary](#Summary)
-- [Contributors](#Contributors)
 - [How To Install](#How_to_Install)
 - [Images](#Images)
+- [Contributors](#Contributors)
 - [Demo](#demo)
-
-# Contributors:
-Team Name: Aces
-* Nicolo Martina - Assisted in both back-end and front-end development and oversaw any changes, njmartina4082@eagle.fgcu.edu
-* Philemon Petit-Frere - Lead back-end programmer,  ppetitfrere9554@eagle.fgcu.edu 
-* Garret Graber - Lead front-end developer, ggraber7402@eagle.fgcu.edu 
-* Brad Larson - Assisted in back-end coding, lead SQA tester, blarson1953@eagle.fgcu.edu 
-* Austin Horne - Assisted in program functionality, SQA tester, adhorne0633@eagle.fgcu.edu 
 
 
 # Summary
@@ -24,7 +16,7 @@ Team Name: Aces
 
 
 # How to Install
-Needed Programs: Windows Vista or above and Java version 1.8. <br>
+Needed Programs: Windows Vista or above and Java version 1.8 or above. <br>
 Navigate to https://github.com/dekum/ResortProject then to the jar folder and download Resort_Project.zip <br>
 Extract the contents to your choice of location. Ensure that the Resort_Project.jar AND lib folder are in the same directory. <br>
 Double click Resort_Project.jar to run.
@@ -48,6 +40,15 @@ User can edit room information, the type of room and the price of it. These room
 User can edit event information. Events have a name,price, description and date.<br>
 ![Gui Picture](https://github.com/dekum/ResortProject/blob/master/images/ManagerViewSummary.png)<br>
 This is the summary page, it keeps count of all events, rooms and employees. It updates automatically if any room event or employee is added or removed.
+
+# Contributors:
+Team Name: Aces
+* Nicolo Martina - Assisted in both back-end and front-end development and oversaw any changes, njmartina4082@eagle.fgcu.edu
+* Philemon Petit-Frere - Lead back-end programmer,  ppetitfrere9554@eagle.fgcu.edu 
+* Garret Graber - Lead front-end developer, ggraber7402@eagle.fgcu.edu 
+* Brad Larson - Assisted in back-end coding, lead SQA tester, blarson1953@eagle.fgcu.edu 
+* Austin Horne - Assisted in program functionality, SQA tester, adhorne0633@eagle.fgcu.edu 
+
 # Demo
 Gif of opening the jar file.<br>
 <img src="https://github.com/dekum/ResortProject/blob/master/images/OpeningJar.gif" width="500" height="332">
