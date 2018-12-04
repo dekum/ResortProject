@@ -15,6 +15,8 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBoxBuilder;
 import javafx.scene.text.Text;
@@ -144,15 +146,16 @@ public class Global {
 
     });
 
-    Scene myDialogScene = new Scene(VBoxBuilder.create()
-        .children(new Text(message), okButton)
-        .alignment(Pos.CENTER)
-        .padding(new Insets(10))
-        .build());
-    myDialog.initOwner(currentScene.getWindow()); //Set this to the parent of the opup window
-    myDialog.setScene(myDialogScene);
-    myDialog.showAndWait(); //USE showAndWait to wait for the popto close
-    //REgular wait will ignore modality and will call second window regardlessly.
+    try{
+      Alert alert = new Alert(AlertType.INFORMATION);
+      alert.setTitle("Alert");
+      alert.setHeaderText("Alert");
+      alert.setContentText(message );
+
+      alert.showAndWait();
+    } catch (java.lang.NoClassDefFoundError exception){
+
+    }
 
   }
 
