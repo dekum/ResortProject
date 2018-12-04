@@ -146,6 +146,7 @@ public class Global {
 
     });
 
+    //Alert box shows user message
     try{
       Alert alert = new Alert(AlertType.INFORMATION);
       alert.setTitle("Alert");
