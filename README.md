@@ -49,7 +49,8 @@ User can edit event information. Events have a name,price, description and date.
 ![Gui Picture](https://github.com/dekum/ResortProject/blob/master/images/ManagerViewSummary.png)<br>
 This is the summary page, it keeps count of all events, rooms and employees. It updates automatically if any room event or employee is added or removed.
 # Demo
-Gif of opening the jar file.
-![Gui Picture](https://github.com/dekum/ResortProject/blob/master/images/OpeningJar.gif)<br>
+Gif of opening the jar file.<br>
+<img src="https://github.com/dekum/ResortProject/blob/master/images/OpeningJar.gif" width="500" height="332">
+
 
 
