@@ -24,8 +24,8 @@ Team Name: Aces
 
 
 # How to Install
-Needed Programs: Windows Vista or above and Java. <br>
-Navigate to https://github.com/dekum/ResortProject -> .idea -> artifacts and download the 'Resort_Project.zip' file. <br>
+Needed Programs: Windows Vista or above and Java version 1.8. <br>
+Navigate to https://github.com/dekum/ResortProject then to the jar folder and download Resort_Project.zip <br>
 Extract the contents to your choice of location. Ensure that the Resort_Project.jar AND lib folder are in the same directory. <br>
 Double click Resort_Project.jar to run.
 
