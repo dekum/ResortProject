@@ -1,5 +1,5 @@
 # ResortProject
-![Image](https://github.com/dekum/ResortProject/blob/master/src/sample/icons8-beach-filled-50.png?raw=true)
+![Image](https://github.com/dekum/ResortProject/blob/master/src/sample/pictures/icons8-beach-filled-50.png?raw=true)
 Group Project for Software Engineering Fundamentals
 
 
@@ -24,9 +24,10 @@ Team Name: Aces
 
 
 # How to Install
-Needed Programs: Java IDE, such as IntellJ IDEA or Eclipse.
-If Using IntelJ, then click File>New>Project from Version Control>Git. Enter this for URL: https://github.com/dekum/ResortProject.git
-If the textfiles arent downloaded, then the program will run on a default dataset.
+Needed Programs: Windows Vista or above and Java
+Navigate to https://github.com/dekum/ResortProject -> .idea -> artifacts and download the 'Resort_Project.zip' file.
+Extract the contents to your choice of location. Ensure that the Resort_Project.jar AND lib folder are in the same directory.
+Double click Resort_Project.jar to run.
 
 # Images
 Images of Login Screen, Sign up Screen, Guest View, Manager View
