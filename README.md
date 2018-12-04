@@ -47,7 +47,7 @@ User can edit room information, the type of room and the price of it. These room
 ![Gui Picture](https://github.com/dekum/ResortProject/blob/master/images/ManagerViewEvents.png)<br>
 User can edit event information. Events have a name,price, description and date.<br>
 ![Gui Picture](https://github.com/dekum/ResortProject/blob/master/images/ManagerViewSummary.png)<br>
-This is the summary page, it keeps count of all events, rooms and employees. it updates automatically if any room event or employee is added or removed.
+This is the summary page, it keeps count of all events, rooms and employees. It updates automatically if any room event or employee is added or removed.
 # Demo
 Gif of prgram wokring
 
