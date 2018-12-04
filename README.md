@@ -1,5 +1,5 @@
 # ResortProject
-![Image](https://github.com/dekum/ResortProject/blob/master/src/sample/pictures/icons8-beach-filled-50.png?raw=true)
+![Image](https://github.com/dekum/ResortProject/blob/master/src/sample/Pictures/icons8-beach-filled-50.png?raw=true)
 Group Project for Software Engineering Fundamentals
 
 
